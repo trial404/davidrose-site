@@ -373,7 +373,6 @@
         'aria-label="' + esc(p.title) + " — view larger" + '">' +
         '<span class="photo-idx">[' + n + "]</span>" +
         '<span class="photo-frame" style="--ar:' + esc(p.ar || "4 / 3") + '">' + inner + "</span>" +
-        '<span class="photo-cap"><span>' + esc(p.title) + "</span><span>" + esc(p.series || "") + "</span></span>" +
       "</button>"
     );
   }
@@ -491,15 +490,21 @@
     if (!p || !lightbox) return;
 
     var img = lightbox.querySelector("[data-lightbox-img]");
-    var cap = lightbox.querySelector("[data-lightbox-cap]");
     if (img) {
       img.src = p.image || "";
       img.alt = p.title;
       img.style.setProperty("--ar", p.ar || "4 / 3");
     }
-    if (cap) {
-      cap.innerHTML = "<span>" + esc(p.title) + "</span><span>" + esc(p.series || "") + "</span>";
+
+    function put(sel, value) {
+      var node = lightbox.querySelector(sel);
+      if (node) node.textContent = value || "";
     }
+
+    put("[data-lightbox-title]", p.title);
+    put("[data-lightbox-location]", p.location);
+    put("[data-lightbox-date]", p.date);
+    put("[data-lightbox-desc]", p.description);
     if (typeof lightbox.showModal === "function") lightbox.showModal();
     else lightbox.setAttribute("open", "");
   }

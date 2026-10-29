@@ -116,7 +116,14 @@
 <dialog class="lightbox" data-lightbox aria-label="Photograph">
   <button class="lightbox-close" type="button" aria-label="Close">✕</button>
   <img data-lightbox-img alt="">
-  <p class="lightbox-cap" data-lightbox-cap></p>
+  <div class="lightbox-meta">
+    <p class="lightbox-title" data-lightbox-title></p>
+    <dl class="lightbox-facts">
+      <div><dt>Location</dt><dd data-lightbox-location></dd></div>
+      <div><dt>Date</dt><dd data-lightbox-date></dd></div>
+      <div><dt>Description</dt><dd data-lightbox-desc></dd></div>
+    </dl>
+  </div>
 </dialog>
 
 <!-- PRINT DETAIL PANEL -->

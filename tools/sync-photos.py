@@ -114,10 +114,20 @@ def object_spans(text):
 # ---------- read current state ----------
 media = io.open(MEDIA, encoding="utf-8").read()
 existing = {}
-for m in re.finditer(r'\{ id: "([^"]+)", title: "([^"]+)", series: "([^"]+)", sets: \[([^\]]*)\]', media):
-    existing[m.group(1)] = {
-        "title": m.group(2),
-        "sets": [x.strip().strip('"') for x in m.group(4).split(",") if x.strip()],
+for line in re.findall(r'^    \{ id: .*\},$', media, re.M):
+    def field(name):
+        m = re.search(name + r': "([^"]*)"', line)
+        return m.group(1) if m else None
+    pid = field("id")
+    if not pid:
+        continue
+    sets = re.search(r'sets: \[([^\]]*)\]', line)
+    existing[pid] = {
+        "title": field("title"),
+        "sets": [x.strip().strip('"') for x in sets.group(1).split(",") if x.strip()] if sets else [],
+        "location": field("location") or "[location]",
+        "date": field("date") or "[date]",
+        "description": field("description") or "[description]",
     }
 
 # ---------- walk source folders ----------
@@ -165,6 +175,9 @@ for w in wanted:
     cw, ch = dims(w["out"] if os.path.exists(w["out"]) else w["src"])
     photos.append({"id": w["id"], "title": title, "series": w["series"],
                    "sets": old.get("sets") or [w["series"].lower()],
+                   "location": old.get("location") or "[location]",
+                   "date": old.get("date") or "[date]",
+                   "description": old.get("description") or "[description]",
                    "ar": f"{cw} / {ch}", "fresh": w["fresh"]})
 
 live = {p["id"] for p in photos}
@@ -174,8 +187,10 @@ rows = []
 for p in photos:
     sets = ", ".join('"%s"' % s for s in p["sets"])
     rows.append('    { id: "%s", title: "%s", series: "%s", sets: [%s], ar: "%s", '
-                'image: "assets/img/photos/%s.jpg" },' % (
-                    p["id"], p["title"], p["series"], sets, p["ar"], p["id"]))
+                'image: "assets/img/photos/%s.jpg", location: "%s", date: "%s", '
+                'description: "%s" },' % (
+                    p["id"], p["title"], p["series"], sets, p["ar"], p["id"],
+                    p["location"], p["date"], p["description"]))
 new_array = "[\n" + "\n".join(rows) + "\n  ]"
 
 # replace only the [...] that follows `photos:`, never the key itself

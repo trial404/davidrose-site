@@ -1499,7 +1499,10 @@ h3, .h3 {
   display: block;
 }
 
-.photo:hover .photo-frame img { transform: none; }
+/* keep the centring transform on hover — anything else here (none, scale)
+   cancels the translate and snaps the picture to the cell's top-left.
+   An earlier rule does `transform: scale(1.02)`; this overrides it. */
+.photo:hover .photo-frame img { transform: translate(-50%, -50%); }
 
 /* ---- the grid: three columns, one even gap, at every size ---- */
 .photo-grid {
@@ -1654,3 +1657,41 @@ h3, .h3 {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
+
+/* ==========================================================================
+   28. lightbox metadata
+   ========================================================================== */
+
+.lightbox-meta {
+  width: min(94vw, 1200px);
+  display: grid;
+  gap: .5em;
+  color: rgba(255, 255, 255, .8);
+}
+
+.lightbox-title {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: clamp(.95rem, 1.5vw, 1.35rem);
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: #fff;
+}
+
+.lightbox-facts {
+  display: grid;
+  gap: .3em;
+  font-size: 9.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.lightbox-facts div {
+  display: grid;
+  grid-template-columns: 7.5em minmax(0, 1fr);
+  gap: 1em;
+  align-items: baseline;
+}
+
+.lightbox-facts dt { color: rgba(255, 255, 255, .45); }
+.lightbox-facts dd { margin: 0; color: rgba(255, 255, 255, .92); }
