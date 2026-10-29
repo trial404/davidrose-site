@@ -25,6 +25,8 @@ window.COPY = {
           <li><a data-link="substack" target="_blank" rel="noopener">Substack</a></li>
           <li><a data-link="gumroad" target="_blank" rel="noopener">Gumroad</a></li>
           <li><a data-link="github" target="_blank" rel="noopener">GitHub</a></li>
+        
+          <li><a data-link="kofi" target="_blank" rel="noopener">Ko-fi</a></li>
         </ul>
       </div>
       <div>
@@ -96,6 +98,8 @@ window.COPY = {
           <li><a data-link="instagram" target="_blank" rel="noopener">Instagram</a></li>
           <li><a data-link="substack" target="_blank" rel="noopener">Substack</a></li>
           <li><a data-link="gumroad" target="_blank" rel="noopener">Gumroad</a></li>
+        
+          <li><a data-link="kofi" target="_blank" rel="noopener">Ko-fi</a></li>
         </ul>
       </div>
       <div>
@@ -186,6 +190,8 @@ window.COPY = {
           <li><a data-link="instagram" target="_blank" rel="noopener">Instagram</a></li>
           <li><a data-link="substack" target="_blank" rel="noopener">Substack</a></li>
           <li><a data-link="gumroad" target="_blank" rel="noopener">Gumroad</a></li>
+        
+          <li><a data-link="kofi" target="_blank" rel="noopener">Ko-fi</a></li>
         </ul>
       </div>
       <div>
@@ -256,6 +262,8 @@ window.COPY = {
           <li><a data-link="github" target="_blank" rel="noopener">GitHub</a></li>
           <li><a data-link="substack" target="_blank" rel="noopener">Substack</a></li>
           <li><a data-link="instagram" target="_blank" rel="noopener">Instagram</a></li>
+        
+          <li><a data-link="kofi" target="_blank" rel="noopener">Ko-fi</a></li>
         </ul>
       </div>
       <div>
@@ -350,6 +358,8 @@ window.COPY = {
           <li><a data-link="substack" target="_blank" rel="noopener">Substack</a></li>
           <li><a data-link="gumroad" target="_blank" rel="noopener">Gumroad</a></li>
           <li><a data-link="github" target="_blank" rel="noopener">GitHub</a></li>
+        
+          <li><a data-link="kofi" target="_blank" rel="noopener">Ko-fi</a></li>
         </ul>
       </div>
       <div>
@@ -823,6 +833,8 @@ window.COPY = {
           <li><a data-link="instagram" target="_blank" rel="noopener">Instagram</a></li>
           <li><a data-link="substack" target="_blank" rel="noopener">Substack</a></li>
           <li><a data-link="gumroad" target="_blank" rel="noopener">Gumroad</a></li>
+        
+          <li><a data-link="kofi" target="_blank" rel="noopener">Ko-fi</a></li>
         </ul>
       </div>
       <div>

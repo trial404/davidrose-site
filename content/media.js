@@ -23,6 +23,9 @@ window.MEDIA = {
   substack: "https://yourname.substack.com",
   gumroad: "https://yourname.gumroad.com",
   github: "https://github.com/",
+  /* paste your Ko-fi URL below and the link appears everywhere on its own.
+     Left empty, nothing renders — no dead link. */
+  kofi: "",
 
   worlds: [
     {

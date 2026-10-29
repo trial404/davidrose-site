@@ -726,7 +726,12 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-link]"), function (n) {
       var k = n.dataset.link;
       var v = D[k];
-      if (!v) return;
+      if (!v) {
+        /* no destination configured: hide it rather than leave a dead link */
+        var host = n.closest ? n.closest("li") : null;
+        (host || n).style.display = "none";
+        return;
+      }
       n.href = (k === "email" && String(v).indexOf("mailto:") !== 0) ? "mailto:" + v : v;
     });
   }
