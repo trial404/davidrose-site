@@ -1,22 +1,21 @@
 /* ==========================================================================
-   YOUR NAME — site content
+   MEDIA — one of the two files you edit.
    --------------------------------------------------------------------------
-   The ONLY file you need to edit to change words, prices and links.
+   Everything here is a file path, a price, or an external link. No prose
+   longer than a caption lives in this file — all the writing is in copy.js.
 
-   Rules:
-   - Text in "double quotes". Keep the commas between items.
-   - image: ""  -> numbered grey placeholder
-   - image: "assets/img/photos/x.jpg" -> your photograph
-   - link:  "#" -> does nothing yet; paste a Stripe link when ready
-
-   PHOTO CONVENTION
-   `ar` is the exact pixel ratio, written as "width / height". The real
-   dimensions are used so the grid never jumps while images load.
+   name/role/email/socials  who you are, used across every page
+   series      the two series, and the colour each one floods the showcase with
+   photos      every photograph in the two showcase fields
+   prints      what is actually for sale, with per-size prices and payment links
+   photobooks  printed books you ship
+   books       ebooks on Gumroad
+   projects    the AI builds, with demo/repo links
+   legal       your trading identity, used by the three legal pages
    ========================================================================== */
 
-window.SITE = {
+window.MEDIA = {
 
-  /* ---------- who you are ---------- */
   name: "David Rose",
   role: "Photographer · Writer · Builder",
   email: "hello@yourname.com",
@@ -25,7 +24,6 @@ window.SITE = {
   gumroad: "https://yourname.gumroad.com",
   github: "https://github.com/",
 
-  /* ---------- the four worlds ---------- */
   worlds: [
     {
       id: "photography",
@@ -89,18 +87,11 @@ window.SITE = {
     }
   ],
 
-  /* ---------- series ----------
-     One colour per series, from the four-colour palette. The colour becomes
-     the showcase background when that series is selected, so filtering is a
-     colour change rather than just a list change. */
   series: [
     { name: "Landscape", color: "var(--blue)" },
     { name: "Artistic",  color: "var(--orange)" }
   ],
 
-  /* ---------- showcase grid ----------
-     Titles are placeholders. Replace them with your own — that is the one
-     thing nobody else can write for you. `series` drives the filter chips. */
   photos: [
     { title: "Landscape 01", series: "Landscape", ar: "1280 / 1600", image: "assets/img/photos/landscape-h39a0377.jpg" },
     { title: "Landscape 02", series: "Landscape", ar: "1066 / 1600", image: "assets/img/photos/landscape-h39a1763.jpg" },
@@ -132,9 +123,6 @@ window.SITE = {
     { title: "Artistic 19", series: "Artistic", ar: "1280 / 1600", image: "assets/img/photos/artistic-h39a8846-1.jpg" }
   ],
 
-  /* ---------- prints for sale ----------
-     Portrait prints use portrait sizes; landscape prints use landscape sizes.
-     Each size needs its own `link` — a Stripe Payment Link per size. */
   prints: [
     {
       id: "landscape-h39a0377",
@@ -280,7 +268,6 @@ window.SITE = {
     }
   ],
 
-  /* ---------- printed photobooks ---------- */
   photobooks: [
     {
       title: "High Country",
@@ -306,10 +293,6 @@ window.SITE = {
     }
   ],
 
-  /* ---------- ebooks ----------
-     Titles and page counts come from the PDFs. Subtitles and blurbs are written
-     from each book's preface and table of contents — replace with your own words.
-     Links stay "#" until the Gumroad product pages exist. */
   books: [
     {
       title: "The Paradigm Shift in Human Value",
@@ -346,10 +329,6 @@ window.SITE = {
     }
   ],
 
-  /* ---------- AI / dev projects ----------
-     Real, taken from 2026 Brain -> 02_Projects/Apps. Descriptions drawn from each
-     project's README; tighten them in your own voice.
-     The through-line: all of it runs locally. No accounts, no uploads. */
   projects: [
     {
       title: "Voice Studio",
@@ -389,63 +368,8 @@ window.SITE = {
     }
   ],
 
-  /* ---------- the print featured on the home page ---------- */
   featuredPrintId: "landscape-landscape-copy",
 
-  /* ---------- FAQ ---------- */
-  faq: [
-    {
-      q: "What paper do you print on?",
-      a: "Hahnemühle Photo Rag, 308gsm, matte — a cotton rag with a fine texture and no surface glare. The water series is printed on Photo Rag Baryta, which holds more depth in the blacks."
-    },
-    {
-      q: "How long until my print arrives?",
-      a: "Prints are made to order, not held in stock. Production takes 3–5 working days. Shipping is then 2–4 days within the EU and 5–12 days elsewhere. You get a tracking number as soon as the parcel leaves the lab."
-    },
-    {
-      q: "Do you ship outside the EU?",
-      a: "Yes, worldwide and tracked. Orders leaving the EU may attract import duty or VAT on arrival. That is charged by your customs authority and is not included in the price."
-    },
-    {
-      q: "Can I return a print?",
-      a: "Yes. Under EU consumer law you have 14 days from delivery to withdraw from the purchase. Email me, return the print in its original packaging, and I refund the price once it arrives — return shipping is at your cost. If a print arrives damaged, send a photograph and I reprint it at no charge."
-    },
-    {
-      q: "Do you sell framed prints?",
-      a: "Not yet. Framing is where most transit damage and cost happens, so I would rather you chose a local framer. Email me and I will happily advise on moulding and mount width for a particular print."
-    },
-    {
-      q: "Will the colours match my screen?",
-      a: "Closely, not exactly. Screens vary, and the print is made from an sRGB-profiled file on archival paper. If a print looks meaningfully different from the listing, tell me and I will reprint it."
-    }
-  ],
-
-  /* ---------- about page ---------- */
-  timeline: [
-    { year: "2019", text: "Bought a second-hand camera and started photographing the same mountain range every weekend." },
-    { year: "2021", text: "Sold the first prints. Wrote the first book, mostly at night, mostly badly." },
-    { year: "2023", text: "Started writing publicly about AI. Built the first small tool I actually used every day." },
-    { year: "2024", text: "Third book. Began assembling this site as one place for all of it rather than five places for none of it." },
-    { year: "2025", text: "Working on a longer photographic series and a fourth book about looking." }
-  ],
-
-  /* PLACEHOLDERS. These are not real quotes. The layout is here so you can see
-     what three short quotes look like in place. Replace with real ones or delete
-     the array (the section on about.html and writing.html will disappear). */
-  press: [
-    { quote: "[A real quote about the photographs — roughly this length, one line]", source: "[Publication — year]" },
-    { quote: "[A real quote about the writing — roughly this length, one line]", source: "[Reader or editor — year]" },
-    { quote: "[A real quote about the builds — roughly this length, one line]", source: "[Publication — year]" }
-  ],
-
-  /* a real pull-quote from book three — swap in whichever line you want to lead with */
-  excerpt: {
-    book: "Okay, but Why?",
-    chapter: "Chapter one — a windowless sauna",
-    text: "We live in a world where it is easy to generate content, but hard to generate meaning. Anyone can fill a page with words, just like anyone can buy materials for a house."
-  },
-
-  /* ---------- legal identity (used by the legal pages) ---------- */
   legal: {
     owner: "David Rose",
     tradingName: "David Rose",
@@ -458,4 +382,5 @@ window.SITE = {
     register: "—",
     responsible: "David Rose"
   }
+
 };

@@ -37,13 +37,10 @@
 
   <section class="hero">
     <div class="shell">
-      <p class="hero-kicker label">Legal — Privacy</p>
+      <p class="hero-kicker label" data-copy-html="privacy.legal-privacy.kicker">
       <div class="hero-grid">
-        <h1 class="display">Privacy</h1>
-        <p class="lede">
-          What is collected when you visit or buy, why, and what you can ask me to do
-          about it.
-        </p>
+        <h1 class="display" data-copy-html="privacy.legal-privacy.h1">
+        <p class="lede" data-copy-html="privacy.legal-privacy.lede">
       </div>
     </div>
   </section>
@@ -51,21 +48,8 @@
   <section class="section">
     <div class="shell">
       <div class="split">
-        <div><p class="label muted">Controller</p></div>
-        <div class="prose">
-          <p>
-            <span data-legal="owner">David Rose</span>, trading as
-            <span data-legal="tradingName">David Rose</span>,
-            <span data-legal="street">[street and number]</span>,
-            <span data-legal="city">[postcode] [city]</span>,
-            <span data-legal="country">[country]</span>.
-            Email: <span data-legal="email">hello@yourname.com</span>.
-          </p>
-          <p class="muted">
-            This site is a set of static files. It has no login, no comment section,
-            and no analytics or advertising trackers.
-          </p>
-        </div>
+        <div><p class="label muted" data-copy-html="privacy.controller.label"></div>
+        <div class="prose" data-copy-html="privacy.controller.body">
       </div>
     </div>
   </section>
@@ -73,26 +57,8 @@
   <section class="section">
     <div class="shell">
       <div class="split">
-        <div><p class="label muted">Orders</p></div>
-        <div class="prose">
-          <p>
-            When you buy a print or a book, I receive your name, delivery address,
-            email address and the details of what you ordered. This is used to fulfil
-            the contract between us — to print, dispatch and correspond about your
-            order. Legal basis: Art. 6(1)(b) GDPR (performance of a contract).
-          </p>
-          <p>
-            Payment is handled by <strong>Stripe</strong>. Card details are entered on
-            Stripe's systems and are never transmitted to or stored by this site.
-            Shipping details are passed to the print lab that produces your order, so
-            that it can be delivered to you.
-          </p>
-          <p>
-            Invoice and order records are kept for the period required by tax law
-            (generally ten years) and are then deleted. Legal basis: Art. 6(1)(c) GDPR
-            (legal obligation).
-          </p>
-        </div>
+        <div><p class="label muted" data-copy-html="privacy.orders.label"></div>
+        <div class="prose" data-copy-html="privacy.orders.body">
       </div>
     </div>
   </section>
@@ -100,19 +66,8 @@
   <section class="section">
     <div class="shell">
       <div class="split">
-        <div><p class="label muted">Newsletter</p></div>
-        <div class="prose">
-          <p>
-            If you subscribe, your email address is processed by <strong>Substack</strong>
-            to send the newsletter and to keep a record of your consent. You can
-            unsubscribe at any time from the link in every email. Legal basis:
-            Art. 6(1)(a) GDPR (consent).
-          </p>
-          <p>
-            Ebook purchases are processed by <strong>Gumroad</strong> under their own
-            privacy terms.
-          </p>
-        </div>
+        <div><p class="label muted" data-copy-html="privacy.newsletter.label"></div>
+        <div class="prose" data-copy-html="privacy.newsletter.body">
       </div>
     </div>
   </section>
@@ -120,27 +75,8 @@
   <section class="section">
     <div class="shell">
       <div class="split">
-        <div><p class="label muted">Server logs and fonts</p></div>
-        <div class="prose">
-          <p>
-            The site is hosted on <strong>Cloudflare</strong>, which processes
-            connection data such as IP address, browser type and timestamps in order
-            to serve the pages and defend against abuse. Those logs are retained for
-            a short period and then deleted. Legal basis: Art. 6(1)(f) GDPR
-            (legitimate interests in a secure and functioning website).
-          </p>
-          <p>
-            This site currently loads its two typefaces from <strong>Google Fonts</strong>,
-            which means your IP address is transmitted to Google when a page loads.
-            If you are in the EU and this concerns you, it is worth noting: those fonts
-            can be self-hosted instead, and the stylesheet is already written for that
-            — it is a one-line change documented in the site's README.
-          </p>
-          <p class="muted">
-            This site sets no cookies of its own. Stripe and Gumroad may set cookies
-            that are strictly necessary to process a payment.
-          </p>
-        </div>
+        <div><p class="label muted" data-copy-html="privacy.server-logs-and-fonts.label"></div>
+        <div class="prose" data-copy-html="privacy.server-logs-and-fonts.body">
       </div>
     </div>
   </section>
@@ -148,71 +84,19 @@
   <section class="section">
     <div class="shell">
       <div class="split">
-        <div><p class="label muted">Your rights</p></div>
-        <div class="prose">
-          <p>
-            You have the right to ask for a copy of the data held about you, to have
-            it corrected or erased, to restrict or object to its processing, to receive
-            it in a portable format, and to withdraw any consent you have given at any
-            time.
-          </p>
-          <p>
-            Email <span data-legal="email">hello@yourname.com</span> and I will respond
-            within one month. If you believe your data has been handled unlawfully, you
-            can complain to the data protection supervisory authority in your country
-            of residence.
-          </p>
-          <p class="muted">
-            There is no automated decision-making or profiling on this site.
-          </p>
-        </div>
+        <div><p class="label muted" data-copy-html="privacy.your-rights.label"></div>
+        <div class="prose" data-copy-html="privacy.your-rights.body">
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="foot">
-  <div class="shell">
-    <div class="foot-inner">
-      <div>
-        <h4>Contact</h4>
-        <a class="foot-mail" href="mailto:hello@yourname.com" data-email>hello@yourname.com</a>
-        <p class="muted" style="margin-top:1em;max-width:36ch">
-          For any question about your data, including deletion requests.
-        </p>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="imprint.html">Imprint</a></li>
-          <li><a href="privacy.html">Privacy policy</a></li>
-          <li><a href="terms.html">Terms and withdrawal</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Index</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="photography.html">01 — Photography</a></li>
-          <li><a href="writing.html">02 — Writing</a></li>
-          <li><a href="ai.html">03 — AI builds</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
-      <span>
-        <a href="imprint.html">Imprint</a> ·
-        <a href="privacy.html">Privacy</a> ·
-        <a href="terms.html">Terms</a>
-      </span>
-    </div>
-  </div>
-  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-</footer>
+<footer class="foot" data-copy-html="privacy.footer">
+  </footer>
 
-<script src="assets/js/data.js"></script>
+<script src="content/media.js"></script>
+<script src="content/copy.js"></script>
 <script src="assets/js/site.js"></script>
 </body>
 </html>

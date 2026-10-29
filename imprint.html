@@ -38,12 +38,10 @@
 
   <section class="hero">
     <div class="shell">
-      <p class="hero-kicker label">Legal — Imprint</p>
+      <p class="hero-kicker label" data-copy-html="imprint.legal-imprint.kicker">
       <div class="hero-grid">
-        <h1 class="display">Imprint</h1>
-        <p class="lede">
-          Provider identification and responsibility for the content of this website.
-        </p>
+        <h1 class="display" data-copy-html="imprint.legal-imprint.h1">
+        <p class="lede" data-copy-html="imprint.legal-imprint.lede">
       </div>
     </div>
   </section>
@@ -52,27 +50,9 @@
     <div class="shell">
       <div class="split">
         <div>
-          <p class="label muted">Provider</p>
+          <p class="label muted" data-copy-html="imprint.provider.label">
         </div>
-        <div class="prose">
-          <p>
-            <strong><span data-legal="owner">David Rose</span></strong><br>
-            trading as <span data-legal="tradingName">David Rose</span><br>
-            <span data-legal="street">[street and number]</span><br>
-            <span data-legal="city">[postcode] [city]</span><br>
-            <span data-legal="country">[country]</span>
-          </p>
-
-          <p>
-            Email: <a href="mailto:hello@yourname.com" style="border-bottom:1px solid var(--rule)"><span data-legal="email">hello@yourname.com</span></a><br>
-            Telephone: <span data-legal="phone">+00 000 000 000</span>
-          </p>
-
-          <p>
-            VAT identification number: <span data-legal="vat">Not VAT registered</span><br>
-            Commercial register: <span data-legal="register">—</span>
-          </p>
-        </div>
+        <div class="prose" data-copy-html="imprint.provider.body">
       </div>
     </div>
   </section>
@@ -81,19 +61,9 @@
     <div class="shell">
       <div class="split">
         <div>
-          <p class="label muted">Responsibility</p>
+          <p class="label muted" data-copy-html="imprint.responsibility.label">
         </div>
-        <div class="prose">
-          <p>
-            Responsible for editorial content: <span data-legal="responsible">David Rose</span>,
-            at the address above.
-          </p>
-          <p>
-            As a sole trader selling handmade and made-to-order goods, the provider is
-            the person named above. Prices include any applicable taxes where stated;
-            shipping costs are shown separately before checkout.
-          </p>
-        </div>
+        <div class="prose" data-copy-html="imprint.responsibility.body">
       </div>
     </div>
   </section>
@@ -102,19 +72,9 @@
     <div class="shell">
       <div class="split">
         <div>
-          <p class="label muted">Consumer disputes</p>
+          <p class="label muted" data-copy-html="imprint.consumer-disputes.label">
         </div>
-        <div class="prose">
-          <p>
-            We are neither obliged nor willing to participate in dispute resolution
-            proceedings before a consumer arbitration board. The European Commission's
-            Online Dispute Resolution platform was discontinued in July 2025.
-          </p>
-          <p class="muted">
-            If something has gone wrong with an order, email first. It is almost always
-            faster than any formal process.
-          </p>
-        </div>
+        <div class="prose" data-copy-html="imprint.consumer-disputes.body">
       </div>
     </div>
   </section>
@@ -123,68 +83,20 @@
     <div class="shell">
       <div class="split">
         <div>
-          <p class="label muted">Content and copyright</p>
+          <p class="label muted" data-copy-html="imprint.content-and-copyright.label">
         </div>
-        <div class="prose">
-          <p>
-            All photographs, texts and design on this site are the copyright of the
-            provider. Reproduction, distribution, or commercial use requires written
-            permission. Buying a print grants ownership of the physical object, not
-            the rights to the image.
-          </p>
-          <p>
-            This site links to external services. Responsibility for the content of
-            those services rests with their operators; links are checked when added,
-            and no ongoing monitoring is carried out.
-          </p>
-        </div>
+        <div class="prose" data-copy-html="imprint.content-and-copyright.body">
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="foot">
-  <div class="shell">
-    <div class="foot-inner">
-      <div>
-        <h4>Contact</h4>
-        <a class="foot-mail" href="mailto:hello@yourname.com" data-email>hello@yourname.com</a>
-        <p class="muted" style="margin-top:1em;max-width:36ch">
-          Postal address as above. Email is the fastest route.
-        </p>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="imprint.html">Imprint</a></li>
-          <li><a href="privacy.html">Privacy policy</a></li>
-          <li><a href="terms.html">Terms and withdrawal</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Index</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="photography.html">01 — Photography</a></li>
-          <li><a href="writing.html">02 — Writing</a></li>
-          <li><a href="ai.html">03 — AI builds</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
-      <span>
-        <a href="imprint.html">Imprint</a> ·
-        <a href="privacy.html">Privacy</a> ·
-        <a href="terms.html">Terms</a>
-      </span>
-    </div>
-  </div>
-  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-</footer>
+<footer class="foot" data-copy-html="imprint.footer">
+  </footer>
 
-<script src="assets/js/data.js"></script>
+<script src="content/media.js"></script>
+<script src="content/copy.js"></script>
 <script src="assets/js/site.js"></script>
 </body>
 </html>

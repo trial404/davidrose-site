@@ -10,7 +10,8 @@
 (function () {
   "use strict";
 
-  var D = window.SITE || {};
+  var D = window.MEDIA || {};
+  var C = window.COPY || {};
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var currentPage = document.body.dataset.world || "home";
 
@@ -470,9 +471,9 @@
 
   function renderFaq() {
     var mount = document.querySelector("[data-faq]");
-    if (!mount || !D.faq) return;
+    if (!mount || !C.faq) return;
 
-    mount.innerHTML = D.faq.map(function (f) {
+    mount.innerHTML = C.faq.map(function (f) {
       return (
         "<details class=\"faq\">" +
           "<summary>" + esc(f.q) + "</summary>" +
@@ -484,18 +485,18 @@
 
   function renderTimeline() {
     var mount = document.querySelector("[data-timeline]");
-    if (!mount || !D.timeline) return;
+    if (!mount || !C.timeline) return;
 
-    mount.innerHTML = D.timeline.map(function (t) {
+    mount.innerHTML = C.timeline.map(function (t) {
       return '<div><span class="yr">' + esc(t.year) + "</span><p>" + esc(t.text) + "</p></div>";
     }).join("");
   }
 
   function renderPress() {
     var mount = document.querySelector("[data-press]");
-    if (!mount || !D.press) return;
+    if (!mount || !C.press) return;
 
-    mount.innerHTML = D.press.map(function (p) {
+    mount.innerHTML = C.press.map(function (p) {
       return (
         "<blockquote>" +
           "<p>“" + esc(p.quote) + "”</p>" +
@@ -507,9 +508,9 @@
 
   function renderExcerpt() {
     var mount = document.querySelector("[data-excerpt]");
-    if (!mount || !D.excerpt) return;
+    if (!mount || !C.excerpt) return;
 
-    var e = D.excerpt;
+    var e = C.excerpt;
     mount.innerHTML =
       '<p class="label muted">' + esc(e.book) + " — " + esc(e.chapter) + "</p>" +
       "<p>“" + esc(e.text) + "”</p>" +
@@ -551,9 +552,48 @@
     });
   }
 
+  /* ---------- 9. copy + links ----------
+     copy.js holds every sentence, keyed <page>.<section>.<role>. media.js holds
+     every path, price and link. These two functions join them to the markup. */
+
+  var copyIndex = null;
+
+  function flatten(src, prefix, out) {
+    Object.keys(src).forEach(function (k) {
+      var v = src[k];
+      var key = prefix ? prefix + "." + k : k;
+      if (v && typeof v === "object" && !Array.isArray(v)) {
+        flatten(v, key, out);
+      } else {
+        out[key] = v;
+      }
+    });
+    return out;
+  }
+
+  function applyCopy() {
+    if (!copyIndex) copyIndex = flatten(C, "", {});
+    Array.prototype.forEach.call(document.querySelectorAll("[data-copy-html]"), function (n) {
+      var v = copyIndex[n.dataset.copyHtml];
+      if (typeof v === "string") n.innerHTML = v;
+    });
+  }
+
+  function applyLinks() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-link]"), function (n) {
+      var k = n.dataset.link;
+      var v = D[k];
+      if (!v) return;
+      n.href = (k === "email" && String(v).indexOf("mailto:") !== 0) ? "mailto:" + v : v;
+    });
+  }
+
   /* ---------- boot ---------- */
 
   function boot() {
+    applyCopy();
+    applyLinks();
+
     buildNav();
     initBrand();
 
