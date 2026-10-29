@@ -89,10 +89,11 @@ window.MEDIA = {
 
   /* the four things you can toggle between in the gallery */
   series: [
-    { id: "landscape",   name: "Landscape",   color: "var(--blue)",   blurb: "Field and weather" },
-    { id: "artistic",    name: "Artistic",    color: "var(--orange)", blurb: "Water and light" },
-    { id: "collections", name: "Collections", color: "var(--green)",  blurb: "Curated groups, across both series" },
-    { id: "shop",        name: "Print shop",  color: "var(--yellow)", blurb: "Available to buy" }
+    { id: "landscape",   name: "Landscape",   color: "var(--blue)",   contrast: "var(--orange)", blurb: "Field and weather" },
+    { id: "artistic",    name: "Artistic",    color: "var(--orange)", contrast: "var(--blue)",   blurb: "Water and light" },
+    { id: "collections", name: "Collections", color: "var(--green)",  contrast: "var(--yellow)", blurb: "Curated groups, across both series" },
+    /* the shop sits on paper, not a colour field — yellow is the highlight only */
+    { id: "shop",        name: "Print shop",  color: "var(--paper)",  contrast: "var(--yellow)", blurb: "Available to buy" }
   ],
 
   photos: [
@@ -318,42 +319,106 @@ window.MEDIA = {
     }
   ],
 
+  /* ---------- projects ----------
+     Each opens as a full card: overview, why, challenge, solution, where AI comes
+     in, and what is next. Fields left in [brackets] are yours to write — delete a
+     field entirely and the row disappears from the card. */
   projects: [
     {
+      id: "voice-studio",
       title: "Voice Studio",
-      desc: "Local voice-cloning text-to-speech. Register one reference recording, then generate audio from any text — a paragraph to test, a chapter, a whole book. Audio8 running CPU-only behind a FastAPI app.",
+      desc: "Local voice-cloning text-to-speech. Clone a voice from one reference recording, then generate audio from any text.",
       tags: ["FastAPI", "TTS", "Local"],
-      link: "#"
+      link: "#",
+      details: {
+        status: "Working",
+        overview: "A local voice-cloning text-to-speech app built around a single engine: Audio8, 0.6B parameters, quantised to ONNX INT4 and running CPU-only. Register a voice once from a short reference recording, then generate MP3s from any length of text — a paragraph to test, a chapter, or a whole book.",
+        why: "[why you wanted this]",
+        challenge: "CPU-only inference inside a laptop's memory budget, while the interface stays responsive.",
+        solution: "One engine instead of five: Audio8 spawned as a local service and killed on shutdown, a FastAPI backend, SQLite state, and background jobs with progress. Peak memory measured around 1.0–1.2 GiB on a 16GB M2.",
+        aiUse: "The engine is the AI. A voice profile is captured once and reused for every generation, which is what makes long-form output practical.",
+        improvements: "[what you would improve next]"
+      }
     },
     {
+      id: "book-converter",
       title: "Book Converter",
-      desc: "A small Calibre that lives on your own machine. EPUB, PDF, MOBI and AZW3 in and out, with Markdown export built in pure Python. No uploads, no accounts.",
+      desc: "A small Calibre that lives on your own machine. Four formats in and out, with Markdown export in pure Python.",
       tags: ["Python", "EPUB", "Offline"],
-      link: "#"
+      link: "#",
+      details: {
+        status: "Working",
+        overview: "A standalone offline ebook and document converter. EPUB, PDF, MOBI and AZW3 in; PDF, MOBI, Markdown and EPUB out. No uploads, no accounts — every conversion happens on the machine.",
+        why: "[why you wanted this]",
+        challenge: "Four formats, four different engines, and nothing may leave the computer.",
+        solution: "Markdown output is pure Python for the common case (chapters, tables and images preserved), with pandoc and PyMuPDF used when they happen to be installed.",
+        aiUse: "[where AI helped]",
+        improvements: "[what you would improve next]"
+      }
     },
     {
+      id: "file-converter",
       title: "File Converter",
-      desc: "Garmin FIT, TCX, GPX and Strava exports flattened into one CSV per activity — and back out to FIT through the official Garmin SDK. Browser UI, every conversion on your machine.",
+      desc: "Garmin FIT, TCX, GPX and Strava exports flattened into one tidy CSV per activity — and back out to FIT.",
       tags: ["Python", "Garmin FIT", "Strava"],
-      link: "#"
+      link: "#",
+      details: {
+        status: "Working",
+        overview: "A local file converter with a browser UI. Garmin FIT, TCX, GPX and Strava exports in; one consolidated CSV per activity out — and back out to FIT through the official Garmin SDK. Every conversion runs locally.",
+        why: "Strava exports arrive as a pile of per-message-type files that nothing can open comfortably. This turns them into one row-per-sample table with the lap and session summary already attached.",
+        challenge: "Activity formats disagree about units, naming and structure, and Strava ships everything gzipped.",
+        solution: "One CSV per activity named by date, sport and original file; metres, m/s, bpm and watts in raw SI with units in the headers; gzip and batch ZIP handled automatically.",
+        aiUse: "[where AI helped]",
+        improvements: "[what you would improve next]"
+      }
     },
     {
+      id: "bike-interval-timer",
       title: "Bike Interval Timer",
-      desc: "Phone-first interval timer for a gym bike: the whole plan as a table with a live countdown on each row, and one big clock for the segment you are in. A single HTML file.",
+      desc: "A phone-first interval timer for a gym bike. The whole plan on one screen, with one big clock.",
       tags: ["Vanilla JS", "Single file"],
-      link: "#"
+      link: "#",
+      details: {
+        status: "Working",
+        overview: "A single HTML file. The whole workout sits at the top as a table — time, segment, watts, RPM — with each row showing planned duration, a live countdown while it runs, then a tick and the actual time once done. One large countdown underneath for whatever segment you are in.",
+        why: "The bike's own display cannot show the whole workout, and switching to the Clock app loses your place mid-set.",
+        challenge: "Work sets start when you are ready, rests start by themselves when a set hits zero, and a rest can run long without you losing the plan.",
+        solution: "Per-row state rather than one running timer, plus a single big countdown for the current segment. No build step, no dependencies.",
+        aiUse: "[where AI helped]",
+        improvements: "[what you would improve next]"
+      }
     },
     {
+      id: "piano-wait-mode",
       title: "Piano Wait Mode",
-      desc: "Listens to an acoustic piano through a microphone and refuses to advance until you have found every note in the bar. No clock, no tempo, no rushing. Forty-three tests green.",
+      desc: "Listens to an acoustic piano and refuses to advance until you have found every note in the bar.",
       tags: ["Web Audio", "DSP"],
-      link: "#"
+      link: "#",
+      details: {
+        status: "Core + app built",
+        overview: "A local web app that listens through a microphone and does not move on until every note in the bar has been played. No clock, no tempo, no rushing. One hand at a time or both.",
+        why: "The point is not to learn a song. It is to stop hunting for the notes, so that you can then learn the song.",
+        challenge: "Working out which notes are sounding from a microphone in a real room, with pedal, harmonics and background noise in the way.",
+        solution: "Signal processing validated against synthetic piano tones, with 43 tests green. One hand at a time or both.",
+        aiUse: "[where AI helped]",
+        improvements: "It has not yet been tuned on a real piano in a real room. Calibration is the next feature, and it is the thing that makes this usable rather than merely correct."
+      }
     },
     {
+      id: "pitch-monitor",
       title: "Pitch Monitor",
-      desc: "Microphone in, scrolling pitch-against-time chart out — semitone gridlines, live note readout, autocorrelation detection on canvas. Nothing leaves the machine.",
+      desc: "Microphone in, scrolling pitch-against-time chart out. Nothing leaves the machine.",
       tags: ["Web Audio", "Canvas", "Local"],
-      link: "#"
+      link: "#",
+      details: {
+        status: "Spec",
+        overview: "A local web app that detects the pitch of your voice in real time and draws a scrolling pitch-versus-time chart with semitone gridlines and note labels — a chart rather than a piano roll. One file, no dependencies, no build step.",
+        why: "[why you wanted this]",
+        challenge: "Keeping the chart readable while you sing: silence and low-confidence frames must not draw a trace, or the whole thing turns to noise.",
+        solution: "McLeod-style autocorrelation over a short window, recomputed continuously, with unvoiced frames skipped and a compact live readout beside the chart.",
+        aiUse: "[where AI helped]",
+        improvements: "[what you would improve next]"
+      }
     }
   ],
 

@@ -1444,9 +1444,9 @@ h3, .h3 {
 .tab:hover { background: rgba(5, 5, 5, .1); }
 
 .tab[aria-pressed="true"] {
-  background: var(--ink-hard);
+  background: var(--contrast, var(--ink-hard));
   border-color: var(--ink-hard);
-  color: var(--field, var(--paper));
+  color: var(--ink-hard);
 }
 
 .tab[aria-pressed="true"] .tab-n { opacity: .72; }
@@ -1650,8 +1650,8 @@ h3, .h3 {
 .photo:focus-visible .photo-idx,
 .photo:hover .photo-cap span:first-child,
 .photo:focus-visible .photo-cap span:first-child {
-  background: var(--ink-hard);
-  color: var(--field, var(--paper));
+  background: var(--contrast, var(--ink-hard));
+  color: var(--ink-hard);
   padding: .1em .4em;
   margin-inline: -.4em;
   -webkit-box-decoration-break: clone;
@@ -1695,3 +1695,113 @@ h3, .h3 {
 
 .lightbox-facts dt { color: rgba(255, 255, 255, .45); }
 .lightbox-facts dd { margin: 0; color: rgba(255, 255, 255, .92); }
+
+/* a control that cannot do anything yet should say so */
+.btn[aria-disabled="true"] {
+  opacity: .45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   29. project write-up panel
+   ========================================================================== */
+
+.project { width: 100%; text-align: left; background: none; border-left: 0; border-right: 0; }
+
+.popen {
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1;
+  color: var(--ink-60);
+  padding-left: .4em;
+}
+
+.project:hover .popen,
+.project:focus-visible .popen { color: var(--ink-hard); }
+
+/* never set `display` on a closed dialog — see the lightbox note */
+.project-panel {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(820px, 94vw);
+  height: fit-content;
+  max-height: 88dvh;
+  padding: 0;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.project-panel::backdrop { background: rgba(5, 5, 5, .55); }
+.project-panel[open] { animation: pp-in .3s var(--ease); }
+
+@keyframes pp-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.project-panel-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: .7em 1em;
+  background: var(--world);
+  border-bottom: 1px solid var(--rule);
+}
+
+.project-panel-body {
+  display: grid;
+  gap: clamp(16px, 2.4vw, 28px);
+  padding: clamp(16px, 2.4vw, 32px);
+}
+
+.pp-head { display: grid; gap: .6em; }
+
+.pp-head h2 {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  letter-spacing: -.035em;
+  line-height: 1;
+}
+
+.pp-head p { max-width: 62ch; color: var(--ink-60); }
+.pp-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+
+.pp-meta {
+  display: flex;
+  gap: .4em 1.6em;
+  border-top: 1px solid var(--rule-soft);
+  padding-top: .8em;
+  font-size: 9.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.pp-meta div { display: flex; gap: .6em; }
+
+.pp-facts { display: grid; border-top: 1px solid var(--rule); }
+
+.pp-row {
+  display: grid;
+  grid-template-columns: 11em minmax(0, 1fr);
+  gap: 1.4em;
+  align-items: baseline;
+  padding: 1em 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.pp-row dt { color: var(--ink-60); }
+.pp-row dd { margin: 0; max-width: 62ch; }
+
+@media (max-width: 720px) {
+  .project-panel { width: 100%; max-height: 92dvh; }
+  .pp-row { grid-template-columns: 1fr; gap: .35em; }
+}

@@ -183,7 +183,12 @@
       var s = print.sizes[Number(btn.dataset.i)];
       if (priceOut) priceOut.textContent = s.price;
       if (dimsOut) dimsOut.textContent = s.cm + "  ·  " + s.inches;
-      if (buyBtn) buyBtn.href = s.link || "#";
+      if (buyBtn) {
+        var live = s.link && s.link !== "#";
+        buyBtn.href = live ? s.link : "#";
+        buyBtn.textContent = live ? "Add to basket" : "Not on sale yet";
+        buyBtn.setAttribute("aria-disabled", live ? "false" : "true");
+      }
     }
 
     sizeBtns.forEach(function (btn) {
@@ -419,7 +424,10 @@
     var s = findSeries(galleryTab) || { name: "", blurb: "", color: "var(--blue)" };
 
     var section = document.querySelector("[data-gallery-section]");
-    if (section) section.style.setProperty("--field", s.color);
+    if (section) {
+      section.style.setProperty("--field", s.color);
+      section.style.setProperty("--contrast", s.contrast || "var(--ink-hard)");
+    }
 
     var title = document.querySelector("[data-gallery-title]");
     if (title) title.textContent = s.name;
@@ -560,8 +568,9 @@
             "<p>" + esc(b.blurb || "") + "</p>" +
             '<p class="sub"><span>' + esc(b.format || "") + "</span><span>" + esc(b.price || "") + "</span></p>" +
             '<a class="btn btn--wide" href="' + esc(b.link || "#") + '"' +
+              ' aria-disabled="' + (b.link && b.link !== "#" ? "false" : "true") + '"' +
               (String(b.link || "").charAt(0) === "h" ? ' target="_blank" rel="noopener"' : "") +
-              ">Buy the ebook</a>" +
+              ">" + (b.link && b.link !== "#" ? "Buy the ebook" : "Not on sale yet") + "</a>" +
           "</div>" +
         "</article>"
       );
@@ -582,14 +591,13 @@
         '<span class="pdesc">' + esc(p.desc) + "</span>" +
         '<span class="ptags">' + tags + "</span>";
 
-      var isLink = p.link && p.link !== "#";
-      if (!isLink) {
-        return '<div class="project reveal">' + inner + "</div>";
-      }
+      inner += '<span class="popen" aria-hidden="true">+</span>';
+
       return (
-        '<a class="project reveal" href="' + esc(p.link) + '"' +
-          (String(p.link).charAt(0) === "h" ? ' target="_blank" rel="noopener"' : "") +
-          ">" + inner + "</a>"
+        '<button class="project reveal" type="button" data-open-project="' + esc(p.id) + '" ' +
+          'aria-label="' + esc(p.title) + " — open the full write-up" + '">' +
+          inner +
+        "</button>"
       );
     }).join("");
   }
@@ -723,6 +731,88 @@
     });
   }
 
+  /* ---------- 10. project detail panel ----------
+     A project opens as a full write-up: overview, why, challenge, solution, where
+     AI comes in, what is next. A field left blank in media.js simply disappears. */
+
+  var projectPanel = null;
+
+  var PROJECT_FIELDS = [
+    ["Overview", "overview"],
+    ["Why build it", "why"],
+    ["The challenge", "challenge"],
+    ["The solution", "solution"],
+    ["Where AI comes in", "aiUse"],
+    ["What I would change", "improvements"]
+  ];
+
+  function projectPanelHTML(p) {
+    var d = p.details || {};
+
+    var facts = PROJECT_FIELDS.filter(function (f) {
+      return d[f[1]] && String(d[f[1]]).trim();
+    }).map(function (f) {
+      return '<div class="pp-row"><dt class="label muted">' + esc(f[0]) + "</dt>" +
+             "<dd>" + esc(d[f[1]]) + "</dd></div>";
+    }).join("");
+
+    var tags = (p.tags || []).map(function (t) {
+      return '<span class="tag">' + esc(t) + "</span>";
+    }).join("");
+
+    var meta = d.status
+      ? '<div class="pp-meta"><div><span class="label muted">Status</span>' +
+        "<span>" + esc(d.status) + "</span></div></div>"
+      : "";
+
+    var live = p.link && p.link !== "#";
+
+    return (
+      '<div class="pp-head">' +
+        "<h2>" + esc(p.title) + "</h2>" +
+        '<p class="muted">' + esc(p.desc || "") + "</p>" +
+        '<div class="pp-tags">' + tags + "</div>" +
+      "</div>" +
+      meta +
+      '<dl class="pp-facts">' + facts + "</dl>" +
+      '<div class="pp-foot">' +
+        (live
+          ? '<a class="btn btn--solid" href="' + esc(p.link) + '" target="_blank" rel="noopener">View the code</a>'
+          : '<span class="btn" aria-disabled="true">No repository yet</span>') +
+      "</div>"
+    );
+  }
+
+  function openProject(id) {
+    if (!projectPanel) return;
+    var found = null;
+    (D.projects || []).forEach(function (x) { if (x.id === id) found = x; });
+    if (!found) return;
+
+    var body = projectPanel.querySelector("[data-project-body]");
+    if (body) body.innerHTML = projectPanelHTML(found);
+
+    if (typeof projectPanel.showModal === "function") projectPanel.showModal();
+    else projectPanel.setAttribute("open", "");
+    projectPanel.scrollTop = 0;
+  }
+
+  function initProjectPanel() {
+    projectPanel = document.querySelector("[data-project-panel]");
+    if (!projectPanel) return;
+
+    projectPanel.addEventListener("click", function (e) {
+      if (e.target === projectPanel) projectPanel.close();
+    });
+
+    document.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest("[data-open-project]") : null;
+      if (!btn) return;
+      e.preventDefault();
+      openProject(btn.dataset.openProject);
+    });
+  }
+
   /* ---------- boot ---------- */
 
   function boot() {
@@ -754,6 +844,7 @@
     initReveal();
     buildPanel();
     initLightbox();
+    initProjectPanel();
 
     document.addEventListener("click", function (e) {
       var btn = e.target.closest ? e.target.closest("[data-open-print]") : null;
