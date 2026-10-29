@@ -518,11 +518,13 @@
 
     /* clicking the empty space around the photograph closes it */
     lightbox.addEventListener("click", function (e) {
-      if (e.target === lightbox) lightbox.close();
+      if (e.target === lightbox && lightbox.open) lightbox.close();
     });
 
     var close = lightbox.querySelector(".lightbox-close");
-    if (close) close.addEventListener("click", function () { lightbox.close(); });
+    if (close) close.addEventListener("click", function () {
+      if (lightbox.open) lightbox.close();
+    });
   }
 
 

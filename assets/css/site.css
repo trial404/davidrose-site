@@ -1556,16 +1556,23 @@ h3, .h3 {
   padding: clamp(16px, 4vw, 64px);
   border: 0;
   background: transparent;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  justify-items: center;
-  align-items: center;
+  /* NOTE: never set `display` here. A closed <dialog> is hidden by the browser's
+     own `display: none`; overriding it leaves an invisible full-screen overlay
+     that eats every click on the page. Layout lives on [open] instead. */
   gap: clamp(10px, 1.6vw, 20px);
   cursor: zoom-out;
 }
 
+/* only takes up the screen while it is actually open */
+.lightbox[open] {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  justify-items: center;
+  align-items: center;
+  animation: lb-in .28s var(--ease);
+}
+
 .lightbox::backdrop { background: rgba(5, 5, 5, .9); }
-.lightbox[open] { animation: lb-in .28s var(--ease); }
 
 @keyframes lb-in {
   from { opacity: 0; transform: scale(.985); }
