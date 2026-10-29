@@ -1,0 +1,21 @@
+# Cloudflare Pages headers — read automatically, no configuration needed.
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# Photographs and icons: cache for a week.
+# Not longer, because replacing a photo keeps the same filename and a long
+# cache would keep serving the old one. If you swap an image, rename it too.
+/assets/img/*
+  Cache-Control: public, max-age=604800
+
+/assets/*
+  Cache-Control: public, max-age=604800
+
+# HTML must always be revalidated, or content edits won't appear.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), interest-cohort=()
