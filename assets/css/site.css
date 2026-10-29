@@ -1416,6 +1416,7 @@ h3, .h3 {
 :root {
   --plate: #e9e8e4;                      /* the mount each photograph sits on */
   --plate-pad: clamp(5px, .55vw, 8px);
+  --frame-fill: 70%;   /* how much of its cell a photograph occupies */
 }
 
 /* ---- tabs ---- */
@@ -1464,25 +1465,35 @@ h3, .h3 {
 
 .photo:hover { transform: translateY(-2px); }
 
-/* The cell is a fixed shape so rows and columns stay aligned, but the mount
-   hugs the photograph instead of filling the cell. The padding lives on the
-   <img>, so the border is the same thickness on all four sides whatever the
-   aspect ratio — a landscape frame is not letterboxed inside a white field.
-   Spare room in the cell shows the field colour, not the mount. */
+/* The cell is a fixed shape, so rows and columns align. The picture is placed
+   absolutely inside it at --frame-fill of the cell, which keeps plenty of field
+   colour around the work — and, critically, stops the intrinsic size of a tall
+   frame from forcing its way out of the cell. (Grid and flex items default to
+   min-width/min-height: auto, which can beat max-width and make an image
+   overflow its own column.)
+
+   The padding sits on the <img>, so the mount is the same thickness on all four
+   sides whatever the aspect ratio. Spare room in the cell stays transparent, so
+   it reads as field colour rather than a white band. */
 .photo-frame {
   aspect-ratio: 4 / 5;
-  display: grid;
-  place-items: center;
-  overflow: visible;
+  position: relative;
+  overflow: hidden;
   background: transparent;
   padding: 0;
 }
 
 .photo-frame img {
-  max-width: 100%;
-  max-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: auto;
   height: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: var(--frame-fill);
+  max-height: var(--frame-fill);
   padding: var(--plate-pad);
   background: var(--plate);
   display: block;
@@ -1504,7 +1515,7 @@ h3, .h3 {
 }
 
 @media (max-width: 720px) {
-  .photo-grid { gap: 14px 10px; }
+  .photo-grid { gap: 14px 10px; --frame-fill: 80%; }
   .photo-frame { padding: 4px; }
   .photo-idx { font-size: 8.5px; }
   .photo-cap { font-size: 8.5px; }
