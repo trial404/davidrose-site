@@ -12,6 +12,7 @@
 
   var D = window.MEDIA || {};
   var C = window.COPY || {};
+  var L = window.LINKS || {};
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var currentPage = document.body.dataset.world || "home";
 
@@ -304,8 +305,9 @@
       n.textContent = D.role || "";
     });
     Array.prototype.slice.call(document.querySelectorAll("[data-email]")).forEach(function (n) {
-      n.textContent = D.email || "";
-      n.href = "mailto:" + (D.email || "");
+      if (!L.email) return;
+      n.textContent = L.email;
+      n.href = "mailto:" + L.email;
     });
   }
 
@@ -506,7 +508,10 @@
 
     function put(sel, value) {
       var node = lightbox.querySelector(sel);
-      if (node) node.textContent = value || "";
+      if (!node) return;
+      node.textContent = value || "";
+      var row = node.closest ? node.closest("div") : null;
+      if (row) row.style.display = value ? "" : "none";
     }
 
     put("[data-lightbox-title]", p.title);
@@ -722,10 +727,30 @@
     });
   }
 
+  function linkMap() {
+    var map = {};
+    (L.social || []).forEach(function (s) {
+      if (s.key && s.url) map[s.key] = s.url;
+    });
+    return map;
+  }
+
+  /* the footer list is generated from LINKS — add a line there and it appears
+     on every page, with no markup to touch */
+  function renderSocial() {
+    var items = (L.social || []).filter(function (s) { return s.url; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-social]"), function (ul) {
+      ul.innerHTML = items.map(function (s) {
+        return '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener">' +
+               esc(s.label) + "</a></li>";
+      }).join("");
+    });
+  }
+
   function applyLinks() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-link]"), function (n) {
       var k = n.dataset.link;
-      var v = D[k];
+      var v = k === "email" ? L.email : linkMap()[k];
       if (!v) {
         /* no destination configured: hide it rather than leave a dead link */
         var host = n.closest ? n.closest("li") : null;
@@ -818,11 +843,32 @@
     });
   }
 
+  /* ---------- photo words ----------
+     media.js holds the mechanical record of each file; photos.js holds the words.
+     Merged here so the rest of the code only ever sees one object. */
+
+  function prettifyId(id) {
+    return String(id).split("-").slice(1).join(" ").toUpperCase();
+  }
+
+  function applyPhotoInfo() {
+    var info = window.PHOTO_INFO || {};
+    Array.prototype.forEach.call(D.photos || [], function (p) {
+      var m = info[p.id] || {};
+      p.title = m.title || prettifyId(p.id);
+      p.location = m.location || "";
+      p.date = m.date || "";
+      p.description = m.description || "";
+    });
+  }
+
   /* ---------- boot ---------- */
 
   function boot() {
+    applyPhotoInfo();
     applyCopy();
     applyLinks();
+    renderSocial();
 
     buildNav();
     initBrand();

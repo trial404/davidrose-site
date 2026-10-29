@@ -114,7 +114,8 @@ def object_spans(text):
 # ---------- read current state ----------
 media = io.open(MEDIA, encoding="utf-8").read()
 existing = {}
-for line in re.findall(r'^    \{ id: .*\},$', media, re.M):
+_ps, _pe = block_span(media, "photos")
+for line in re.findall(r'^    \{ id: .*\},$', media[_ps:_pe], re.M):
     def field(name):
         m = re.search(name + r': "([^"]*)"', line)
         return m.group(1) if m else None
@@ -157,28 +158,13 @@ for w in wanted:
         warnings.append(f"conversion failed: {w['src']}")
 
 # ---------- titles / sets / ratios ----------
-next_num = {}
-for p in existing.values():
-    m = re.search(r"(\d+)\s*$", p["title"])
-    if m:
-        base = p["title"].rsplit(" ", 1)[0]
-        next_num[base] = max(next_num.get(base, 0), int(m.group(1)))
-
 photos = []
 for w in wanted:
-    old = existing.get(w["id"], {})
-    title = old.get("title")
-    if not title:
-        base = w["series"]
-        next_num[base] = next_num.get(base, 0) + 1
-        title = f"{base} {next_num[base]:02d}"
-    cw, ch = dims(w["out"] if os.path.exists(w["out"]) else w["src"])
-    photos.append({"id": w["id"], "title": title, "series": w["series"],
-                   "sets": old.get("sets") or [w["series"].lower()],
-                   "location": old.get("location") or "[location]",
-                   "date": old.get("date") or "[date]",
-                   "description": old.get("description") or "[description]",
-                   "ar": f"{cw} / {ch}", "fresh": w["fresh"]})
+    photos.append({"id": w["id"], "series": w["series"],
+                   "sets": (existing.get(w["id"], {}).get("sets")
+                            or [w["series"].lower()]),
+                   "ar": "%d / %d" % dims(w["out"] if os.path.exists(w["out"]) else w["src"]),
+                   "fresh": w["fresh"]})
 
 live = {p["id"] for p in photos}
 
@@ -186,11 +172,9 @@ live = {p["id"] for p in photos}
 rows = []
 for p in photos:
     sets = ", ".join('"%s"' % s for s in p["sets"])
-    rows.append('    { id: "%s", title: "%s", series: "%s", sets: [%s], ar: "%s", '
-                'image: "assets/img/photos/%s.jpg", location: "%s", date: "%s", '
-                'description: "%s" },' % (
-                    p["id"], p["title"], p["series"], sets, p["ar"], p["id"],
-                    p["location"], p["date"], p["description"]))
+    rows.append('    { id: "%s", series: "%s", sets: [%s], ar: "%s", '
+                'image: "assets/img/photos/%s.jpg" },' % (
+                    p["id"], p["series"], sets, p["ar"], p["id"]))
 new_array = "[\n" + "\n".join(rows) + "\n  ]"
 
 # replace only the [...] that follows `photos:`, never the key itself
@@ -231,6 +215,27 @@ if fm and fm.group(1) not in remaining and remaining:
     media = media.replace(fm.group(0), 'featuredPrintId: "%s"' % remaining[0])
     featured_note = f"featuredPrintId: {fm.group(1)} -> {remaining[0]}"
 
+# ---------- photographs that still need words ----------
+PHOTOS_JS = os.path.join(ROOT, "content", "photos.js")
+photo_info = io.open(PHOTOS_JS, encoding="utf-8").read() if os.path.exists(PHOTOS_JS) else ""
+known = set(re.findall(r'^  "([^"]+)": \{', photo_info, re.M))
+stubbed = [p for p in photos if p["id"] not in known]
+
+if stubbed and not DRY:
+    next_no = {}
+    for m in re.finditer(r'title: "([^"]*?)\s*(\d+)"', photo_info):
+        next_no[m.group(1)] = max(next_no.get(m.group(1), 0), int(m.group(2)))
+    add = []
+    for p in stubbed:
+        base = p["series"]
+        next_no[base] = next_no.get(base, 0) + 1
+        add.append('  "%s": {\n    title: "%s %02d",\n'
+                   '    location: "[location]",\n    date: "[date]",\n'
+                   '    description: "[description]"\n  },' % (p["id"], base, next_no[base]))
+    head = photo_info.rstrip()
+    head = head[:head.rindex("};")].rstrip()
+    io.open(PHOTOS_JS, "w", encoding="utf-8").write(head + "\n" + "\n".join(add) + "\n};\n")
+
 # ---------- orphaned files ----------
 orphans = [n for n in sorted(os.listdir(DEST))
            if n.endswith(".jpg") and not n.startswith(".") and n[:-4] not in live]
@@ -265,6 +270,10 @@ if orphans:
         print(f"      x {n}")
 if featured_note:
     print("  " + featured_note)
+if stubbed:
+    print(f"  words needed        {len(stubbed)}  (blank entries added to content/photos.js)")
+    for p in stubbed:
+        print(f"      ? {p['id']}")
 if warnings:
     print("  warnings:")
     for w in warnings:
