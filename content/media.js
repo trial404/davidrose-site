@@ -97,33 +97,39 @@ window.MEDIA = {
 
   photos: [
     { id: "landscape-h39a0377", title: "Landscape 01", series: "Landscape", sets: ["landscape", "shop"], ar: "1280 / 1600", image: "assets/img/photos/landscape-h39a0377.jpg" },
+    { id: "landscape-h39a1324", title: "Landscape 09", series: "Landscape", sets: ["landscape"], ar: "1600 / 1066", image: "assets/img/photos/landscape-h39a1324.jpg" },
+    { id: "landscape-h39a1639", title: "Landscape 10", series: "Landscape", sets: ["landscape"], ar: "1600 / 1066", image: "assets/img/photos/landscape-h39a1639.jpg" },
+    { id: "landscape-h39a1728", title: "Landscape 11", series: "Landscape", sets: ["landscape"], ar: "1600 / 1066", image: "assets/img/photos/landscape-h39a1728.jpg" },
     { id: "landscape-h39a1763", title: "Landscape 02", series: "Landscape", sets: ["landscape", "shop"], ar: "1066 / 1600", image: "assets/img/photos/landscape-h39a1763.jpg" },
+    { id: "landscape-h39a1856", title: "Landscape 12", series: "Landscape", sets: ["landscape"], ar: "1600 / 1066", image: "assets/img/photos/landscape-h39a1856.jpg" },
     { id: "landscape-h39a1880", title: "Landscape 03", series: "Landscape", sets: ["landscape"], ar: "1280 / 1600", image: "assets/img/photos/landscape-h39a1880.jpg" },
     { id: "landscape-h39a5474-1", title: "Landscape 04", series: "Landscape", sets: ["landscape"], ar: "1066 / 1600", image: "assets/img/photos/landscape-h39a5474-1.jpg" },
-    { id: "landscape-h39a9236", title: "Landscape 05", series: "Landscape", sets: ["landscape", "shop"], ar: "1280 / 1600", image: "assets/img/photos/landscape-h39a9236.jpg" },
-    { id: "landscape-img-4334", title: "Landscape 06", series: "Landscape", sets: ["landscape", "shop"], ar: "1280 / 1600", image: "assets/img/photos/landscape-img-4334.jpg" },
+    { id: "landscape-h39a9236", title: "Landscape 05", series: "Landscape", sets: ["landscape", "shop"], ar: "1278 / 1600", image: "assets/img/photos/landscape-h39a9236.jpg" },
+    { id: "landscape-h39a9577", title: "Landscape 13", series: "Landscape", sets: ["landscape"], ar: "1600 / 1066", image: "assets/img/photos/landscape-h39a9577.jpg" },
     { id: "landscape-img-6361", title: "Landscape 07", series: "Landscape", sets: ["landscape"], ar: "1280 / 1600", image: "assets/img/photos/landscape-img-6361.jpg" },
-    { id: "landscape-landscape-copy", title: "Landscape 08", series: "Landscape", sets: ["landscape", "shop"], ar: "1600 / 1281", image: "assets/img/photos/landscape-landscape-copy.jpg" },
-
     { id: "artistic-frame-11-4", title: "Artistic 01", series: "Artistic", sets: ["artistic"], ar: "1240 / 1600", image: "assets/img/photos/artistic-frame-11-4.jpg" },
-    { id: "artistic-frame-13", title: "Artistic 02", series: "Artistic", sets: ["artistic", "shop"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-13.jpg" },
+    { id: "artistic-frame-11", title: "Artistic 20", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-11.jpg" },
     { id: "artistic-frame-19", title: "Artistic 03", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-19.jpg" },
     { id: "artistic-frame-21", title: "Artistic 04", series: "Artistic", sets: ["artistic"], ar: "1297 / 1600", image: "assets/img/photos/artistic-frame-21.jpg" },
+    { id: "artistic-frame-26", title: "Artistic 21", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-26.jpg" },
     { id: "artistic-frame-27", title: "Artistic 05", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-27.jpg" },
+    { id: "artistic-frame-30", title: "Artistic 22", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-30.jpg" },
+    { id: "artistic-frame-31", title: "Artistic 23", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-31.jpg" },
+    { id: "artistic-frame-32", title: "Artistic 24", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-32.jpg" },
     { id: "artistic-frame-33-2", title: "Artistic 06", series: "Artistic", sets: ["artistic"], ar: "1297 / 1600", image: "assets/img/photos/artistic-frame-33-2.jpg" },
     { id: "artistic-frame-4-6", title: "Artistic 07", series: "Artistic", sets: ["artistic"], ar: "1280 / 1600", image: "assets/img/photos/artistic-frame-4-6.jpg" },
     { id: "artistic-frame-53", title: "Artistic 08", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-53.jpg" },
     { id: "artistic-frame-55", title: "Artistic 09", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-55.jpg" },
     { id: "artistic-frame-59", title: "Artistic 10", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-59.jpg" },
     { id: "artistic-frame-6-3", title: "Artistic 11", series: "Artistic", sets: ["artistic"], ar: "1280 / 1600", image: "assets/img/photos/artistic-frame-6-3.jpg" },
-    { id: "artistic-frame-7-12", title: "Artistic 12", series: "Artistic", sets: ["artistic"], ar: "1280 / 1600", image: "assets/img/photos/artistic-frame-7-12.jpg" },
     { id: "artistic-frame-70-2", title: "Artistic 13", series: "Artistic", sets: ["artistic"], ar: "1282 / 1600", image: "assets/img/photos/artistic-frame-70-2.jpg" },
+    { id: "artistic-frame-72-1", title: "Artistic 25", series: "Artistic", sets: ["artistic"], ar: "1600 / 1282", image: "assets/img/photos/artistic-frame-72-1.jpg" },
     { id: "artistic-frame-72-2", title: "Artistic 14", series: "Artistic", sets: ["artistic", "shop"], ar: "1600 / 1282", image: "assets/img/photos/artistic-frame-72-2.jpg" },
     { id: "artistic-frame-9-12", title: "Artistic 15", series: "Artistic", sets: ["artistic"], ar: "1240 / 1600", image: "assets/img/photos/artistic-frame-9-12.jpg" },
     { id: "artistic-h39a6457", title: "Artistic 16", series: "Artistic", sets: ["artistic", "shop"], ar: "1600 / 1280", image: "assets/img/photos/artistic-h39a6457.jpg" },
-    { id: "artistic-h39a8057-1", title: "Artistic 17", series: "Artistic", sets: ["artistic"], ar: "1600 / 1066", image: "assets/img/photos/artistic-h39a8057-1.jpg" },
+    { id: "artistic-h39a8021-1", title: "Artistic 26", series: "Artistic", sets: ["artistic"], ar: "1066 / 1600", image: "assets/img/photos/artistic-h39a8021-1.jpg" },
     { id: "artistic-h39a8775-1", title: "Artistic 18", series: "Artistic", sets: ["artistic"], ar: "1280 / 1600", image: "assets/img/photos/artistic-h39a8775-1.jpg" },
-    { id: "artistic-h39a8846-1", title: "Artistic 19", series: "Artistic", sets: ["artistic", "shop"], ar: "1280 / 1600", image: "assets/img/photos/artistic-h39a8846-1.jpg" }
+    { id: "artistic-h39a8846-1", title: "Artistic 19", series: "Artistic", sets: ["artistic", "shop"], ar: "1280 / 1600", image: "assets/img/photos/artistic-h39a8846-1.jpg" },
   ],
 
   /* ---------- collections ----------
@@ -134,19 +140,19 @@ window.MEDIA = {
       id: "weather",
       name: "Weather",
       note: "Fog, low cloud, and the four minutes when the ridge opens.",
-      photos: ["landscape-h39a0377", "landscape-landscape-copy", "landscape-h39a1763", "landscape-h39a9236"]
+      photos: ["landscape-h39a0377", "landscape-h39a1763", "landscape-h39a9236"]
     },
     {
       id: "surface",
       name: "Surface",
       note: "Water photographed close enough that it stops reading as water.",
-      photos: ["artistic-frame-13", "artistic-frame-72-2", "artistic-h39a6457", "artistic-frame-53"]
+      photos: ["artistic-frame-72-2", "artistic-h39a6457", "artistic-frame-53"]
     },
     {
       id: "waiting",
       name: "Waiting",
       note: "The frames that took longest. Mixed across both series.",
-      photos: ["landscape-img-4334", "artistic-h39a8846-1", "landscape-h39a1880"]
+      photos: ["artistic-h39a8846-1", "landscape-h39a1880"]
     }
   ],
 
@@ -167,22 +173,7 @@ window.MEDIA = {
         { label: "50 × 70 cm", cm: "50 × 70 cm", inches: "20 × 28 in", price: "€210", link: "#" }
       ]
     },
-    {
-      id: "landscape-landscape-copy",
-      title: "Landscape 08",
-      series: "Landscape",
-      image: "assets/img/photos/landscape-landscape-copy.jpg",
-      ar: "1600 / 1281",
-      description: "Pines in low golden fog. The colour is in the light, not the grade — this is what the file looked like.",
-      paper: "Hahnemühle Photo Rag 308gsm, matte",
-      edition: "Limited edition of 25, numbered + signed",
-      delivery: "Ships in 7–14 business days · certificate included",
-      sizes: [
-        { label: "40 × 30 cm", cm: "40 × 30 cm", inches: "16 × 12 in", price: "€85", link: "#" },
-        { label: "50 × 40 cm", cm: "50 × 40 cm", inches: "20 × 16 in", price: "€135", link: "#" },
-        { label: "70 × 50 cm", cm: "70 × 50 cm", inches: "28 × 20 in", price: "€210", link: "#" }
-      ]
-    },
+    
     {
       id: "landscape-h39a1763",
       title: "Landscape 02",
@@ -214,37 +205,8 @@ window.MEDIA = {
         { label: "40 × 50 cm", cm: "40 × 50 cm", inches: "16 × 20 in", price: "€135", link: "#" }
       ]
     },
-    {
-      id: "landscape-img-4334",
-      title: "Landscape 06",
-      series: "Landscape",
-      image: "assets/img/photos/landscape-img-4334.jpg",
-      ar: "1280 / 1600",
-      description: "Made on a phone on the walk back, and still one of the ones I keep coming back to.",
-      paper: "Hahnemühle Photo Rag 308gsm, matte",
-      edition: "Open edition, signed",
-      delivery: "Made to order · ships in 5–10 business days",
-      sizes: [
-        { label: "30 × 40 cm", cm: "30 × 40 cm", inches: "12 × 16 in", price: "€85", link: "#" },
-        { label: "40 × 50 cm", cm: "40 × 50 cm", inches: "16 × 20 in", price: "€135", link: "#" }
-      ]
-    },
-    {
-      id: "artistic-frame-13",
-      title: "Artistic 02",
-      series: "Artistic",
-      image: "assets/img/photos/artistic-frame-13.jpg",
-      ar: "1327 / 1600",
-      description: "Light through moving water, close enough that the surface becomes texture rather than subject.",
-      paper: "Hahnemühle Photo Rag Baryta 315gsm",
-      edition: "Limited edition of 25, numbered + signed",
-      delivery: "Ships in 7–14 business days · certificate included",
-      sizes: [
-        { label: "30 × 40 cm", cm: "30 × 40 cm", inches: "12 × 16 in", price: "€95", link: "#" },
-        { label: "40 × 50 cm", cm: "40 × 50 cm", inches: "16 × 20 in", price: "€150", link: "#" },
-        { label: "50 × 70 cm", cm: "50 × 70 cm", inches: "20 × 28 in", price: "€240", link: "#" }
-      ]
-    },
+    
+    
     {
       id: "artistic-frame-72-2",
       title: "Artistic 14",
@@ -395,7 +357,7 @@ window.MEDIA = {
     }
   ],
 
-  featuredPrintId: "landscape-landscape-copy",
+  featuredPrintId: "landscape-h39a0377",
 
   legal: {
     owner: "David Rose",
