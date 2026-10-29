@@ -1415,7 +1415,7 @@ h3, .h3 {
 
 :root {
   --plate: #e9e8e4;                      /* the mount each photograph sits on */
-  --plate-pad: clamp(6px, .7vw, 11px);
+  --plate-pad: clamp(5px, .55vw, 8px);
 }
 
 /* ---- tabs ---- */
@@ -1464,20 +1464,27 @@ h3, .h3 {
 
 .photo:hover { transform: translateY(-2px); }
 
+/* The cell is a fixed shape so rows and columns stay aligned, but the mount
+   hugs the photograph instead of filling the cell. The padding lives on the
+   <img>, so the border is the same thickness on all four sides whatever the
+   aspect ratio — a landscape frame is not letterboxed inside a white field.
+   Spare room in the cell shows the field colour, not the mount. */
 .photo-frame {
   aspect-ratio: 4 / 5;
   display: grid;
   place-items: center;
-  overflow: hidden;
-  background: var(--plate);
-  padding: var(--plate-pad);
+  overflow: visible;
+  background: transparent;
+  padding: 0;
 }
 
 .photo-frame img {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: auto;
-  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  padding: var(--plate-pad);
+  background: var(--plate);
   display: block;
 }
 
