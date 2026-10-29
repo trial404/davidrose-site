@@ -636,16 +636,7 @@ h3, .h3 {
   padding-bottom: .04em;
 }
 
-@media (max-width: 1080px) {
-  .masonry { columns: 2; }
-  .masonry .photo { width: 82%; }
-}
-
-@media (max-width: 720px) {
-  .masonry { columns: 1; }
-  .masonry .photo { width: 86%; margin-bottom: clamp(30px, 9vw, 52px); }
-  .masonry .photo:nth-child(3n + 2) { margin-left: auto; }
-}
+/* masonry sizing is defined once, in section 26 — not here */
 
 /* ---------- 12. prints ---------- */
 .grid-prints {
@@ -1510,12 +1501,33 @@ h3, .h3 {
   margin-bottom: clamp(40px, 7vw, 112px);
 }
 
+/* ---- the ladder ----
+   Three columns at every size. On a phone the column is about 110px wide, so a
+   photograph is roughly a third of the screen with air around it — a contact
+   sheet, not a slideshow. */
+
 @media (max-width: 1080px) {
-  .masonry .photo { width: 66%; }
+  .masonry { columns: 3; column-gap: clamp(20px, 3.6vw, 44px); }
+  /* capped so the picture does not grow as the window narrows */
+  .masonry .photo { width: 100%; max-width: 220px; margin-bottom: clamp(26px, 4vw, 52px); }
+  .masonry .photo:nth-child(3n + 2) { margin-left: 0; }
 }
 
 @media (max-width: 720px) {
-  .masonry .photo { width: 80%; }
+  .masonry { columns: 3; column-gap: 12px; }
+  .masonry .photo { width: 100%; max-width: none; margin-bottom: 20px; }
+  .masonry .photo:nth-child(3n + 2) { margin-left: 0; }
+  .photo-frame { padding: 4px; }
+  .photo-idx { font-size: 8.5px; }
+  /* 110px does not fit a title and a series name */
+  .photo-cap { font-size: 8.5px; }
+  .photo-cap span:last-child { display: none; }
+}
+
+@media (max-width: 420px) {
+  .masonry { column-gap: 9px; }
+  .masonry .photo { margin-bottom: 16px; }
+  .photo-frame { padding: 3px; }
 }
 
 /* ---- collections ---- */
@@ -1618,3 +1630,29 @@ h3, .h3 {
 }
 
 .lightbox-close:hover { background: rgba(255, 255, 255, .18); }
+
+/* ==========================================================================
+   27. hover: the labels highlight
+   --------------------------------------------------------------------------
+   On a saturated field the palette colour cannot sit behind text and be seen,
+   so the highlight inverts — a black band with the world colour as the type.
+   Same treatment as the active tab. On the Collections and Print shop tabs it
+   switches to green and yellow on its own.
+   ========================================================================== */
+
+.photo-idx,
+.photo-cap span {
+  transition: background-color var(--fast), color var(--fast);
+}
+
+.photo:hover .photo-idx,
+.photo:focus-visible .photo-idx,
+.photo:hover .photo-cap span:first-child,
+.photo:focus-visible .photo-cap span:first-child {
+  background: var(--ink-hard);
+  color: var(--field, var(--paper));
+  padding: .1em .4em;
+  margin-inline: -.4em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
