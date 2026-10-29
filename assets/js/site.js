@@ -407,7 +407,7 @@
             '<p class="label muted">' + items.length +
               (items.length === 1 ? " photograph" : " photographs") + "</p>" +
           "</div>" +
-          '<div class="masonry">' + items.map(photoHTML).join("") + "</div>" +
+          '<div class="photo-grid">' + items.map(photoHTML).join("") + "</div>" +
         "</section>"
       );
     }).join("");
@@ -443,7 +443,7 @@
       mount.innerHTML = collectionsHTML();
       n = (D.collections || []).length;
     } else {
-      mount.className = "masonry";
+      mount.className = "photo-grid";
       mount.innerHTML = photosIn(galleryTab).map(photoHTML).join("");
       n = photosIn(galleryTab).length;
     }

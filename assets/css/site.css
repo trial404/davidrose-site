@@ -579,7 +579,7 @@ h3, .h3 {
   color: rgba(5, 5, 5, .4);
 }
 
-/* ---------- 11b. showcase — colour field + masonry ----------
+/* ---------- 11b. showcase — colour field + photo-grid ----------
    Photographs float small inside a saturated field, each carrying a bracketed
    index, with generous air between them. Nothing is cropped: every frame keeps
    its own aspect ratio, and the staggering is what stops mixed ratios fighting. */
@@ -607,21 +607,7 @@ h3, .h3 {
 .showcase .photo-cap,
 .showcase .photo-idx { color: rgba(5, 5, 5, .8); }
 
-.masonry {
-  columns: 3;
-  column-gap: clamp(24px, 5vw, 76px);
-  margin-top: clamp(18px, 2.6vw, 36px);
-}
-
-.masonry .photo {
-  width: 76%;
-  break-inside: avoid;
-  margin-bottom: clamp(36px, 6vw, 96px);
-}
-
-/* every third frame shifts to the right edge of its column, so the grid
-   never resolves into rows */
-.masonry .photo:nth-child(3n + 2) { margin-left: auto; }
+/* the photograph grid is defined once, in section 26 */
 
 .field-big {
   font-family: var(--sans);
@@ -636,7 +622,7 @@ h3, .h3 {
   padding-bottom: .04em;
 }
 
-/* masonry sizing is defined once, in section 26 — not here */
+/* photo-grid sizing is defined once, in section 26 — not here */
 
 /* ---------- 12. prints ---------- */
 .grid-prints {
@@ -1464,7 +1450,11 @@ h3, .h3 {
 
 .tab[aria-pressed="true"] .tab-n { opacity: .72; }
 
-/* ---- photograph: a button on a plate ---- */
+/* ---- photograph: a button on a plate ----
+   Every cell is the same shape, so the layout is an actual grid and the spacing
+   is even in both directions. 4:5 because that is what almost all of these files
+   are: most frames fill the mount exactly, and the few landscape ones letterbox
+   inside it rather than being cropped. */
 .photo {
   width: 100%;
   padding: 0;
@@ -1475,58 +1465,48 @@ h3, .h3 {
 .photo:hover { transform: translateY(-2px); }
 
 .photo-frame {
-  aspect-ratio: auto;
-  overflow: visible;
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
   background: var(--plate);
   padding: var(--plate-pad);
 }
 
 .photo-frame img {
   width: 100%;
-  height: auto;
-  aspect-ratio: var(--ar, 4 / 3);
-  object-fit: cover;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
   display: block;
 }
 
 .photo:hover .photo-frame img { transform: none; }
 
-/* ---- smaller pictures, a lot more air ---- */
-.masonry {
-  column-gap: clamp(28px, 6vw, 96px);
+/* ---- the grid: three columns, one even gap, at every size ---- */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.6vw, 40px) clamp(14px, 2.2vw, 34px);
+  margin-top: clamp(18px, 2.6vw, 36px);
+  align-items: start;
 }
-
-.masonry .photo {
-  width: 56%;
-  margin-bottom: clamp(40px, 7vw, 112px);
-}
-
-/* ---- the ladder ----
-   Three columns at every size. On a phone the column is about 110px wide, so a
-   photograph is roughly a third of the screen with air around it — a contact
-   sheet, not a slideshow. */
 
 @media (max-width: 1080px) {
-  .masonry { columns: 3; column-gap: clamp(20px, 3.6vw, 44px); }
-  /* capped so the picture does not grow as the window narrows */
-  .masonry .photo { width: 100%; max-width: 220px; margin-bottom: clamp(26px, 4vw, 52px); }
-  .masonry .photo:nth-child(3n + 2) { margin-left: 0; }
+  .photo-grid { gap: clamp(14px, 2.2vw, 30px) clamp(12px, 1.8vw, 24px); }
 }
 
 @media (max-width: 720px) {
-  .masonry { columns: 3; column-gap: 12px; }
-  .masonry .photo { width: 100%; max-width: none; margin-bottom: 20px; }
-  .masonry .photo:nth-child(3n + 2) { margin-left: 0; }
+  .photo-grid { gap: 14px 10px; }
   .photo-frame { padding: 4px; }
   .photo-idx { font-size: 8.5px; }
-  /* 110px does not fit a title and a series name */
   .photo-cap { font-size: 8.5px; }
+  /* a 106px column cannot hold a title and a series name */
   .photo-cap span:last-child { display: none; }
 }
 
 @media (max-width: 420px) {
-  .masonry { column-gap: 9px; }
-  .masonry .photo { margin-bottom: 16px; }
+  .photo-grid { gap: 12px 8px; }
   .photo-frame { padding: 3px; }
 }
 
@@ -1554,7 +1534,7 @@ h3, .h3 {
   line-height: 1.05;
 }
 
-.collection .masonry { margin-top: 0; }
+.collection .photo-grid { margin-top: 0; }
 
 /* ---- lightbox: the photograph, at the centre, nothing else ---- */
 .lightbox {
