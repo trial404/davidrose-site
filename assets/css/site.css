@@ -1431,3 +1431,183 @@ h3, .h3 {
   src: url('../fonts/JetBrainsMono-Medium.woff2') format('woff2');
 }
 */
+
+/* ==========================================================================
+   26. gallery: tabs, plates, collections, lightbox
+   ========================================================================== */
+
+:root {
+  --plate: #e9e8e4;                      /* the mount each photograph sits on */
+  --plate-pad: clamp(6px, .7vw, 11px);
+}
+
+/* ---- tabs ---- */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: clamp(18px, 2.4vw, 30px);
+}
+
+.tab {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .55em;
+  border: 1px solid var(--rule);
+  padding: .55em .85em .48em;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: background-color var(--fast), color var(--fast);
+}
+
+.tab .tab-n { opacity: .45; }
+.tab:hover { background: rgba(5, 5, 5, .1); }
+
+.tab[aria-pressed="true"] {
+  background: var(--ink-hard);
+  border-color: var(--ink-hard);
+  color: var(--field, var(--paper));
+}
+
+.tab[aria-pressed="true"] .tab-n { opacity: .72; }
+
+/* ---- photograph: a button on a plate ---- */
+.photo {
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  transition: transform var(--fast);
+}
+
+.photo:hover { transform: translateY(-2px); }
+
+.photo-frame {
+  aspect-ratio: auto;
+  overflow: visible;
+  background: var(--plate);
+  padding: var(--plate-pad);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ar, 4 / 3);
+  object-fit: cover;
+  display: block;
+}
+
+.photo:hover .photo-frame img { transform: none; }
+
+/* ---- smaller pictures, a lot more air ---- */
+.masonry {
+  column-gap: clamp(28px, 6vw, 96px);
+}
+
+.masonry .photo {
+  width: 56%;
+  margin-bottom: clamp(40px, 7vw, 112px);
+}
+
+@media (max-width: 1080px) {
+  .masonry .photo { width: 66%; }
+}
+
+@media (max-width: 720px) {
+  .masonry .photo { width: 80%; }
+}
+
+/* ---- collections ---- */
+.collections {
+  display: grid;
+  gap: clamp(34px, 5.5vw, 88px);
+  margin-top: clamp(18px, 2.6vw, 36px);
+}
+
+.collection-head {
+  display: grid;
+  gap: .45em;
+  max-width: 58ch;
+  border-top: 1px solid var(--rule);
+  padding-top: .9em;
+  margin-bottom: clamp(10px, 1.6vw, 20px);
+}
+
+.collection-head h3 {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: clamp(1.05rem, 1.7vw, 1.5rem);
+  letter-spacing: -.03em;
+  line-height: 1.05;
+}
+
+.collection .masonry { margin-top: 0; }
+
+/* ---- lightbox: the photograph, at the centre, nothing else ---- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: clamp(16px, 4vw, 64px);
+  border: 0;
+  background: transparent;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  justify-items: center;
+  align-items: center;
+  gap: clamp(10px, 1.6vw, 20px);
+  cursor: zoom-out;
+}
+
+.lightbox::backdrop { background: rgba(5, 5, 5, .9); }
+.lightbox[open] { animation: lb-in .28s var(--ease); }
+
+@keyframes lb-in {
+  from { opacity: 0; transform: scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+.lightbox img {
+  max-width: min(94vw, 1200px);
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  padding: var(--plate-pad);
+  background: var(--plate);
+  border: 1px solid rgba(255, 255, 255, .16);
+  cursor: default;
+}
+
+.lightbox-cap {
+  display: flex;
+  gap: 1.4em;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .72);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(10px, 1.6vw, 20px);
+  right: clamp(10px, 1.6vw, 20px);
+  width: 2.2em;
+  height: 2.2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, .3);
+  color: #fff;
+  font-size: 13px;
+  background: rgba(5, 5, 5, .5);
+  transition: background-color var(--fast);
+}
+
+.lightbox-close:hover { background: rgba(255, 255, 255, .18); }

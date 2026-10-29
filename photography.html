@@ -35,62 +35,47 @@
   <!-- HERO -->
   <section class="hero">
     <div class="shell">
-      <p class="hero-kicker label" data-copy-html="photography.01-photography.kicker">
+      <p class="hero-kicker label" data-copy-html="photography.01-photography.kicker"></p>
 
       <div class="hero-grid">
-        <h1 class="display" data-copy-html="photography.01-photography.h1">
+        <h1 class="display" data-copy-html="photography.01-photography.h1"></h1>
 
-        <p class="lede" data-copy-html="photography.01-photography.lede">
+        <p class="lede" data-copy-html="photography.01-photography.lede"></p>
 
-        <div class="hero-meta" data-copy-html="photography.01-photography.meta">
+        <div class="hero-meta" data-copy-html="photography.01-photography.meta"></div>
       </div>
     </div>
   </section>
 
-  <!-- SERIES 01 — LANDSCAPE -->
-  <section class="showcase" id="landscape" style="--field: var(--blue)">
+  <!-- GALLERY — four ways to browse -->
+  <section class="showcase" data-gallery-section style="--field: var(--blue)">
     <div class="shell">
       <div class="section-head">
         <div>
-          <p class="label muted" data-copy-html="photography.landscape.label">
-          <h2 class="h2" data-copy-html="photography.landscape.heading">
+          <p class="label muted" data-gallery-kicker>Browse — 01</p>
+          <h2 class="h2" data-gallery-title>Landscape</h2>
         </div>
-        <p class="aside" data-copy-html="photography.landscape.aside">
+        <p class="aside" data-gallery-aside>Field and weather</p>
       </div>
-      <div class="masonry" data-photos data-only="Landscape"></div>
-      <p class="field-big" data-count>8 photographs</p>
+
+      <nav class="tabs" data-gallery-tabs aria-label="Browse photography"></nav>
+
+      <div class="masonry" data-gallery></div>
+      <p class="field-big" data-gallery-count>8 photographs</p>
     </div>
   </section>
 
-  <!-- SERIES 02 — ARTISTIC -->
-  <section class="showcase" id="artistic" style="--field: var(--orange)">
-    <div class="shell">
-      <div class="section-head">
-        <div>
-          <p class="label muted" data-copy-html="photography.artistic.label">
-          <h2 class="h2" data-copy-html="photography.artistic.heading">
-        </div>
-        <p class="aside" data-copy-html="photography.artistic.aside">
-      </div>
-      <div class="masonry" data-photos data-only="Artistic"></div>
-      <p class="field-big" data-count>19 photographs</p>
-    </div>
-  </section>
-
-  <!-- PRINTS -->
+  <!-- HOW PRINTS WORK -->
   <section class="section" id="prints">
     <div class="shell">
       <div class="section-head">
         <div>
-          <p class="label muted" data-copy-html="photography.prints.label">
-          <h2 class="h2" data-copy-html="photography.prints.heading">
+          <p class="label muted" data-copy-html="photography.prints.label"></p>
+          <h2 class="h2" data-copy-html="photography.prints.heading"></h2>
         </div>
-        <p class="aside" data-copy-html="photography.prints.aside">
+        <p class="aside" data-copy-html="photography.prints.aside"></p>
       </div>
-
-      <div class="grid-prints" data-prints></div>
-
-      <div class="hero-stats" style="margin-top:clamp(20px,2.6vw,36px)" data-copy-html="photography.prints.stats">
+      <div class="hero-stats" style="margin-top:clamp(20px,2.6vw,36px)" data-copy-html="photography.prints.stats"></div>
     </div>
   </section>
 
@@ -99,10 +84,10 @@
     <div class="shell">
       <div class="section-head">
         <div>
-          <p class="label muted" data-copy-html="photography.photobooks.label">
-          <h2 class="h2" data-copy-html="photography.photobooks.heading">
+          <p class="label muted" data-copy-html="photography.photobooks.label"></p>
+          <h2 class="h2" data-copy-html="photography.photobooks.heading"></h2>
         </div>
-        <p class="aside" data-copy-html="photography.photobooks.aside">
+        <p class="aside" data-copy-html="photography.photobooks.aside"></p>
       </div>
       <div class="grid-books" data-photobooks></div>
     </div>
@@ -113,10 +98,10 @@
     <div class="shell">
       <div class="section-head">
         <div>
-          <p class="label muted" data-copy-html="photography.faq.label">
-          <h2 class="h2" data-copy-html="photography.faq.heading">
+          <p class="label muted" data-copy-html="photography.faq.label"></p>
+          <h2 class="h2" data-copy-html="photography.faq.heading"></h2>
         </div>
-        <p class="aside" data-copy-html="photography.faq.aside">
+        <p class="aside" data-copy-html="photography.faq.aside"></p>
       </div>
       <div data-faq></div>
     </div>
@@ -126,6 +111,13 @@
 
 <footer class="foot" data-copy-html="photography.footer">
   </footer>
+
+<!-- PHOTOGRAPH LIGHTBOX -->
+<dialog class="lightbox" data-lightbox aria-label="Photograph">
+  <button class="lightbox-close" type="button" aria-label="Close">✕</button>
+  <img data-lightbox-img alt="">
+  <p class="lightbox-cap" data-lightbox-cap></p>
+</dialog>
 
 <!-- PRINT DETAIL PANEL -->
 <dialog class="panel" data-panel aria-label="Print details">

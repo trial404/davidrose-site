@@ -87,40 +87,67 @@ window.MEDIA = {
     }
   ],
 
+  /* the four things you can toggle between in the gallery */
   series: [
-    { name: "Landscape", color: "var(--blue)" },
-    { name: "Artistic",  color: "var(--orange)" }
+    { id: "landscape",   name: "Landscape",   color: "var(--blue)",   blurb: "Field and weather" },
+    { id: "artistic",    name: "Artistic",    color: "var(--orange)", blurb: "Water and light" },
+    { id: "collections", name: "Collections", color: "var(--green)",  blurb: "Curated groups, across both series" },
+    { id: "shop",        name: "Print shop",  color: "var(--yellow)", blurb: "Available to buy" }
   ],
 
   photos: [
-    { title: "Landscape 01", series: "Landscape", ar: "1280 / 1600", image: "assets/img/photos/landscape-h39a0377.jpg" },
-    { title: "Landscape 02", series: "Landscape", ar: "1066 / 1600", image: "assets/img/photos/landscape-h39a1763.jpg" },
-    { title: "Landscape 03", series: "Landscape", ar: "1280 / 1600", image: "assets/img/photos/landscape-h39a1880.jpg" },
-    { title: "Landscape 04", series: "Landscape", ar: "1066 / 1600", image: "assets/img/photos/landscape-h39a5474-1.jpg" },
-    { title: "Landscape 05", series: "Landscape", ar: "1280 / 1600", image: "assets/img/photos/landscape-h39a9236.jpg" },
-    { title: "Landscape 06", series: "Landscape", ar: "1280 / 1600", image: "assets/img/photos/landscape-img-4334.jpg" },
-    { title: "Landscape 07", series: "Landscape", ar: "1280 / 1600", image: "assets/img/photos/landscape-img-6361.jpg" },
-    { title: "Landscape 08", series: "Landscape", ar: "1600 / 1281", image: "assets/img/photos/landscape-landscape-copy.jpg" },
+    { id: "landscape-h39a0377", title: "Landscape 01", series: "Landscape", sets: ["landscape", "shop"], ar: "1280 / 1600", image: "assets/img/photos/landscape-h39a0377.jpg" },
+    { id: "landscape-h39a1763", title: "Landscape 02", series: "Landscape", sets: ["landscape", "shop"], ar: "1066 / 1600", image: "assets/img/photos/landscape-h39a1763.jpg" },
+    { id: "landscape-h39a1880", title: "Landscape 03", series: "Landscape", sets: ["landscape"], ar: "1280 / 1600", image: "assets/img/photos/landscape-h39a1880.jpg" },
+    { id: "landscape-h39a5474-1", title: "Landscape 04", series: "Landscape", sets: ["landscape"], ar: "1066 / 1600", image: "assets/img/photos/landscape-h39a5474-1.jpg" },
+    { id: "landscape-h39a9236", title: "Landscape 05", series: "Landscape", sets: ["landscape", "shop"], ar: "1280 / 1600", image: "assets/img/photos/landscape-h39a9236.jpg" },
+    { id: "landscape-img-4334", title: "Landscape 06", series: "Landscape", sets: ["landscape", "shop"], ar: "1280 / 1600", image: "assets/img/photos/landscape-img-4334.jpg" },
+    { id: "landscape-img-6361", title: "Landscape 07", series: "Landscape", sets: ["landscape"], ar: "1280 / 1600", image: "assets/img/photos/landscape-img-6361.jpg" },
+    { id: "landscape-landscape-copy", title: "Landscape 08", series: "Landscape", sets: ["landscape", "shop"], ar: "1600 / 1281", image: "assets/img/photos/landscape-landscape-copy.jpg" },
 
-    { title: "Artistic 01", series: "Artistic", ar: "1240 / 1600", image: "assets/img/photos/artistic-frame-11-4.jpg" },
-    { title: "Artistic 02", series: "Artistic", ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-13.jpg" },
-    { title: "Artistic 03", series: "Artistic", ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-19.jpg" },
-    { title: "Artistic 04", series: "Artistic", ar: "1297 / 1600", image: "assets/img/photos/artistic-frame-21.jpg" },
-    { title: "Artistic 05", series: "Artistic", ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-27.jpg" },
-    { title: "Artistic 06", series: "Artistic", ar: "1297 / 1600", image: "assets/img/photos/artistic-frame-33-2.jpg" },
-    { title: "Artistic 07", series: "Artistic", ar: "1280 / 1600", image: "assets/img/photos/artistic-frame-4-6.jpg" },
-    { title: "Artistic 08", series: "Artistic", ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-53.jpg" },
-    { title: "Artistic 09", series: "Artistic", ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-55.jpg" },
-    { title: "Artistic 10", series: "Artistic", ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-59.jpg" },
-    { title: "Artistic 11", series: "Artistic", ar: "1280 / 1600", image: "assets/img/photos/artistic-frame-6-3.jpg" },
-    { title: "Artistic 12", series: "Artistic", ar: "1280 / 1600", image: "assets/img/photos/artistic-frame-7-12.jpg" },
-    { title: "Artistic 13", series: "Artistic", ar: "1282 / 1600", image: "assets/img/photos/artistic-frame-70-2.jpg" },
-    { title: "Artistic 14", series: "Artistic", ar: "1600 / 1282", image: "assets/img/photos/artistic-frame-72-2.jpg" },
-    { title: "Artistic 15", series: "Artistic", ar: "1240 / 1600", image: "assets/img/photos/artistic-frame-9-12.jpg" },
-    { title: "Artistic 16", series: "Artistic", ar: "1600 / 1280", image: "assets/img/photos/artistic-h39a6457.jpg" },
-    { title: "Artistic 17", series: "Artistic", ar: "1600 / 1066", image: "assets/img/photos/artistic-h39a8057-1.jpg" },
-    { title: "Artistic 18", series: "Artistic", ar: "1280 / 1600", image: "assets/img/photos/artistic-h39a8775-1.jpg" },
-    { title: "Artistic 19", series: "Artistic", ar: "1280 / 1600", image: "assets/img/photos/artistic-h39a8846-1.jpg" }
+    { id: "artistic-frame-11-4", title: "Artistic 01", series: "Artistic", sets: ["artistic"], ar: "1240 / 1600", image: "assets/img/photos/artistic-frame-11-4.jpg" },
+    { id: "artistic-frame-13", title: "Artistic 02", series: "Artistic", sets: ["artistic", "shop"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-13.jpg" },
+    { id: "artistic-frame-19", title: "Artistic 03", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-19.jpg" },
+    { id: "artistic-frame-21", title: "Artistic 04", series: "Artistic", sets: ["artistic"], ar: "1297 / 1600", image: "assets/img/photos/artistic-frame-21.jpg" },
+    { id: "artistic-frame-27", title: "Artistic 05", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-27.jpg" },
+    { id: "artistic-frame-33-2", title: "Artistic 06", series: "Artistic", sets: ["artistic"], ar: "1297 / 1600", image: "assets/img/photos/artistic-frame-33-2.jpg" },
+    { id: "artistic-frame-4-6", title: "Artistic 07", series: "Artistic", sets: ["artistic"], ar: "1280 / 1600", image: "assets/img/photos/artistic-frame-4-6.jpg" },
+    { id: "artistic-frame-53", title: "Artistic 08", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-53.jpg" },
+    { id: "artistic-frame-55", title: "Artistic 09", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-55.jpg" },
+    { id: "artistic-frame-59", title: "Artistic 10", series: "Artistic", sets: ["artistic"], ar: "1327 / 1600", image: "assets/img/photos/artistic-frame-59.jpg" },
+    { id: "artistic-frame-6-3", title: "Artistic 11", series: "Artistic", sets: ["artistic"], ar: "1280 / 1600", image: "assets/img/photos/artistic-frame-6-3.jpg" },
+    { id: "artistic-frame-7-12", title: "Artistic 12", series: "Artistic", sets: ["artistic"], ar: "1280 / 1600", image: "assets/img/photos/artistic-frame-7-12.jpg" },
+    { id: "artistic-frame-70-2", title: "Artistic 13", series: "Artistic", sets: ["artistic"], ar: "1282 / 1600", image: "assets/img/photos/artistic-frame-70-2.jpg" },
+    { id: "artistic-frame-72-2", title: "Artistic 14", series: "Artistic", sets: ["artistic", "shop"], ar: "1600 / 1282", image: "assets/img/photos/artistic-frame-72-2.jpg" },
+    { id: "artistic-frame-9-12", title: "Artistic 15", series: "Artistic", sets: ["artistic"], ar: "1240 / 1600", image: "assets/img/photos/artistic-frame-9-12.jpg" },
+    { id: "artistic-h39a6457", title: "Artistic 16", series: "Artistic", sets: ["artistic", "shop"], ar: "1600 / 1280", image: "assets/img/photos/artistic-h39a6457.jpg" },
+    { id: "artistic-h39a8057-1", title: "Artistic 17", series: "Artistic", sets: ["artistic"], ar: "1600 / 1066", image: "assets/img/photos/artistic-h39a8057-1.jpg" },
+    { id: "artistic-h39a8775-1", title: "Artistic 18", series: "Artistic", sets: ["artistic"], ar: "1280 / 1600", image: "assets/img/photos/artistic-h39a8775-1.jpg" },
+    { id: "artistic-h39a8846-1", title: "Artistic 19", series: "Artistic", sets: ["artistic", "shop"], ar: "1280 / 1600", image: "assets/img/photos/artistic-h39a8846-1.jpg" }
+  ],
+
+  /* ---------- collections ----------
+     Curated groups that can mix both series. Reference photos by id
+     (the image filename without its extension). */
+  collections: [
+    {
+      id: "weather",
+      name: "Weather",
+      note: "Fog, low cloud, and the four minutes when the ridge opens.",
+      photos: ["landscape-h39a0377", "landscape-landscape-copy", "landscape-h39a1763", "landscape-h39a9236"]
+    },
+    {
+      id: "surface",
+      name: "Surface",
+      note: "Water photographed close enough that it stops reading as water.",
+      photos: ["artistic-frame-13", "artistic-frame-72-2", "artistic-h39a6457", "artistic-frame-53"]
+    },
+    {
+      id: "waiting",
+      name: "Waiting",
+      note: "The frames that took longest. Mixed across both series.",
+      photos: ["landscape-img-4334", "artistic-h39a8846-1", "landscape-h39a1880"]
+    }
   ],
 
   prints: [

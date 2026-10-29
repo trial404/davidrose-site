@@ -251,8 +251,9 @@
 
   /* ---------- 5. scroll reveal ---------- */
 
-  function initReveal() {
-    var items = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  function initReveal(root) {
+    var scope = root || document;
+    var items = Array.prototype.slice.call(scope.querySelectorAll(".reveal"));
     if (!items.length) return;
 
     if (reduceMotion || !("IntersectionObserver" in window)) {
@@ -338,70 +339,197 @@
     }).join("");
   }
 
-  function renderPhotos() {
-    var mounts = Array.prototype.slice.call(document.querySelectorAll("[data-photos]"));
-    if (!mounts.length || !D.photos) return;
+  /* ---------- 7b. gallery: tabs, collections, lightbox ----------
+     Four ways to browse. Each tab floods the field with its own colour and draws
+     only its own content, so nothing is buried under everything else. */
 
-    var colours = {};
-    (D.series || []).forEach(function (s) { colours[s.name] = s.color; });
+  var galleryTab = "landscape";
 
-    mounts.forEach(function (mount) {
-      /* data-only="Series name" renders just that series; otherwise everything */
-      var only = mount.dataset.only;
-      var list = only
-        ? D.photos.filter(function (p) { return p.series === only; })
-        : D.photos;
+  function findSeries(id) {
+    var list = D.series || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
 
-      var limit = parseInt(mount.dataset.limit, 10);
-      if (limit > 0) list = list.slice(0, limit);
+  function findPhoto(id) {
+    var list = D.photos || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
 
-      mount.innerHTML = list.map(function (p, i) {
-        var n = String(i + 1).padStart(2, "0");
-        var inner = p.image
-          ? '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '" loading="lazy" decoding="async">'
-          : '<span class="ph-idx">' + n + "</span>";
-        return (
-          '<figure class="photo reveal" data-series="' + esc(p.series || "") + '">' +
-            '<span class="photo-idx">[' + n + "]</span>" +
-            '<span class="photo-frame" style="--ar:' + esc(p.ar || "4 / 3") + '">' + inner + "</span>" +
-            '<figcaption class="photo-cap"><span>' + esc(p.title) + "</span><span>" + esc(p.series || "") + "</span></figcaption>" +
-          "</figure>"
-        );
-      }).join("");
-
-      var field = mount.closest ? mount.closest(".showcase") : null;
-
-      if (field && only && colours[only]) {
-        field.style.setProperty("--field", colours[only]);
-      }
-
-      var countEl = field ? field.querySelector("[data-count]") : null;
-      if (countEl) {
-        countEl.textContent = list.length + (list.length === 1 ? " photograph" : " photographs");
-      }
+  function photosIn(setId) {
+    return (D.photos || []).filter(function (p) {
+      return (p.sets || []).indexOf(setId) !== -1;
     });
   }
+
+  function photoHTML(p, i) {
+    var n = String(i + 1).padStart(2, "0");
+    var inner = p.image
+      ? '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '" loading="lazy" decoding="async">'
+      : '<span class="ph-idx">' + n + "</span>";
+    return (
+      '<button class="photo reveal" type="button" data-photo="' + esc(p.id) + '" ' +
+        'aria-label="' + esc(p.title) + " — view larger" + '">' +
+        '<span class="photo-idx">[' + n + "]</span>" +
+        '<span class="photo-frame" style="--ar:' + esc(p.ar || "4 / 3") + '">' + inner + "</span>" +
+        '<span class="photo-cap"><span>' + esc(p.title) + "</span><span>" + esc(p.series || "") + "</span></span>" +
+      "</button>"
+    );
+  }
+
+  function printCardHTML(p) {
+    var from = p.sizes && p.sizes.length ? p.sizes[0].price : "";
+    var img = p.image
+      ? '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '" loading="lazy">'
+      : "";
+    return (
+      '<button class="print-card reveal" type="button" data-open-print="' + esc(p.id) + '" ' +
+        'aria-label="' + esc(p.title) + " — view sizes and prices" + '">' +
+        '<span class="shot" style="--ar:' + esc(p.ar || "4 / 3") + '">' + img + "</span>" +
+        '<span class="meta">' +
+          '<span class="ttl">' + esc(p.title) + "</span>" +
+          '<span class="sub"><span>' + esc(p.series || "") + "</span><span>from " + esc(from) + "</span></span>" +
+        "</span>" +
+      "</button>"
+    );
+  }
+
+  function collectionsHTML() {
+    return (D.collections || []).map(function (c) {
+      var items = (c.photos || []).map(findPhoto).filter(Boolean);
+      if (!items.length) return "";
+      return (
+        '<section class="collection">' +
+          '<div class="collection-head">' +
+            "<h3>" + esc(c.name) + "</h3>" +
+            '<p class="muted">' + esc(c.note || "") + "</p>" +
+            '<p class="label muted">' + items.length +
+              (items.length === 1 ? " photograph" : " photographs") + "</p>" +
+          "</div>" +
+          '<div class="masonry">' + items.map(photoHTML).join("") + "</div>" +
+        "</section>"
+      );
+    }).join("");
+  }
+
+  function renderGalleryBody() {
+    var mount = document.querySelector("[data-gallery]");
+    if (!mount) return;
+
+    var s = findSeries(galleryTab) || { name: "", blurb: "", color: "var(--blue)" };
+
+    var section = document.querySelector("[data-gallery-section]");
+    if (section) section.style.setProperty("--field", s.color);
+
+    var title = document.querySelector("[data-gallery-title]");
+    if (title) title.textContent = s.name;
+    var aside = document.querySelector("[data-gallery-aside]");
+    if (aside) aside.textContent = s.blurb || "";
+
+    var ids = (D.series || []).map(function (x) { return x.id; });
+    var pos = ids.indexOf(galleryTab) + 1;
+    var kicker = document.querySelector("[data-gallery-kicker]");
+    if (kicker) kicker.textContent = "Browse — " + String(pos).padStart(2, "0");
+
+    var n;
+
+    if (galleryTab === "shop") {
+      mount.className = "grid-prints";
+      mount.innerHTML = (D.prints || []).map(printCardHTML).join("");
+      n = (D.prints || []).length;
+    } else if (galleryTab === "collections") {
+      mount.className = "collections";
+      mount.innerHTML = collectionsHTML();
+      n = (D.collections || []).length;
+    } else {
+      mount.className = "masonry";
+      mount.innerHTML = photosIn(galleryTab).map(photoHTML).join("");
+      n = photosIn(galleryTab).length;
+    }
+
+    var count = document.querySelector("[data-gallery-count]");
+    if (count) {
+      var unit = galleryTab === "collections" ? (n === 1 ? " collection" : " collections")
+               : galleryTab === "shop" ? (n === 1 ? " print" : " prints")
+               : (n === 1 ? " photograph" : " photographs");
+      count.textContent = n + unit;
+    }
+
+    initReveal(mount);
+  }
+
+  function renderGalleryTabs() {
+    var mount = document.querySelector("[data-gallery-tabs]");
+    if (!mount || !D.series) return;
+
+    mount.innerHTML = D.series.map(function (s, i) {
+      return (
+        '<button class="tab" type="button" data-tab="' + esc(s.id) + '" ' +
+          'aria-pressed="' + (s.id === galleryTab ? "true" : "false") + '">' +
+          '<span class="tab-n">' + String(i + 1).padStart(2, "0") + "</span>" +
+          esc(s.name) +
+        "</button>"
+      );
+    }).join("");
+
+    mount.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest(".tab") : null;
+      if (!btn) return;
+      galleryTab = btn.dataset.tab;
+      Array.prototype.forEach.call(mount.querySelectorAll(".tab"), function (x) {
+        x.setAttribute("aria-pressed", x.dataset.tab === galleryTab ? "true" : "false");
+      });
+      renderGalleryBody();
+    });
+  }
+
+  var lightbox = null;
+
+  function openLightbox(id) {
+    var p = findPhoto(id);
+    if (!p || !lightbox) return;
+
+    var img = lightbox.querySelector("[data-lightbox-img]");
+    var cap = lightbox.querySelector("[data-lightbox-cap]");
+    if (img) {
+      img.src = p.image || "";
+      img.alt = p.title;
+      img.style.setProperty("--ar", p.ar || "4 / 3");
+    }
+    if (cap) {
+      cap.innerHTML = "<span>" + esc(p.title) + "</span><span>" + esc(p.series || "") + "</span>";
+    }
+    if (typeof lightbox.showModal === "function") lightbox.showModal();
+    else lightbox.setAttribute("open", "");
+  }
+
+  function initLightbox() {
+    lightbox = document.querySelector("[data-lightbox]");
+    if (!lightbox) return;
+
+    document.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest("[data-photo]") : null;
+      if (btn && !lightbox.contains(btn)) {
+        e.preventDefault();
+        openLightbox(btn.dataset.photo);
+      }
+    });
+
+    /* clicking the empty space around the photograph closes it */
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) lightbox.close();
+    });
+
+    var close = lightbox.querySelector(".lightbox-close");
+    if (close) close.addEventListener("click", function () { lightbox.close(); });
+  }
+
 
   function renderPrints() {
     var mount = document.querySelector("[data-prints]");
     if (!mount || !D.prints) return;
-
-    mount.innerHTML = D.prints.map(function (p) {
-      var from = p.sizes && p.sizes.length ? p.sizes[0].price : "";
-      var img = p.image
-        ? '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '" loading="lazy">'
-        : "";
-      return (
-        '<button class="print-card reveal" type="button" data-open-print="' + esc(p.id) + '" ' +
-          'aria-label="' + esc(p.title) + " — view sizes and prices" + '">' +
-          '<span class="shot" style="--ar:' + esc(p.ar || "4 / 3") + '">' + img + "</span>" +
-          '<span class="meta">' +
-            '<span class="ttl">' + esc(p.title) + "</span>" +
-            '<span class="sub"><span>' + esc(p.series || "") + "</span><span>from " + esc(from) + "</span></span>" +
-          "</span>" +
-        "</button>"
-      );
-    }).join("");
+    mount.innerHTML = D.prints.map(printCardHTML).join("");
   }
 
   function renderBooks(mountSel, list) {
@@ -600,7 +728,8 @@
     /* render from data.js first — reveal observes what these create */
     renderWorlds();
     renderTicker();
-    renderPhotos();
+    renderGalleryTabs();
+    renderGalleryBody();
     renderPrints();
     renderFeature();
     renderBooks("[data-photobooks]", D.photobooks);
@@ -617,6 +746,7 @@
     initVeil();
     initReveal();
     buildPanel();
+    initLightbox();
 
     document.addEventListener("click", function (e) {
       var btn = e.target.closest ? e.target.closest("[data-open-print]") : null;

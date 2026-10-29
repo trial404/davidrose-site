@@ -141,8 +141,8 @@ window.COPY = {
           <span class="label muted">Shipping</span>
           <span class="n">Flat rate, tracked</span>
         </div>`,
-      "aside": `Select a print for sizes and prices`,
-      "heading": `Prints`,
+      "aside": `Paper, timings and shipping`,
+      "heading": `How prints work`,
       "label": `Available to buy`,
     },
     "artistic": {
