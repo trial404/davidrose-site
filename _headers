@@ -1,14 +1,24 @@
 # Cloudflare Pages headers — read automatically, no configuration needed.
 # https://developers.cloudflare.com/pages/configuration/headers/
 
-# Photographs and icons: cache for a week.
-# Not longer, because replacing a photo keeps the same filename and a long
-# cache would keep serving the old one. If you swap an image, rename it too.
+# Photographs: cache for a week.
+# Not longer, because replacing a photo keeps its filename and a long cache
+# would keep serving the old one. If you swap an image, rename it too.
 /assets/img/*
   Cache-Control: public, max-age=604800
 
-/assets/*
-  Cache-Control: public, max-age=604800
+# Stylesheets and scripts must always revalidate.
+# These filenames are not hashed, so a long cache serves stale CSS after a
+# deploy — you change a colour and see nothing change for a week.
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Content files change constantly; never cache them.
+/content/*
+  Cache-Control: public, max-age=0, must-revalidate
 
 # HTML must always be revalidated, or content edits won't appear.
 /*.html
