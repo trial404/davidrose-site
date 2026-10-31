@@ -844,18 +844,6 @@ window.COPY = {
     },
   },
 
-  "lab": {
-    "hero": {
-      "kicker": `Lab — an experiment`,
-      "h1": `The work, bent.`,
-      "lede": `A wall of photographs warped as one continuous lens around your pointer. Drag it and it keeps going. This is an experiment: the gallery shows the pictures straight, because a print should be judged true.`,
-      "back": `Back to the gallery`
-    },
-    "canvas": {
-      "hint": `Move the pointer · drag to pan`
-    }
-  },
-
   faq: [
     {
       q: "What paper do you print on?",

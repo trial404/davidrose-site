@@ -1871,24 +1871,3 @@ h3, .h3 {
 
 /* tabs: the pressed one eases into its colour */
 .tab { transition: background-color .28s var(--ease), color .28s var(--ease), border-color .28s var(--ease); }
-
-/* ==========================================================================
-   31. lab — fisheye wall
-   ========================================================================== */
-
-.lab-canvas {
-  display: block;
-  width: 100%;
-  height: min(76vh, 760px);
-  margin-top: clamp(12px, 1.8vw, 24px);
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  touch-action: pan-y;
-  cursor: grab;
-}
-
-.lab-canvas.is-dragging { cursor: grabbing; }
-
-@media (max-width: 720px) {
-  .lab-canvas { height: 62vh; }
-}

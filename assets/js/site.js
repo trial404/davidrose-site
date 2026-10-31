@@ -796,8 +796,6 @@
       : "";
 
     var live = p.link && p.link !== "#";
-    var external = /^https?:/i.test(p.link || "");
-    var label = p.linkLabel || "View the code";
 
     return (
       '<div class="pp-head">' +
@@ -809,8 +807,7 @@
       '<dl class="pp-facts">' + facts + "</dl>" +
       '<div class="pp-foot">' +
         (live
-          ? '<a class="btn btn--solid" href="' + esc(p.link) + '"' +
-            (external ? ' target="_blank" rel="noopener"' : "") + ">" + esc(label) + "</a>"
+          ? '<a class="btn btn--solid" href="' + esc(p.link) + '" target="_blank" rel="noopener">View the code</a>'
           : '<span class="btn" aria-disabled="true">No repository yet</span>') +
       "</div>"
     );
