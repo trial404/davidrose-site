@@ -60,12 +60,13 @@ dialog { border: 0; padding: 0; background: none; color: inherit; }
   --med: .4s var(--ease);
 
   --world: var(--blue);
+  --contrast: var(--orange);
 }
 
-body[data-world="photography"] { --world: var(--blue); }
-body[data-world="writing"]     { --world: var(--orange); }
-body[data-world="ai"]          { --world: var(--green); }
-body[data-world="about"]       { --world: var(--yellow); }
+body[data-world="photography"] { --world: var(--blue);    --contrast: var(--orange); }
+body[data-world="writing"]     { --world: var(--orange);  --contrast: var(--blue); }
+body[data-world="ai"]          { --world: var(--green);   --contrast: var(--yellow); }
+body[data-world="about"]       { --world: var(--yellow);  --contrast: var(--green); }
 
 /* ---------- 3. base ---------- */
 html {
@@ -819,7 +820,11 @@ h3, .h3 {
 .btn::after { content: "→"; transition: transform var(--fast); }
 
 .btn:hover,
-.btn:focus-visible { background: var(--ink-hard); color: var(--paper); }
+.btn:focus-visible {
+  background: var(--contrast);
+  border-color: var(--ink-hard);
+  color: var(--ink-hard);
+}
 .btn:hover::after { transform: translateX(3px); }
 
 .btn--solid { background: var(--world); color: var(--ink-hard); }
@@ -1805,3 +1810,64 @@ h3, .h3 {
   .project-panel { width: 100%; max-height: 92dvh; }
   .pp-row { grid-template-columns: 1fr; gap: .35em; }
 }
+
+/* ==========================================================================
+   30. motion — small, palette-driven, and all of it optional
+   --------------------------------------------------------------------------
+   Nothing here moves more than a few pixels. Everything is disabled by the
+   prefers-reduced-motion block further up.
+   ========================================================================== */
+
+/* the field colour eases when you switch tabs, instead of snapping */
+.showcase { transition: background-color .5s var(--ease); }
+
+/* a button flashes through the palette once on hover, then settles */
+.btn:hover,
+.btn:focus-visible {
+  animation: btn-glitch .42s steps(3, end) 1;
+}
+
+@keyframes btn-glitch {
+  0%   { background-color: var(--blue);     transform: translateY(0); }
+  22%  { background-color: var(--orange);   transform: translate(-2px, 1px); }
+  44%  { background-color: var(--green);    transform: translate(2px, -1px); }
+  66%  { background-color: var(--yellow);   transform: translate(-1px, 0); }
+  100% { background-color: var(--contrast); transform: none; }
+}
+
+/* the arrow blinks while the pointer is on the button */
+.btn:hover::after { animation: blink .5s steps(1, end) 2; }
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* nav links get a colour bar that wipes in from the left */
+.worlds a { position: relative; overflow: hidden; }
+
+.worlds a::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: var(--c);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s var(--ease);
+}
+
+.worlds a:hover::before { transform: scaleX(1); }
+
+/* reveal is a hair more considered: a touch of scale as well as travel */
+.js .reveal { opacity: 0; transform: translateY(14px) scale(.996); }
+
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+
+/* a picture settles very slightly as it comes into view */
+.photo-frame img { transition: transform .5s var(--ease), opacity .5s var(--ease); }
+
+/* tabs: the pressed one eases into its colour */
+.tab { transition: background-color .28s var(--ease), color .28s var(--ease), border-color .28s var(--ease); }

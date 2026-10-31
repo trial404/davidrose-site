@@ -11,6 +11,11 @@
    description  a sentence or two. This is the only place it appears.
 
    Delete a field and its row disappears from the lightbox.
+
+   The id IS the filename. landscape-h39a0377 comes from
+   landscape photos/H39A0377.jpg. So: rename a file BEFORE you write anything
+   here, or the words you wrote are left attached to an id nothing points at.
+   tools/sync-photos.py names any such leftovers under "unused entries".
    ========================================================================== */
 
 window.PHOTO_INFO = {
