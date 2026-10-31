@@ -60,12 +60,13 @@ dialog { border: 0; padding: 0; background: none; color: inherit; }
   --med: .4s var(--ease);
 
   --world: var(--blue);
+  --contrast: var(--orange);
 }
 
-body[data-world="photography"] { --world: var(--blue); }
-body[data-world="writing"]     { --world: var(--orange); }
-body[data-world="ai"]          { --world: var(--green); }
-body[data-world="about"]       { --world: var(--yellow); }
+body[data-world="photography"] { --world: var(--blue);    --contrast: var(--orange); }
+body[data-world="writing"]     { --world: var(--orange);  --contrast: var(--blue); }
+body[data-world="ai"]          { --world: var(--green);   --contrast: var(--yellow); }
+body[data-world="about"]       { --world: var(--yellow);  --contrast: var(--green); }
 
 /* ---------- 3. base ---------- */
 html {
@@ -819,7 +820,22 @@ h3, .h3 {
 .btn::after { content: "→"; transition: transform var(--fast); }
 
 .btn:hover,
-.btn:focus-visible { background: var(--ink-hard); color: var(--paper); }
+.btn:focus-visible {
+  background: var(--contrast);
+  border-color: var(--ink-hard);
+  color: var(--ink-hard);
+  animation: btn-tick .22s steps(2, end) 1;
+}
+
+/* A glitch, but barely: the button shifts by one pixel and throws a 2px
+   chromatic fringe in the page's world colour. No colour cycling, no blur,
+   no opacity drop — one tick and it settles. */
+@keyframes btn-tick {
+  0%   { transform: translateX(0);    box-shadow: 2px 0 0 var(--world); }
+  35%  { transform: translateX(-1px); box-shadow: -2px 0 0 var(--contrast); }
+  70%  { transform: translateX(1px);  box-shadow: 2px 0 0 var(--world); }
+  100% { transform: none;             box-shadow: 0 0 0 transparent; }
+}
 .btn:hover::after { transform: translateX(3px); }
 
 .btn--solid { background: var(--world); color: var(--ink-hard); }
