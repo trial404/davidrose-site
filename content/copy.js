@@ -58,6 +58,7 @@ window.COPY = {
       "label": `Latest photographs`,
     },
     "photographer-writer-bu": {
+      "cta": `See the photographs`,
       "stats": `<div><span class="label muted">Based</span><span class="n">EU</span></div>
         <div><span class="label muted">Working since</span><span class="n">2019</span></div>
         <div><span class="label muted">Ships</span><span class="n">Worldwide</span></div>`,

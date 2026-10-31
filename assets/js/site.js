@@ -862,6 +862,45 @@
     });
   }
 
+  /* ---------- 11. hub hero ----------
+     Each frame gets a photograph from the archive; the frames drift a few pixels
+     against the pointer. Nothing moves for anyone who asked for less motion. */
+
+  function initHub() {
+    var hub = document.querySelector("[data-hub]");
+    if (!hub) return;
+
+    var frames = Array.prototype.slice.call(hub.querySelectorAll("[data-hub-frame]"));
+    var shots = (D.photos || []).filter(function (p) { return p.image; });
+    if (!shots.length) return;
+
+    var offset = 0;
+    frames.forEach(function (f, i) {
+      var p = shots[(offset + i) % shots.length];
+      f.style.backgroundImage = "url('" + p.image + "')";
+    });
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var pending = null;
+    hub.addEventListener("pointermove", function (e) {
+      if (pending) return;
+      pending = requestAnimationFrame(function () {
+        pending = null;
+        var r = hub.getBoundingClientRect();
+        var mx = (e.clientX - r.left) / r.width - 0.5;
+        var my = (e.clientY - r.top) / r.height - 0.5;
+        hub.style.setProperty("--mx", (mx * 16).toFixed(1) + "px");
+        hub.style.setProperty("--my", (my * 16).toFixed(1) + "px");
+      });
+    });
+
+    hub.addEventListener("pointerleave", function () {
+      hub.style.setProperty("--mx", "0px");
+      hub.style.setProperty("--my", "0px");
+    });
+  }
+
   /* ---------- boot ---------- */
 
   function boot() {
@@ -896,6 +935,7 @@
     buildPanel();
     initLightbox();
     initProjectPanel();
+    initHub();
 
     document.addEventListener("click", function (e) {
       var btn = e.target.closest ? e.target.closest("[data-open-print]") : null;
