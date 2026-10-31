@@ -1872,7 +1872,7 @@ h3, .h3 {
   background-size: cover;
   background-position: center;
   background-blend-mode: hard-light;
-  opacity: .3;
+  opacity: .26;
   transform: translate3d(
     calc(var(--mx, 0px) * var(--depth, 1)),
     calc(var(--my, 0px) * var(--depth, 1)),
@@ -1892,62 +1892,39 @@ h3, .h3 {
 }
 
 /* the four anchors: top-left, top-right, bottom-right, bottom-left */
-.hub-frame--a { --c: var(--blue);   --depth: 1.35; top: 8%;   left: -8%;  width: 54%; height: 46%; animation-delay: -4s; }
-.hub-frame--b { --c: var(--orange); --depth: 1.05; top: -6%;  right: -10%; width: 56%; height: 40%; animation-delay: -13s; }
-.hub-frame--c { --c: var(--green);  --depth: 1.6;  bottom: 6%; right: -8%; width: 48%; height: 44%; animation-delay: -22s; }
-.hub-frame--d { --c: var(--yellow); --depth: 1.2;  bottom: -8%; left: -6%; width: 46%; height: 40%; animation-delay: -30s; }
+.hub-frame--a { --c: var(--blue);   --depth: 1.35; top: 9%;   left: -14%; width: 48%; height: 42%; animation-delay: -4s; }
+.hub-frame--b { --c: var(--orange); --depth: 1.05; top: -8%;  right: -14%; width: 50%; height: 38%; animation-delay: -13s; }
+.hub-frame--c { --c: var(--green);  --depth: 1.6;  bottom: 7%; right: -12%; width: 44%; height: 40%; animation-delay: -22s; }
+.hub-frame--d { --c: var(--yellow); --depth: 1.2;  bottom: -10%; left: -10%; width: 42%; height: 36%; animation-delay: -30s; }
 
 .hub-frame--a b { top: .8em;    left: .9em; }
 .hub-frame--b b { top: .8em;    right: .9em; }
 .hub-frame--c b { bottom: .8em; right: .9em; }
 .hub-frame--d b { bottom: .8em; left: .9em; }
 
-/* the centre cluster */
-.hub-centre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: clamp(104px, 14vw, 178px);
-  aspect-ratio: 1;
-  z-index: 2;
-}
-
-.hub-tile { display: block; position: relative; }
-.hub-tile--a { background: var(--yellow); }
-.hub-tile--b { background: var(--green); }
-.hub-tile--c { background: var(--blue); }
-.hub-tile--d { background: var(--orange); }
-
-.hub-tile::after {
+/* A paper scrim over the left half. The frames keep their colour elsewhere,
+   but text never lands straight on a photograph. */
+.hub::after {
   content: "";
   position: absolute;
   inset: 0;
-  margin: auto;
-  width: 26%;
-  height: 26%;
-  background: #fff;
-  transition: transform .4s var(--ease);
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(115% 95% at 16% 80%,
+      rgba(219, 219, 218, .95) 0%,
+      rgba(219, 219, 218, .72) 34%,
+      rgba(219, 219, 218, 0) 66%);
 }
 
-.hub-tile--a::after { border-radius: 50%; }
-.hub-tile--b::after { transform: rotate(45deg); }
-.hub-tile--c::after { }
-.hub-tile--d::after { border-radius: 50%; }
-
-.hub:hover .hub-tile::after { transform: scale(1.12); }
-.hub:hover .hub-tile--b::after { transform: rotate(45deg) scale(1.12); }
-
 /* the words sit at the bottom left, over the diagram */
+.hub > .shell { position: relative; z-index: 3; }
+
 .hub-copy {
-  position: relative;
-  z-index: 3;
   display: grid;
   gap: clamp(12px, 1.5vw, 20px);
   justify-items: start;
-  max-width: min(720px, 100%);
+  max-width: min(660px, 100%);
 }
 
 .hub-title {
@@ -1970,12 +1947,10 @@ h3, .h3 {
 @media (max-width: 900px) {
   .hub { min-height: min(72vh, 620px); }
   .hub-frame { opacity: .22; }
-  .hub-centre { width: clamp(84px, 22vw, 130px); }
 }
 
 @media (max-width: 600px) {
   .hub-frame--a, .hub-frame--c { display: none; }
-  .hub-centre { top: 34%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
