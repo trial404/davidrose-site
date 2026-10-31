@@ -1839,120 +1839,113 @@ h3, .h3 {
 }
 
 /* ==========================================================================
-   32. hub hero — four worlds converging on a centre
+   33. poster hero — four worlds, four columns
    --------------------------------------------------------------------------
-   The composition is yours: four hairline frames, each anchored to a different
-   corner and running past the edges, meeting around a 2x2 colour cluster. Each
-   frame carries a photograph tinted in its own world colour, so the diagram is
-   also a room full of the actual work.
+   A poster grid rather than a diagram: a band of flat colour forms, the name at
+   full width, then a band of photographs. Each column is one world and links to
+   it, so the hero is also the navigation.
    ========================================================================== */
 
-.hub {
+.poster { border-bottom: 1px solid var(--rule); }
+
+.poster-band { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.poster-cell {
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  min-height: min(78vh, 780px);
-  padding-block: clamp(28px, 5vw, 72px) clamp(30px, 4.5vw, 64px);
-  overflow: hidden;
-  border-bottom: 1px solid var(--rule);
-}
-
-.hub-frames {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hub-frame {
-  position: absolute;
   display: block;
-  border: 1px solid var(--c);
-  background-color: var(--c);
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: hard-light;
-  opacity: .26;
-  transform: translate3d(
-    calc(var(--mx, 0px) * var(--depth, 1)),
-    calc(var(--my, 0px) * var(--depth, 1)),
-    0
-  );
-  transition: opacity .5s var(--ease), transform .5s var(--ease);
-  animation: hub-drift 34s ease-in-out infinite alternate;
+  overflow: hidden;
+  height: clamp(104px, 16vh, 184px);
+  background: var(--paper);
+  border-left: 1px solid var(--rule);
+  transition: background-color .28s var(--ease);
 }
 
-.hub-frame b {
+.poster-cell:first-child { border-left: 0; }
+.poster-cell--block { background: var(--c); }
+.poster-cell--block:hover { background: var(--ink-hard); }
+
+.poster-form {
   position: absolute;
+  left: 50%;
+  top: 14%;
+  width: 84%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--c);
+  transform: translateX(-50%);
+  transition: transform .5s var(--ease);
+}
+
+.poster-cell--circle:hover .poster-form { transform: translateX(-50%) scale(1.04); }
+
+.poster-label {
+  position: absolute;
+  top: .7em;
+  left: .8em;
+  z-index: 2;
   font-family: var(--mono);
-  font-size: clamp(10px, .8vw, 12px);
-  font-weight: 400;
+  font-size: clamp(8.5px, .68vw, 10.5px);
   letter-spacing: .1em;
+  text-transform: uppercase;
   color: var(--ink-60);
 }
 
-/* the four anchors: top-left, top-right, bottom-right, bottom-left */
-.hub-frame--a { --c: var(--blue);   --depth: 1.35; top: 9%;   left: -14%; width: 48%; height: 42%; animation-delay: -4s; }
-.hub-frame--b { --c: var(--orange); --depth: 1.05; top: -8%;  right: -14%; width: 50%; height: 38%; animation-delay: -13s; }
-.hub-frame--c { --c: var(--green);  --depth: 1.6;  bottom: 7%; right: -12%; width: 44%; height: 40%; animation-delay: -22s; }
-.hub-frame--d { --c: var(--yellow); --depth: 1.2;  bottom: -10%; left: -10%; width: 42%; height: 36%; animation-delay: -30s; }
+.poster-cell--block:hover .poster-label { color: var(--paper); }
 
-.hub-frame--a b { top: .8em;    left: .9em; }
-.hub-frame--b b { top: .8em;    right: .9em; }
-.hub-frame--c b { bottom: .8em; right: .9em; }
-.hub-frame--d b { bottom: .8em; left: .9em; }
-
-/* A paper scrim over the left half. The frames keep their colour elsewhere,
-   but text never lands straight on a photograph. */
-.hub::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background:
-    radial-gradient(115% 95% at 16% 80%,
-      rgba(219, 219, 218, .95) 0%,
-      rgba(219, 219, 218, .72) 34%,
-      rgba(219, 219, 218, 0) 66%);
-}
-
-/* the words sit at the bottom left, over the diagram */
-.hub > .shell { position: relative; z-index: 3; }
-
-.hub-copy {
-  display: grid;
-  gap: clamp(12px, 1.5vw, 20px);
-  justify-items: start;
-  max-width: min(660px, 100%);
-}
-
-.hub-title {
+/* the name, full width, breaking the two bands apart */
+.poster-name {
   font-family: var(--sans);
   font-weight: 900;
-  font-size: clamp(1.9rem, 4.4vw, 3.7rem);
-  line-height: .95;
-  letter-spacing: -.042em;
-  max-width: 22ch;
-  text-wrap: balance;
+  font-size: clamp(2.5rem, 14.2vw, 13.6rem);
+  line-height: .8;
+  letter-spacing: -.052em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: .03em 0 .06em;
 }
 
-.hub-lede { max-width: 44ch; color: var(--ink-60); }
-
-@keyframes hub-drift {
-  from { background-position: 46% 46%; }
-  to   { background-position: 54% 54%; }
+.poster-photo {
+  display: block;
+  height: clamp(170px, 31vh, 330px);
+  background-color: var(--placeholder);
+  background-size: cover;
+  background-position: center;
+  border-left: 1px solid var(--rule);
+  transition: opacity .3s var(--ease);
 }
 
-@media (max-width: 900px) {
-  .hub { min-height: min(72vh, 620px); }
-  .hub-frame { opacity: .22; }
+.poster-photo:first-child { border-left: 0; }
+.poster-photo:hover { opacity: .82; }
+
+.poster-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2em 2.4em;
+  padding-block: clamp(16px, 2.2vw, 28px);
 }
 
-@media (max-width: 600px) {
-  .hub-frame--a, .hub-frame--c { display: none; }
+.poster-lede { max-width: 54ch; color: var(--ink-60); }
+
+@media (max-width: 820px) {
+  .poster-band { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .poster-cell:nth-child(3) { border-left: 0; }
+  .poster-photo:nth-child(3) { border-left: 0; }
+  .poster-cell, .poster-photo { border-top: 1px solid var(--rule); }
+  .poster-band--forms .poster-cell:nth-child(1),
+  .poster-band--forms .poster-cell:nth-child(2) { border-top: 0; }
+  .poster-band--photos .poster-photo:nth-child(1),
+  .poster-band--photos .poster-photo:nth-child(2) { border-top: 0; }
+  .poster-cell { height: clamp(96px, 15vh, 140px); }
+  .poster-photo { height: clamp(150px, 22vh, 220px); }
+  .poster-name { font-size: clamp(2rem, 12vw, 5rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hub-frame { animation: none; transform: none; }
+  .poster-cell, .poster-form, .poster-photo { transition: none; }
 }

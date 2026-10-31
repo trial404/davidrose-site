@@ -32,24 +32,37 @@
 
 <main id="main">
 
-  <!-- HERO — the four worlds as a diagram -->
-  <section class="hub" data-hub>
-    <div class="hub-frames" aria-hidden="true">
-      <span class="hub-frame hub-frame--a" data-hub-frame><b>01</b></span>
-      <span class="hub-frame hub-frame--b" data-hub-frame><b>02</b></span>
-      <span class="hub-frame hub-frame--c" data-hub-frame><b>03</b></span>
-      <span class="hub-frame hub-frame--d" data-hub-frame><b>04</b></span>
+  <!-- HERO — poster grid: four worlds, four columns -->
+  <section class="poster" aria-label="Four worlds">
+    <div class="poster-band poster-band--forms">
+      <a class="poster-cell poster-cell--circle" href="photography.html" style="--c: var(--blue)">
+        <span class="poster-label">01 Photography</span>
+        <span class="poster-form"></span>
+      </a>
+      <a class="poster-cell poster-cell--block" href="writing.html" style="--c: var(--orange)">
+        <span class="poster-label">02 Writing</span>
+      </a>
+      <a class="poster-cell poster-cell--circle" href="ai.html" style="--c: var(--green)">
+        <span class="poster-label">03 AI builds</span>
+        <span class="poster-form"></span>
+      </a>
+      <a class="poster-cell poster-cell--block" href="about.html" style="--c: var(--yellow)">
+        <span class="poster-label">04 About</span>
+      </a>
     </div>
 
-    <div class="shell">
-      <div class="hub-copy">
-        <p class="hero-kicker label" data-role data-copy-html="index.photographer-writer-bu.kicker"></p>
-        <h1 class="hub-title" data-copy-html="index.photographer-writer-bu.h1"></h1>
-        <p class="hub-lede" data-copy-html="index.photographer-writer-bu.lede"></p>
-        <p class="hub-actions">
-          <a class="btn btn--solid" href="photography.html" data-copy-html="index.photographer-writer-bu.cta"></a>
-        </p>
-      </div>
+    <h1 class="poster-name" data-brand>David Rose</h1>
+
+    <div class="poster-band poster-band--photos" aria-hidden="true">
+      <a class="poster-photo" href="photography.html" data-poster-photo></a>
+      <a class="poster-photo" href="writing.html" data-poster-photo></a>
+      <a class="poster-photo" href="ai.html" data-poster-photo></a>
+      <a class="poster-photo" href="about.html" data-poster-photo></a>
+    </div>
+
+    <div class="shell poster-foot">
+      <p class="poster-lede" data-copy-html="index.photographer-writer-bu.lede"></p>
+      <a class="btn btn--solid" href="photography.html" data-copy-html="index.photographer-writer-bu.cta"></a>
     </div>
   </section>
 
