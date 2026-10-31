@@ -14,11 +14,11 @@
 window.LINKS = {
 
   /* your address, used by every contact button and mailto link */
-  email: "hello@yourname.com",
+  email: "david94rose@gmail.com",
 
   /* the footer list. empty url = hidden */
   social: [
-    { key: "instagram", label: "Instagram",     url: "https://instagram.com/" },
+    { key: "instagram", label: "Instagram",     url: "https://instagram.com/_daveslr" },
     { key: "substack",  label: "Substack",      url: "https://yourname.substack.com" },
     { key: "gumroad",   label: "Gumroad",       url: "https://yourname.gumroad.com" },
     { key: "github",    label: "GitHub",        url: "https://github.com/" },

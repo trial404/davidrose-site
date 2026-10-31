@@ -236,6 +236,9 @@ if stubbed and not DRY:
     head = head[:head.rindex("};")].rstrip()
     io.open(PHOTOS_JS, "w", encoding="utf-8").write(head + "\n" + "\n".join(add) + "\n};\n")
 
+# ---------- words with no photograph behind them ----------
+orphan_words = sorted(known - {p["id"] for p in photos})
+
 # ---------- orphaned files ----------
 orphans = [n for n in sorted(os.listdir(DEST))
            if n.endswith(".jpg") and not n.startswith(".") and n[:-4] not in live]
@@ -274,6 +277,10 @@ if stubbed:
     print(f"  words needed        {len(stubbed)}  (blank entries added to content/photos.js)")
     for p in stubbed:
         print(f"      ? {p['id']}")
+if orphan_words:
+    print(f"  unused entries      {len(orphan_words)}  (in photos.js, no matching file)")
+    for i in orphan_words:
+        print(f"      x {i}")
 if warnings:
     print("  warnings:")
     for w in warnings:
