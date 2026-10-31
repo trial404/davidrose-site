@@ -1518,6 +1518,8 @@ h3, .h3 {
 }
 
 @media (max-width: 720px) {
+  /* a 10px column gap leaves no room for a 5px bleed either side */
+  .photo { --card-bleed: 3px; }
   .photo-grid { gap: 14px 10px; --frame-fill: 80%; }
   .photo-frame { padding: 4px; }
   .photo-idx { font-size: 8.5px; }
@@ -1646,17 +1648,36 @@ h3, .h3 {
   transition: background-color var(--fast), color var(--fast);
 }
 
-.photo:hover .photo-idx,
-.photo:focus-visible .photo-idx,
-.photo:hover .photo-cap span:first-child,
-.photo:focus-visible .photo-cap span:first-child {
-  background: var(--contrast, var(--ink-hard));
-  color: var(--ink-hard);
-  padding: .1em .4em;
-  margin-inline: -.4em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+/* Hovering lights up the whole card — the number and the picture together —
+   in that gallery's contrasting colour, so the work separates from the field.
+   The highlight is a pseudo-element behind the tile: no layout shift, and the
+   bleed is kept under half the grid gap so cards never touch each other. */
+.photo {
+  position: relative;
+  isolation: isolate;
+  --card-bleed: clamp(5px, .7vw, 9px);
 }
+
+.photo::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--card-bleed) * -1);
+  background: var(--contrast, var(--ink-hard));
+  z-index: -1;
+  opacity: 0;
+  transform: scale(.97);
+  transition: opacity .18s var(--ease), transform .18s var(--ease);
+}
+
+.photo:hover::before,
+.photo:focus-visible::before {
+  opacity: 1;
+  transform: none;
+}
+
+/* the number stays legible on top of the highlighted card */
+.photo:hover .photo-idx,
+.photo:focus-visible .photo-idx { color: var(--ink-hard); }
 
 /* ==========================================================================
    28. lightbox metadata
