@@ -415,6 +415,24 @@ window.MEDIA = {
         improvements: "[what you would improve next]"
       }
     }
+  ,
+    {
+      id: "fisheye-wall",
+      title: "Fisheye Wall",
+      desc: "An experiment: the photographs as one continuous lens you can drag, with momentum. Not used in the gallery.",
+      tags: ["Canvas", "No dependencies"],
+      link: "lab.html",
+      linkLabel: "Open the experiment",
+      details: {
+        status: "Experiment",
+        overview: "Every photograph drawn into a single canvas grid, then scaled per tile by its distance from the pointer so the whole wall reads as one lens. Dragging pans it and the pan keeps going with friction.",
+        why: "Because the reference did it and it was worth knowing how it works without a framework.",
+        challenge: "Making the warp read as one continuous surface rather than a scattering of differently sized squares.",
+        solution: "A gaussian falloff on distance from the focal point, applied as per-tile scale, with tiles indexed by world position so a picture keeps its place while you drag.",
+        aiUse: "[where AI helped]",
+        improvements: "It bends the photograph, which is exactly why it is not in the portfolio. A print should be judged straight."
+      }
+    }
   ],
 
   featuredPrintId: "landscape-h39a0377",
