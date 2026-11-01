@@ -148,15 +148,13 @@ window.COPY = {
       "label": `Series 01`,
     },
     "01-photography": {
-      "meta": `<div class="meta">
-            <div><span class="label muted">Prints</span><span class="v">9</span></div>
-            <div><span class="label muted">Paper</span><span class="v">Hahnemühle 308</span></div>
-            <div><span class="label muted">Made to order</span><span class="v">5–10 days</span></div>
-            <div><span class="label muted">Editions</span><span class="v">Signed</span></div>
-          </div>`,
-      "lede": `Work made over the last five years, mostly on foot and mostly waiting for
-          weather. Prints are made to order on archival paper and ship worldwide
-          from the EU.`,
+      /* the archive outline beside this lede is built by renderCatalogue()
+        from media.js — its counts are never typed by hand */
+      "lede": `Photography is a way of noticing. What makes a place feel alive —
+          light that lasts ten seconds, a room someone has just left, weather
+          rearranging a valley. Less a description of the world than a record of
+          standing in it and paying attention. Almost all of it is made on foot
+          and mostly waiting. The pictures are what's left of the looking.`,
       "h1": `Landscapes and quiet places.`,
       "kicker": `01 — Photography`,
     },

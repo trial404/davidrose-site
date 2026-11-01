@@ -33,14 +33,22 @@
       .replace(/"/g, "&quot;");
   }
 
+  /* world -> colour for the page veil. D.worlds is the single source: the nav
+     bar, the index rows and the transition all read from it, so a world cannot
+     be one colour in the bar and another in the transition. The old hard-coded
+     map here still pointed writing at yellow and about at --red, a colour that
+     left the palette — which is why one veil was the wrong colour and the
+     other was invisible. */
   function worldColor(id) {
-    var map = {
-      photography: "var(--blue)",
-      writing: "var(--yellow)",
-      ai: "var(--green)",
-      about: "var(--red)"
-    };
-    return map[id] || "var(--blue)";
+    var worlds = D.worlds || [];
+    for (var i = 0; i < worlds.length; i++) {
+      if (worlds[i].id === id) return worlds[i].color;
+    }
+    /* the legal pages live in the About world */
+    if (id === "imprint" || id === "privacy" || id === "terms") {
+      return worldColor("about");
+    }
+    return worlds.length ? worlds[0].color : "var(--blue)";
   }
 
   /* ---------- 1. nav ---------- */
@@ -427,7 +435,10 @@
 
     var section = document.querySelector("[data-gallery-section]");
     if (section) {
-      section.style.setProperty("--field", s.color);
+      /* the accent used by the active tab and the photo hover: the series' own
+         colour, except the shop, whose colour is paper and would disappear */
+      section.style.setProperty("--tint",
+        s.color === "var(--paper)" ? (s.contrast || "var(--yellow)") : s.color);
       section.style.setProperty("--contrast", s.contrast || "var(--ink-hard)");
     }
 
@@ -862,21 +873,89 @@
     });
   }
 
-  /* ---------- 11. poster hero ----------
-     The four photograph cells take their images from the archive, so the poster
-     carries real work rather than placeholders. */
+  /* ---------- 11. hero strip ----------
+     HERO_SHOTS photographs taken from the archive, so the hero carries real
+     work rather than placeholders. Each is printed twice so the marquee can
+     loop without a seam. Raise this number and the strip re-sizes itself —
+     the column count and width are derived, not hard-coded. */
+  var HERO_SHOTS = 6;
 
-  function initPoster() {
-    var cells = Array.prototype.slice.call(document.querySelectorAll("[data-poster-photo]"));
-    if (!cells.length) return;
+  /* ---------- 10b. archive outline ----------
+     The list beside the photography lede. Counted from media.js, so the numbers
+     can never drift from the gallery further down the page — the old version
+     was hand-written copy and already claimed nine prints when there are six. */
+
+  function renderCatalogue() {
+    var mount = document.querySelector("[data-catalogue]");
+    if (!mount) return;
+
+    var shots = D.photos || [];
+    function bySeries(name) {
+      return shots.filter(function (p) { return p.series === name; }).length;
+    }
+    function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
+
+    var prints = D.prints || [];
+    /* a print is only buyable once a size has a real payment link */
+    var onSale = prints.some(function (p) {
+      return (p.sizes || []).some(function (z) { return z.link && z.link !== "#"; });
+    });
+
+    var rows = [
+      { name: "Landscapes",      note: plural(bySeries("Landscape"), "photograph", "photographs"), tab: "landscape" },
+      { name: "Art photography", note: plural(bySeries("Artistic"), "photograph", "photographs"),  tab: "artistic" },
+      { name: "Collections",     note: plural((D.collections || []).length, "set", "sets"),        tab: "collections" },
+      { name: "Photobooks",      note: plural((D.photobooks || []).length, "title", "titles"),     href: "#photobooks" },
+      { name: "Prints",          note: prints.length + (onSale ? " available" : " · not on sale yet"), tab: "shop" }
+    ];
+
+    mount.innerHTML = '<div class="meta">' + rows.map(function (r) {
+      var inner =
+        '<span class="label muted">' + esc(r.name) + "</span>" +
+        '<span class="v">' + esc(r.note) + "</span>";
+      return r.href
+        ? '<a href="' + esc(r.href) + '">' + inner + "</a>"
+        : '<button type="button" data-gallery-jump="' + esc(r.tab) + '">' + inner + "</button>";
+    }).join("") + "</div>";
+
+    mount.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest("[data-gallery-jump]") : null;
+      if (!btn) return;
+      var tab = document.querySelector('.tab[data-tab="' + btn.getAttribute("data-gallery-jump") + '"]');
+      if (!tab) return;
+      tab.click();
+      var section = document.querySelector("[data-gallery-section]");
+      if (section) {
+        section.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      }
+    });
+  }
+
+  function initHero() {
+    var strip = document.querySelector("[data-hero-strip]");
+    if (!strip) return;
 
     var shots = (D.photos || []).filter(function (p) { return p.image; });
     if (!shots.length) return;
 
-    cells.forEach(function (cell, i) {
-      var p = shots[i % shots.length];
-      cell.style.backgroundImage = "url('" + p.image + "')";
-    });
+    /* landscapes only. The hero is the landscape work, not a sampler of both
+       series — everything else lives on the photography page. */
+    var picks = shots.filter(function (p) {
+      return p.series === "Landscape";
+    }).slice(0, HERO_SHOTS);
+    if (!picks.length) picks = shots.slice(0, HERO_SHOTS);
+
+    var cell = picks.map(function (p) {
+      return '<img src="' + esc(p.image) + '" alt="" decoding="async">';
+    }).join("");
+
+    strip.innerHTML = cell + cell;
+
+    /* 2n columns on a strip of (2n/5) x width + ((2n-5)/5) x gap keeps every
+       picture exactly one letter-cell wide — the arithmetic the CSS comments */
+    var n = picks.length;
+    strip.style.gridTemplateColumns = "repeat(" + (n * 2) + ", minmax(0, 1fr))";
+    strip.style.width = "calc(" + (n * 40) + "% + " + ((2 * n - 5) / 5) + " * var(--hero-gap))";
   }
 
   /* ---------- boot ---------- */
@@ -895,6 +974,7 @@
     renderTicker();
     renderGalleryTabs();
     renderGalleryBody();
+    renderCatalogue();
     renderPrints();
     renderFeature();
     renderBooks("[data-photobooks]", D.photobooks);
@@ -913,7 +993,7 @@
     buildPanel();
     initLightbox();
     initProjectPanel();
-    initPoster();
+    initHero();
 
     document.addEventListener("click", function (e) {
       var btn = e.target.closest ? e.target.closest("[data-open-print]") : null;

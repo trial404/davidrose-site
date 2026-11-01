@@ -32,36 +32,34 @@
 
 <main id="main">
 
-  <!-- HERO — poster grid: four worlds, four columns -->
-  <section class="poster" aria-label="Four worlds">
-    <div class="poster-band poster-band--forms">
-      <a class="poster-cell poster-cell--circle" href="photography.html" style="--c: var(--blue)">
-        <span class="poster-label">01 Photography</span>
-        <span class="poster-form"></span>
-      </a>
-      <a class="poster-cell poster-cell--block" href="writing.html" style="--c: var(--orange)">
-        <span class="poster-label">02 Writing</span>
-      </a>
-      <a class="poster-cell poster-cell--circle" href="ai.html" style="--c: var(--green)">
-        <span class="poster-label">03 AI builds</span>
-        <span class="poster-form"></span>
-      </a>
-      <a class="poster-cell poster-cell--block" href="about.html" style="--c: var(--yellow)">
-        <span class="poster-label">04 About</span>
-      </a>
+  <!-- HERO — the name as blocked letterforms over a scroll of photographs -->
+  <section class="hero" aria-label="David Rose">
+    <h1 class="hero-name" data-brand>David Rose</h1>
+
+    <div class="hero-letters" aria-hidden="true">
+      <div class="hero-cell" style="--c: var(--blue)">
+        <svg class="hero-glyph" viewBox="0 0 350 350" focusable="false"><path d="M0 15C0 6.71574 6.71573 0 15 0H200C282.843 0 350 67.1573 350 150V200C350 282.843 282.843 350 200 350H15C6.71574 350 0 343.284 0 335Z"/></svg>
+      </div>
+      <div class="hero-cell" style="--c: var(--orange)">
+        <svg class="hero-glyph" viewBox="0 0 350 350" focusable="false"><path d="M15 350C6.71573 350 0 343.284 0 335V150C0 67.1573 67.1573 0 150 0H200C282.843 0 350 67.1573 350 150V335C350 343.284 343.284 350 335 350Z"/></svg>
+      </div>
+      <div class="hero-cell" style="--c: var(--green)">
+        <svg class="hero-glyph" viewBox="0 0 350 350" focusable="false"><path d="M335 0C343.284 0 350 6.71573 350 15V200C350 282.843 282.843 350 200 350H150C67.1573 350 0 282.843 0 200V15C0 6.71574 6.71574 0 15 0Z"/></svg>
+      </div>
+      <div class="hero-cell" style="--c: var(--yellow)">
+        <svg class="hero-glyph" viewBox="0 0 350 350" focusable="false"><circle cx="175" cy="-77" r="175"/><path d="M15 350C6.71573 350 0 343.284 0 335V283C0 186.35 78.3499 108 175 108C271.65 108 350 186.35 350 283V335C350 343.284 343.284 350 335 350Z"/></svg>
+      </div>
+      <div class="hero-cell" style="--c: var(--blue)">
+        <svg class="hero-glyph" viewBox="0 0 350 350" focusable="false"><path d="M0 15C0 6.71574 6.71573 0 15 0H200C282.843 0 350 67.1573 350 150V200C350 282.843 282.843 350 200 350H15C6.71574 350 0 343.284 0 335Z"/></svg>
+      </div>
     </div>
 
-    <h1 class="poster-name" data-brand>David Rose</h1>
-
-    <div class="poster-band poster-band--photos" aria-hidden="true">
-      <a class="poster-photo" href="photography.html" data-poster-photo></a>
-      <a class="poster-photo" href="writing.html" data-poster-photo></a>
-      <a class="poster-photo" href="ai.html" data-poster-photo></a>
-      <a class="poster-photo" href="about.html" data-poster-photo></a>
+    <div class="hero-photos" aria-hidden="true">
+      <div class="hero-strip" data-hero-strip></div>
     </div>
 
-    <div class="shell poster-foot">
-      <p class="poster-lede" data-copy-html="index.photographer-writer-bu.lede"></p>
+    <div class="shell hero-foot">
+      <p class="hero-lede" data-copy-html="index.photographer-writer-bu.lede"></p>
       <a class="btn btn--solid" href="photography.html" data-copy-html="index.photographer-writer-bu.cta"></a>
     </div>
   </section>

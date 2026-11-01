@@ -343,14 +343,28 @@ h3, .h3 {
 /* mono data list — the "specification table" look */
 .hero-grid .meta { display: grid; border-top: 1px solid var(--rule); }
 
-.hero-grid .meta > div {
+/* rows can be divs, buttons or links — the outline is navigable */
+.hero-grid .meta > div,
+.hero-grid .meta > button,
+.hero-grid .meta > a {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   gap: 1em;
   align-items: baseline;
-  padding: .7em 0;
+  padding: .7em .5em;
+  margin-inline: -.5em;
   border-bottom: 1px solid var(--rule-soft);
 }
+
+.hero-grid .meta > button,
+.hero-grid .meta > a {
+  width: calc(100% + 1em);
+  text-align: left;
+  transition: background-color .2s var(--ease);
+}
+
+.hero-grid .meta > button:hover,
+.hero-grid .meta > a:hover { background: var(--surface); }
 
 .hero-grid .meta .v {
   text-align: right;
@@ -580,13 +594,17 @@ h3, .h3 {
   color: rgba(5, 5, 5, .4);
 }
 
-/* ---------- 11b. showcase — colour field + photo-grid ----------
-   Photographs float small inside a saturated field, each carrying a bracketed
-   index, with generous air between them. Nothing is cropped: every frame keeps
-   its own aspect ratio, and the staggering is what stops mixed ratios fighting. */
+/* ---------- 11b. showcase — photo-grid ----------
+   Photographs float small on paper, each carrying a bracketed index, with
+   generous air between them. Nothing is cropped: every frame keeps its own
+   aspect ratio, and the staggering is what stops mixed ratios fighting.
+
+   No colour field. The saturated band was the only place on the site where
+   whole sections changed background, and it made the work compete with its own
+   surroundings. Colour is now carried only by the tabs and by the hover, the
+   same way the nav carries it — as an accent on paper, not as a field. */
 
 .showcase {
-  background: var(--field, var(--blue));
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   padding-block: clamp(22px, 3.2vw, 44px) clamp(10px, 1.8vw, 20px);
@@ -634,12 +652,16 @@ h3, .h3 {
 }
 
 .print-card {
+  --card-pad: clamp(8px, .85vw, 12px);
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 0;
   text-align: left;
   background: transparent;
   border: 1px solid var(--rule);
+  /* the inset is what gives the border and the hover fill room to breathe —
+     the picture used to sit flush against the frame edge */
+  padding: var(--card-pad);
   transition: background-color var(--fast);
   align-content: stretch;
 }
@@ -651,7 +673,8 @@ h3, .h3 {
   aspect-ratio: var(--ar, 4 / 3);
   background: var(--placeholder);
   overflow: hidden;
-  border-bottom: 1px solid var(--rule);
+  /* the hairline under the picture went with the padding — a coloured frame
+     with a rule across it would fight itself on hover */
   position: relative;
 }
 
@@ -663,7 +686,9 @@ h3, .h3 {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: .4em 1em;
   align-items: baseline;
-  padding: .7em .8em .75em;
+  /* vertical only: the text aligns with the picture's left edge, which is now
+     the card padding rather than the frame */
+  padding: .8em 0 .15em;
 }
 
 .print-card .ttl {
@@ -1460,7 +1485,8 @@ h3, .h3 {
 .tab:hover { background: rgba(5, 5, 5, .1); }
 
 .tab[aria-pressed="true"] {
-  background: var(--contrast, var(--ink-hard));
+  /* --tint is the series' own colour, set per tab by renderGalleryBody */
+  background: var(--tint, var(--ink-hard));
   border-color: var(--ink-hard);
   color: var(--ink-hard);
 }
@@ -1653,10 +1679,11 @@ h3, .h3 {
 /* ==========================================================================
    27. hover: the labels highlight
    --------------------------------------------------------------------------
-   On a saturated field the palette colour cannot sit behind text and be seen,
-   so the highlight inverts — a black band with the world colour as the type.
-   Same treatment as the active tab. On the Collections and Print shop tabs it
-   switches to green and yellow on its own.
+   The highlight is the series' own colour — blue on Landscape, orange on
+   Artistic — so the tab you pressed and the card you are pointing at agree.
+   It used to be the contrasting colour, because that was the only one that
+   could sit on top of a saturated field; with the field gone the accent can be
+   the colour the series actually is.
    ========================================================================== */
 
 .photo-idx,
@@ -1665,7 +1692,7 @@ h3, .h3 {
 }
 
 /* Hovering lights up the whole card — the number and the picture together —
-   in that gallery's contrasting colour, so the work separates from the field.
+   in that gallery's own colour, so the tab and the hover agree.
 
    The fill is a plain background on the tile itself, not a pseudo-element
    behind it: a background cannot fail to paint. The padding and matching
@@ -1681,7 +1708,7 @@ h3, .h3 {
 }
 
 .photo:hover,
-.photo:focus-visible { background: var(--contrast, var(--ink-hard)); }
+.photo:focus-visible { background: var(--tint, var(--ink-hard)); }
 
 /* no lift on hover: the colour is the feedback */
 .photo:hover { transform: none; }
@@ -1839,89 +1866,103 @@ h3, .h3 {
 }
 
 /* ==========================================================================
-   33. poster hero — four worlds, four columns
+   33. hero — the name as blocked letterforms
    --------------------------------------------------------------------------
-   A poster grid rather than a diagram: a band of flat colour forms, the name at
-   full width, then a band of photographs. Each column is one world and links to
-   it, so the hero is also the navigation.
+   Five equal squares spelling DAVID in solid silhouettes, with a strip of
+   photographs scrolling underneath.
+
+   The two rows are the same height by construction, not by tuning: every
+   letter cell takes its height from its width (aspect-ratio 1/1), and every
+   photograph is a square of exactly the same width, so the rows cannot drift
+   apart when the viewport changes.
+
+   The glyphs are geometry, not type. A rectangle with a circular bulge, a
+   dome, the same dome inverted, a circle cut by the cell edge, then the first
+   shape again. Two radii do all the work: 15 for the square corners, 150 for
+   the dominant curve, drawn as quarter-circles joined by a 50-unit flat.
    ========================================================================== */
 
-.poster { border-bottom: 1px solid var(--rule); }
-
-.poster-band { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-.poster-cell {
+.hero {
+  --hero-gap: max(2px, .56vw);
   position: relative;
-  display: block;
-  overflow: hidden;
-  height: clamp(104px, 16vh, 184px);
-  background: var(--paper);
-  border-left: 1px solid var(--rule);
-  transition: background-color .28s var(--ease);
-}
-
-.poster-cell:first-child { border-left: 0; }
-.poster-cell--block { background: var(--c); }
-.poster-cell--block:hover { background: var(--ink-hard); }
-
-.poster-form {
-  position: absolute;
-  left: 50%;
-  top: 14%;
-  width: 84%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--c);
-  transform: translateX(-50%);
-  transition: transform .5s var(--ease);
-}
-
-.poster-cell--circle:hover .poster-form { transform: translateX(-50%) scale(1.04); }
-
-.poster-label {
-  position: absolute;
-  top: .7em;
-  left: .8em;
-  z-index: 2;
-  font-family: var(--mono);
-  font-size: clamp(8.5px, .68vw, 10.5px);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--ink-60);
-}
-
-.poster-cell--block:hover .poster-label { color: var(--paper); }
-
-/* the name, full width, breaking the two bands apart */
-.poster-name {
-  font-family: var(--sans);
-  font-weight: 900;
-  font-size: clamp(2.5rem, 14.2vw, 13.6rem);
-  line-height: .8;
-  letter-spacing: -.052em;
-  text-transform: uppercase;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
-  padding: .03em 0 .06em;
 }
 
-.poster-photo {
+/* the real name, for search and screen readers — the letters are decoration */
+.hero-name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hero-letters {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--hero-gap);
+}
+
+.hero-cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.hero-glyph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--ink-hard);
+  transition: fill .3s var(--ease);
+}
+
+.hero-cell:hover .hero-glyph { fill: var(--c, var(--ink-hard)); }
+
+/* ---- the photograph strip ------------------------------------------------ */
+
+.hero-photos {
+  margin-top: var(--hero-gap);
+  overflow: hidden;
+}
+
+/* Column count and width are set by initHero() from the number of
+   photographs it renders: 2n columns on a strip of
+   (2n/5) x W + ((2n-5)/5) x gap, which is the width at which every picture
+   is exactly one letter-cell wide. The values here are the 6-photo default
+   and only apply before the script runs, when the strip is still empty. */
+.hero-strip {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--hero-gap);
+  width: calc(240% + 1.4 * var(--hero-gap));
+  animation: hero-marquee 72s linear infinite;
+}
+
+.hero-strip img {
   display: block;
-  height: clamp(170px, 31vh, 330px);
-  background-color: var(--placeholder);
-  background-size: cover;
-  background-position: center;
-  border-left: 1px solid var(--rule);
-  transition: opacity .3s var(--ease);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 2.5px;
 }
 
-.poster-photo:first-child { border-left: 0; }
-.poster-photo:hover { opacity: .82; }
+@keyframes hero-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-50% - var(--hero-gap) / 2)); }
+}
 
-.poster-foot {
+.hero-photos:hover .hero-strip { animation-play-state: paused; }
+
+.hero-foot {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -1930,22 +1971,8 @@ h3, .h3 {
   padding-block: clamp(16px, 2.2vw, 28px);
 }
 
-.poster-lede { max-width: 54ch; color: var(--ink-60); }
-
-@media (max-width: 820px) {
-  .poster-band { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .poster-cell:nth-child(3) { border-left: 0; }
-  .poster-photo:nth-child(3) { border-left: 0; }
-  .poster-cell, .poster-photo { border-top: 1px solid var(--rule); }
-  .poster-band--forms .poster-cell:nth-child(1),
-  .poster-band--forms .poster-cell:nth-child(2) { border-top: 0; }
-  .poster-band--photos .poster-photo:nth-child(1),
-  .poster-band--photos .poster-photo:nth-child(2) { border-top: 0; }
-  .poster-cell { height: clamp(96px, 15vh, 140px); }
-  .poster-photo { height: clamp(150px, 22vh, 220px); }
-  .poster-name { font-size: clamp(2rem, 12vw, 5rem); }
-}
+.hero-lede { max-width: 54ch; color: var(--ink-60); }
 
 @media (prefers-reduced-motion: reduce) {
-  .poster-cell, .poster-form, .poster-photo { transition: none; }
+  .hero-strip { animation: none; }
 }
