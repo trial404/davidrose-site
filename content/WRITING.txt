@@ -1,0 +1,2288 @@
+================================================================================
+ WRITING
+================================================================================
+
+ Everything you write for the site lives in this one file. Edit any text
+ between the block markers and leave the rest alone.
+
+ HOW IT WORKS
+ ------------
+ Each block looks like this:
+
+     ### photography.prints.lede
+     WHERE: Photography page — Prints section, the lede paragraph
+     <blank line>
+     The text itself, which can run over several lines.
+
+   `###`   the block's name. DO NOT CHANGE IT. The site looks text up by this
+           name; rename it and the text disappears from the page.
+   `WHERE` a note saying where this text appears. For you only — it never
+           reaches the website. Edit or delete it freely, but keep it on one
+           line.
+   body    everything after that, until the next `###`. Blank lines are fine.
+           Some blocks contain bits of HTML (a <div>, a <span>) — that is the
+           layout of that block. Leave the tags, change the words inside them.
+
+ HOW TO PUBLISH YOUR CHANGES
+ ---------------------------
+     python3 tools/build-copy.py
+
+ That rewrites content/copy.js and content/photos.js, which is what the site
+ actually loads. To check whether you have forgotten to run it:
+
+     python3 tools/build-copy.py --check
+
+ RULES OF THUMB
+ --------------
+   · Never edit content/copy.js or content/photos.js — they are generated and
+     will be overwritten.
+   · Placeholder text looks like [this]. Search for "[" to find what is left
+     to write.
+   · Photograph captions are at the very bottom of this file.
+
+ CONTENTS
+ --------
+   PART ONE — page copy, in reading order
+   PART TWO — photograph captions
+
+================================================================================
+ PART ONE — PAGE COPY
+================================================================================
+
+
+================================================================================
+HOME PAGE
+
+### index.footer
+WHERE: Home page — the whole footer block (three columns of links and text)
+
+<div class="shell">
+    <div class="foot-inner">
+      <div>
+        <h4>Contact</h4>
+        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <p class="muted" style="margin-top:1em;max-width:36ch">
+          Commissions, exhibitions and licensing on request. Prints and books ship
+          from the EU with tracking.
+        </p>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul data-social></ul>
+      </div>
+      <div>
+        <h4>Index</h4>
+        <ul>
+          <li><a href="photography.html">01 — Photography</a></li>
+          <li><a href="writing.html">02 — Writing</a></li>
+          <li><a href="ai.html">03 — AI builds</a></li>
+          <li><a href="about.html">04 — About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span data-year>2025</span> David Rose</span>
+      <span>
+        <a href="imprint.html">Imprint</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </div>
+  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+### index.newsletter.newsletter
+WHERE: Home page — Newsletter section, the newsletter block
+
+<div class="nl-copy">
+          <p class="label muted">Newsletter</p>
+          <h2 class="h2">Essays every other week.</h2>
+          <p class="muted" style="max-width:44ch">
+            Drafts of chapters before they become books, notes on what I'm reading,
+            and new prints before they are listed.
+          </p>
+        </div>
+        <a class="btn btn--accent" data-link="substack" target="_blank" rel="noopener">Subscribe on Substack</a>
+
+### index.latest-photographs.heading
+WHERE: Home page — Latest photographs section, the section heading
+
+Three ways of making
+
+### index.latest-photographs.label
+WHERE: Home page — Latest photographs section, the small label above the heading
+
+Latest photographs
+
+### index.photographer-writer-bu.cta
+WHERE: Home page — Photographer writer bu section, the button text
+
+See the photographs
+
+### index.photographer-writer-bu.stats
+WHERE: Home page — Photographer writer bu section, the statistics row
+
+<div><span class="label muted">Based</span><span class="n">EU</span></div>
+        <div><span class="label muted">Working since</span><span class="n">2019</span></div>
+        <div><span class="label muted">Ships</span><span class="n">Worldwide</span></div>
+
+### index.photographer-writer-bu.meta
+WHERE: Home page — Photographer writer bu section, the specification list
+
+<div class="meta">
+            <div><span class="label muted">Prints</span><span class="v">9 available</span></div>
+            <div><span class="label muted">Books</span><span class="v">3 out now</span></div>
+            <div><span class="label muted">Photobooks</span><span class="v">2 titles</span></div>
+            <div><span class="label muted">Builds</span><span class="v">6 projects</span></div>
+          </div>
+
+### index.photographer-writer-bu.lede
+WHERE: Home page — Photographer writer bu section, the lede paragraph
+
+I photograph landscapes and quiet places, write about being human in a
+          machine-made world, and build small software with AI. Prints and
+          photobooks ship worldwide from the EU.
+
+### index.photographer-writer-bu.h1
+WHERE: Home page — Photographer writer bu section, the headline
+
+Pictures, books, and things I built with a machine.
+
+### index.photographer-writer-bu.kicker
+WHERE: Home page — Photographer writer bu section, the small kicker above the headline
+
+Photographer · Writer · Builder
+
+
+================================================================================
+PHOTOGRAPHY PAGE
+
+### photography.footer
+WHERE: Photography page — the whole footer block (three columns of links and text)
+
+<div class="shell">
+    <div class="foot-inner">
+      <div>
+        <h4>Questions before buying</h4>
+        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <p class="muted" style="margin-top:1em;max-width:36ch">
+          Happy to send a paper sample or advise on size for a particular wall.
+        </p>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul data-social></ul>
+      </div>
+      <div>
+        <h4>Index</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="writing.html">02 — Writing</a></li>
+          <li><a href="ai.html">03 — AI builds</a></li>
+          <li><a href="about.html">04 — About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span data-year>2025</span> David Rose</span>
+      <span>
+        <a href="imprint.html">Imprint</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </div>
+  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+### photography.faq.aside
+WHERE: Photography page — FAQ section, the note to the right of the heading
+
+Or just email me
+
+### photography.faq.heading
+WHERE: Photography page — FAQ section, the section heading
+
+Questions
+
+### photography.faq.label
+WHERE: Photography page — FAQ section, the small label above the heading
+
+Before you buy
+
+### photography.photobooks.aside
+WHERE: Photography page — Photobooks section, the note to the right of the heading
+
+Ships from the EU
+
+### photography.photobooks.heading
+WHERE: Photography page — Photobooks section, the section heading
+
+Photobooks
+
+### photography.photobooks.label
+WHERE: Photography page — Photobooks section, the small label above the heading
+
+Printed and bound
+
+### photography.prints.stats
+WHERE: Photography page — Prints section, the statistics row
+
+<div>
+          <span class="label muted">Paper</span>
+          <span class="n">Hahnemühle Photo Rag 308gsm</span>
+        </div>
+        <div>
+          <span class="label muted">Made to order</span>
+          <span class="n">Ships in 5–10 days</span>
+        </div>
+        <div>
+          <span class="label muted">Shipping</span>
+          <span class="n">Flat rate, tracked</span>
+        </div>
+
+### photography.prints.aside
+WHERE: Photography page — Prints section, the note to the right of the heading
+
+Paper, timings and shipping
+
+### photography.prints.heading
+WHERE: Photography page — Prints section, the section heading
+
+How prints work
+
+### photography.prints.label
+WHERE: Photography page — Prints section, the small label above the heading
+
+Available to buy
+
+### photography.artistic.aside
+WHERE: Photography page — Artistic section, the note to the right of the heading
+
+Water and light
+
+### photography.artistic.heading
+WHERE: Photography page — Artistic section, the section heading
+
+Artistic
+
+### photography.artistic.label
+WHERE: Photography page — Artistic section, the small label above the heading
+
+Series 02
+
+### photography.landscape.aside
+WHERE: Photography page — Landscape section, the note to the right of the heading
+
+Field and weather
+
+### photography.landscape.heading
+WHERE: Photography page — Landscape section, the section heading
+
+Landscape
+
+### photography.landscape.label
+WHERE: Photography page — Landscape section, the small label above the heading
+
+Series 01
+
+### photography.01-photography.lede
+WHERE: Photography page — 01 Photography section, the lede paragraph
+
+Photography is a way of noticing. What makes a place feel alive —
+          light that lasts ten seconds, a room someone has just left, weather
+          rearranging a valley. Less a description of the world than a record of
+          standing in it and paying attention. Almost all of it is made on foot
+          and mostly waiting. The pictures are what's left of the looking.
+
+### photography.01-photography.h1
+WHERE: Photography page — 01 Photography section, the headline
+
+Landscapes and quiet places.
+
+### photography.01-photography.kicker
+WHERE: Photography page — 01 Photography section, the small kicker above the headline
+
+01 — Photography
+
+
+================================================================================
+WRITING PAGE
+
+### writing.footer
+WHERE: Writing page — the whole footer block (three columns of links and text)
+
+<div class="shell">
+    <div class="foot-inner">
+      <div>
+        <h4>Say hello</h4>
+        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <p class="muted" style="margin-top:1em;max-width:36ch">
+          Review copies for editors and booksellers on request.
+        </p>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul data-social></ul>
+      </div>
+      <div>
+        <h4>Index</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="photography.html">01 — Photography</a></li>
+          <li><a href="ai.html">03 — AI builds</a></li>
+          <li><a href="about.html">04 — About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span data-year>2025</span> David Rose</span>
+      <span>
+        <a href="imprint.html">Imprint</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </div>
+  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+### writing.substack.newsletter
+WHERE: Writing page — Substack section, the newsletter block
+
+<div class="nl-copy">
+          <p class="label muted">Serialised — Substack</p>
+          <h2 class="h2">Essays, every other week.</h2>
+          <p class="muted" style="max-width:46ch">
+            Drafts of chapters before they become books, notes on what I'm reading,
+            and the occasional argument with myself about whether any of this is a
+            good idea. Free to read; paid subscribers get the archive.
+          </p>
+        </div>
+        <a class="btn btn--accent" data-link="substack" target="_blank" rel="noopener">Read on Substack</a>
+
+### writing.books.aside
+WHERE: Writing page — Books section, the note to the right of the heading
+
+Delivered instantly via Gumroad
+
+### writing.books.heading
+WHERE: Writing page — Books section, the section heading
+
+The books
+
+### writing.books.label
+WHERE: Writing page — Books section, the small label above the heading
+
+Ebooks
+
+### writing.02-writing.meta
+WHERE: Writing page — 02 Writing section, the specification list
+
+<div class="meta">
+            <div><span class="label muted">Books</span><span class="v">3</span></div>
+            <div><span class="label muted">Format</span><span class="v">PDF</span></div>
+            <div><span class="label muted">Delivery</span><span class="v">Instant</span></div>
+            <div><span class="label muted">Substack</span><span class="v">Free</span></div>
+          </div>
+
+### writing.02-writing.lede
+WHERE: Writing page — 02 Writing section, the lede paragraph
+
+Three books about what changes when the answer becomes free — human value,
+          AI literacy, and the discipline of asking why. Published as ebooks,
+          serialised free on Substack.
+
+### writing.02-writing.h1
+WHERE: Writing page — 02 Writing section, the headline
+
+Being human in a machine-made world.
+
+### writing.02-writing.kicker
+WHERE: Writing page — 02 Writing section, the small kicker above the headline
+
+02 — Writing
+
+
+================================================================================
+AI BUILDS PAGE
+
+### ai.footer
+WHERE: AI builds page — the whole footer block (three columns of links and text)
+
+<div class="shell">
+    <div class="foot-inner">
+      <div>
+        <h4>Work with me</h4>
+        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <p class="muted" style="margin-top:1em;max-width:36ch">
+          Available for small builds, prototypes and advisory work.
+        </p>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul data-social></ul>
+      </div>
+      <div>
+        <h4>Index</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="photography.html">01 — Photography</a></li>
+          <li><a href="writing.html">02 — Writing</a></li>
+          <li><a href="about.html">04 — About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span data-year>2025</span> David Rose</span>
+      <span>
+        <a href="imprint.html">Imprint</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </div>
+  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+### ai.now.body
+WHERE: AI builds page — Now section, the body paragraph
+
+<p>
+            I'm interested in tools that do one thing and then get out of the way.
+            Most of what I build starts as a single afternoon's annoyance and ends as
+            a folder of static files.
+          </p>
+          <p class="muted">
+            If you want something similar built, or want a second opinion on a
+            prototype, email me. I take on a few small projects a year.
+          </p>
+          <p style="margin-top:1.2em">
+            <a class="btn btn--solid" data-link="email">Start a conversation</a>
+          </p>
+
+### ai.now.aside
+WHERE: AI builds page — Now section, the note to the right of the heading
+
+Updated when it changes
+
+### ai.now.heading
+WHERE: AI builds page — Now section, the section heading
+
+What I'm working on
+
+### ai.now.label
+WHERE: AI builds page — Now section, the small label above the heading
+
+Right now
+
+### ai.approach.body
+WHERE: AI builds page — Approach section, the body paragraph
+
+<p>
+            Build the smallest version that runs. Look at it, decide what's wrong,
+            repeat. Most of the work is the deciding, which is why the notes matter
+            more than the prompts.
+          </p>
+          <p>
+            The through-line is local-first. Every tool here runs on the machine beside
+            me — no accounts, no uploads, no API bills, and no audio or text leaving the
+            room. Nothing is hosted and nothing phones home.
+          </p>
+          <p class="muted">
+            This website is the simplest example: hand-written HTML, CSS and vanilla
+            JavaScript, a 12-column grid, four colour-coded worlds, no framework, no
+            build step.
+          </p>
+
+### ai.approach.heading
+WHERE: AI builds page — Approach section, the section heading
+
+Describe it precisely enough that it could exist.
+
+### ai.projects.aside
+WHERE: AI builds page — Projects section, the note to the right of the heading
+
+Built with AI, refined by hand
+
+### ai.projects.heading
+WHERE: AI builds page — Projects section, the section heading
+
+Projects
+
+### ai.projects.label
+WHERE: AI builds page — Projects section, the small label above the heading
+
+Selected
+
+### ai.03-ai-builds.meta
+WHERE: AI builds page — 03 Ai builds section, the specification list
+
+<div class="meta">
+            <div><span class="label muted">Projects</span><span class="v">6</span></div>
+            <div><span class="label muted">Stack</span><span class="v">Python + web</span></div>
+            <div><span class="label muted">Runs</span><span class="v">On my machine</span></div>
+            <div><span class="label muted">Accounts</span><span class="v">None</span></div>
+          </div>
+
+### ai.03-ai-builds.lede
+WHERE: AI builds page — 03 Ai builds section, the lede paragraph
+
+I came to this through engineering, which turns out to be the useful part —
+          most of the work is deciding precisely what the thing should do, not typing
+          it. These are tools I wanted to exist.
+
+### ai.03-ai-builds.h1
+WHERE: AI builds page — 03 Ai builds section, the headline
+
+Making software with a machine in the room.
+
+### ai.03-ai-builds.kicker
+WHERE: AI builds page — 03 Ai builds section, the small kicker above the headline
+
+03 — AI builds
+
+
+================================================================================
+ABOUT PAGE
+
+### about.footer
+WHERE: About page — the whole footer block (three columns of links and text)
+
+<div class="shell">
+    <div class="foot-inner">
+      <div>
+        <h4>Contact</h4>
+        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <p class="muted" style="margin-top:1em;max-width:36ch">
+          I answer everything, usually within two days.
+        </p>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul data-social></ul>
+      </div>
+      <div>
+        <h4>Index</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="photography.html">01 — Photography</a></li>
+          <li><a href="writing.html">02 — Writing</a></li>
+          <li><a href="ai.html">03 — AI builds</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span data-year>2025</span> David Rose</span>
+      <span>
+        <a href="imprint.html">Imprint</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </div>
+  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+### about.details.heading
+WHERE: About page — Details section, the section heading
+
+The short version
+
+### about.details.label
+WHERE: About page — Details section, the small label above the heading
+
+Details
+
+### about.sec2.body
+WHERE: About page — Section 2 section, the body paragraph
+
+<p>
+            I started with a camera and no plan, spent several years photographing the
+            same range of mountains in different weather, and discovered that the
+            interesting part was never the summit — it was the waiting. That turned
+            into the general shape of everything since: long attention, small
+            observations, and a stubborn preference for doing things by hand where
+            handwork still produces something better.
+          </p>
+          <p>
+            The writing came out of the same instinct. When generative tools arrived,
+            the question that interested me wasn't what they could do but what we'd
+            stop doing. Three books later I'm still circling it.
+          </p>
+          <p>
+            The builds came out of an engineering background — mostly the habit of
+            describing a thing precisely enough that it can be made, then making it.
+            This website is the most complete example.
+          </p>
+          <p class="muted">
+            Prints and photobooks are made to order in the EU and shipped worldwide.
+            Commissions, exhibitions and licensing are welcome.
+          </p>
+
+### about.04-about.meta
+WHERE: About page — 04 About section, the specification list
+
+<div class="meta">
+            <div><span class="label muted">Based</span><span class="v">European Union</span></div>
+            <div><span class="label muted">Working since</span><span class="v">2019</span></div>
+            <div><span class="label muted">Books</span><span class="v">3 published</span></div>
+            <div><span class="label muted">Available for</span><span class="v">Commissions</span></div>
+          </div>
+
+### about.04-about.lede
+WHERE: About page — 04 About section, the lede paragraph
+
+Photographer, writer, and someone who builds with AI. Based in the EU,
+          working everywhere.
+
+### about.04-about.h1
+WHERE: About page — 04 About section, the headline
+
+I make things, then write about making them.
+
+### about.04-about.kicker
+WHERE: About page — 04 About section, the small kicker above the headline
+
+04 — About
+
+
+================================================================================
+FAQ ITEMS
+
+### faq.0.q
+WHERE: FAQ items (used on the photography page) — item 1, the question
+
+What paper do you print on?
+
+### faq.0.a
+WHERE: FAQ items (used on the photography page) — item 1, the answer
+
+Hahnemühle Photo Rag, 308gsm, matte — a cotton rag with a fine texture and no surface glare. The water series is printed on Photo Rag Baryta, which holds more depth in the blacks.
+
+### faq.1.q
+WHERE: FAQ items (used on the photography page) — item 2, the question
+
+How long until my print arrives?
+
+### faq.1.a
+WHERE: FAQ items (used on the photography page) — item 2, the answer
+
+Prints are made to order, not held in stock. Production takes 3–5 working days. Shipping is then 2–4 days within the EU and 5–12 days elsewhere. You get a tracking number as soon as the parcel leaves the lab.
+
+### faq.2.q
+WHERE: FAQ items (used on the photography page) — item 3, the question
+
+Do you ship outside the EU?
+
+### faq.2.a
+WHERE: FAQ items (used on the photography page) — item 3, the answer
+
+Yes, worldwide and tracked. Orders leaving the EU may attract import duty or VAT on arrival. That is charged by your customs authority and is not included in the price.
+
+### faq.3.q
+WHERE: FAQ items (used on the photography page) — item 4, the question
+
+Can I return a print?
+
+### faq.3.a
+WHERE: FAQ items (used on the photography page) — item 4, the answer
+
+Yes. Under EU consumer law you have 14 days from delivery to withdraw from the purchase. Email me, return the print in its original packaging, and I refund the price once it arrives — return shipping is at your cost. If a print arrives damaged, send a photograph and I reprint it at no charge.
+
+### faq.4.q
+WHERE: FAQ items (used on the photography page) — item 5, the question
+
+Do you sell framed prints?
+
+### faq.4.a
+WHERE: FAQ items (used on the photography page) — item 5, the answer
+
+Not yet. Framing is where most transit damage and cost happens, so I would rather you chose a local framer. Email me and I will happily advise on moulding and mount width for a particular print.
+
+### faq.5.q
+WHERE: FAQ items (used on the photography page) — item 6, the question
+
+Will the colours match my screen?
+
+### faq.5.a
+WHERE: FAQ items (used on the photography page) — item 6, the answer
+
+Closely, not exactly. Screens vary, and the print is made from an sRGB-profiled file on archival paper. If a print looks meaningfully different from the listing, tell me and I will reprint it.
+
+
+================================================================================
+TIMELINE ITEMS
+
+### timeline.0.year
+WHERE: Timeline items (used on the about page) — item 1, the year
+
+2019
+
+### timeline.0.text
+WHERE: Timeline items (used on the about page) — item 1, the line beside the year
+
+Bought a second-hand camera and started photographing the same mountain range every weekend.
+
+### timeline.1.year
+WHERE: Timeline items (used on the about page) — item 2, the year
+
+2021
+
+### timeline.1.text
+WHERE: Timeline items (used on the about page) — item 2, the line beside the year
+
+Sold the first prints. Wrote the first book, mostly at night, mostly badly.
+
+### timeline.2.year
+WHERE: Timeline items (used on the about page) — item 3, the year
+
+2023
+
+### timeline.2.text
+WHERE: Timeline items (used on the about page) — item 3, the line beside the year
+
+Started writing publicly about AI. Built the first small tool I actually used every day.
+
+### timeline.3.year
+WHERE: Timeline items (used on the about page) — item 4, the year
+
+2024
+
+### timeline.3.text
+WHERE: Timeline items (used on the about page) — item 4, the line beside the year
+
+Third book. Began assembling this site as one place for all of it rather than five places for none of it.
+
+### timeline.4.year
+WHERE: Timeline items (used on the about page) — item 5, the year
+
+2025
+
+### timeline.4.text
+WHERE: Timeline items (used on the about page) — item 5, the line beside the year
+
+Working on a longer photographic series and a fourth book about looking.
+
+
+================================================================================
+PRESS QUOTES
+
+### press.0.quote
+WHERE: Press quotes (used on the about page) — item 1, the quote
+
+[A real quote about the photographs — roughly this length, one line]
+
+### press.0.source
+WHERE: Press quotes (used on the about page) — item 1, who said it
+
+[Publication — year]
+
+### press.1.quote
+WHERE: Press quotes (used on the about page) — item 2, the quote
+
+[A real quote about the writing — roughly this length, one line]
+
+### press.1.source
+WHERE: Press quotes (used on the about page) — item 2, who said it
+
+[Reader or editor — year]
+
+### press.2.quote
+WHERE: Press quotes (used on the about page) — item 3, the quote
+
+[A real quote about the builds — roughly this length, one line]
+
+### press.2.source
+WHERE: Press quotes (used on the about page) — item 3, who said it
+
+[Publication — year]
+
+
+================================================================================
+BOOK EXCERPT
+
+### excerpt.book
+WHERE: Book excerpt (used on the writing page) — the Book section
+
+Okay, but Why?
+
+### excerpt.chapter
+WHERE: Book excerpt (used on the writing page) — the Chapter section
+
+Chapter one — a windowless sauna
+
+### excerpt.text
+WHERE: Book excerpt (used on the writing page) — the Text section
+
+We live in a world where it is easy to generate content, but hard to generate meaning. Anyone can fill a page with words, just like anyone can buy materials for a house.
+
+
+================================================================================
+IMPRINT PAGE
+
+### imprint.footer
+WHERE: Imprint page — the whole footer block (three columns of links and text)
+
+<div class="shell">
+    <div class="foot-inner">
+      <div>
+        <h4>Contact</h4>
+        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <p class="muted" style="margin-top:1em;max-width:36ch">
+          Postal address as above. Email is the fastest route.
+        </p>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="imprint.html">Imprint</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms and withdrawal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Index</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="photography.html">01 — Photography</a></li>
+          <li><a href="writing.html">02 — Writing</a></li>
+          <li><a href="ai.html">03 — AI builds</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span data-year>2025</span> David Rose</span>
+      <span>
+        <a href="imprint.html">Imprint</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </div>
+  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+### imprint.content-and-copyright.body
+WHERE: Imprint page — Content and copyright section, the body paragraph
+
+<p>
+            All photographs, texts and design on this site are the copyright of the
+            provider. Reproduction, distribution, or commercial use requires written
+            permission. Buying a print grants ownership of the physical object, not
+            the rights to the image.
+          </p>
+          <p>
+            This site links to external services. Responsibility for the content of
+            those services rests with their operators; links are checked when added,
+            and no ongoing monitoring is carried out.
+          </p>
+
+### imprint.content-and-copyright.label
+WHERE: Imprint page — Content and copyright section, the small label above the heading
+
+Content and copyright
+
+### imprint.consumer-disputes.body
+WHERE: Imprint page — Consumer disputes section, the body paragraph
+
+<p>
+            We are neither obliged nor willing to participate in dispute resolution
+            proceedings before a consumer arbitration board. The European Commission's
+            Online Dispute Resolution platform was discontinued in July 2025.
+          </p>
+          <p class="muted">
+            If something has gone wrong with an order, email first. It is almost always
+            faster than any formal process.
+          </p>
+
+### imprint.consumer-disputes.label
+WHERE: Imprint page — Consumer disputes section, the small label above the heading
+
+Consumer disputes
+
+### imprint.responsibility.body
+WHERE: Imprint page — Responsibility section, the body paragraph
+
+<p>
+            Responsible for editorial content: <span data-legal="responsible">David Rose</span>,
+            at the address above.
+          </p>
+          <p>
+            As a sole trader selling handmade and made-to-order goods, the provider is
+            the person named above. Prices include any applicable taxes where stated;
+            shipping costs are shown separately before checkout.
+          </p>
+
+### imprint.responsibility.label
+WHERE: Imprint page — Responsibility section, the small label above the heading
+
+Responsibility
+
+### imprint.provider.body
+WHERE: Imprint page — Provider section, the body paragraph
+
+<p>
+            <strong><span data-legal="owner">David Rose</span></strong><br>
+            trading as <span data-legal="tradingName">David Rose</span><br>
+            <span data-legal="street">[street and number]</span><br>
+            <span data-legal="city">[postcode] [city]</span><br>
+            <span data-legal="country">[country]</span>
+          </p>
+
+          <p>
+            Email: <a data-link="email" style="border-bottom:1px solid var(--rule)"><span data-legal="email">hello@yourname.com</span></a><br>
+            Telephone: <span data-legal="phone">+00 000 000 000</span>
+          </p>
+
+          <p>
+            VAT identification number: <span data-legal="vat">Not VAT registered</span><br>
+            Commercial register: <span data-legal="register">—</span>
+          </p>
+
+### imprint.provider.label
+WHERE: Imprint page — Provider section, the small label above the heading
+
+Provider
+
+### imprint.legal-imprint.lede
+WHERE: Imprint page — Legal imprint section, the lede paragraph
+
+Provider identification and responsibility for the content of this website.
+
+### imprint.legal-imprint.h1
+WHERE: Imprint page — Legal imprint section, the headline
+
+Imprint
+
+### imprint.legal-imprint.kicker
+WHERE: Imprint page — Legal imprint section, the small kicker above the headline
+
+Legal — Imprint
+
+
+================================================================================
+PRIVACY PAGE
+
+### privacy.footer
+WHERE: Privacy page — the whole footer block (three columns of links and text)
+
+<div class="shell">
+    <div class="foot-inner">
+      <div>
+        <h4>Contact</h4>
+        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <p class="muted" style="margin-top:1em;max-width:36ch">
+          For any question about your data, including deletion requests.
+        </p>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="imprint.html">Imprint</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms and withdrawal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Index</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="photography.html">01 — Photography</a></li>
+          <li><a href="writing.html">02 — Writing</a></li>
+          <li><a href="ai.html">03 — AI builds</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span data-year>2025</span> David Rose</span>
+      <span>
+        <a href="imprint.html">Imprint</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </div>
+  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+### privacy.your-rights.body
+WHERE: Privacy page — Your rights section, the body paragraph
+
+<p>
+            You have the right to ask for a copy of the data held about you, to have
+            it corrected or erased, to restrict or object to its processing, to receive
+            it in a portable format, and to withdraw any consent you have given at any
+            time.
+          </p>
+          <p>
+            Email <span data-legal="email">hello@yourname.com</span> and I will respond
+            within one month. If you believe your data has been handled unlawfully, you
+            can complain to the data protection supervisory authority in your country
+            of residence.
+          </p>
+          <p class="muted">
+            There is no automated decision-making or profiling on this site.
+          </p>
+
+### privacy.your-rights.label
+WHERE: Privacy page — Your rights section, the small label above the heading
+
+Your rights
+
+### privacy.server-logs-and-fonts.body
+WHERE: Privacy page — Server logs and fonts section, the body paragraph
+
+<p>
+            The site is hosted on <strong>Cloudflare</strong>, which processes
+            connection data such as IP address, browser type and timestamps in order
+            to serve the pages and defend against abuse. Those logs are retained for
+            a short period and then deleted. Legal basis: Art. 6(1)(f) GDPR
+            (legitimate interests in a secure and functioning website).
+          </p>
+          <p>
+            This site currently loads its two typefaces from <strong>Google Fonts</strong>,
+            which means your IP address is transmitted to Google when a page loads.
+            If you are in the EU and this concerns you, it is worth noting: those fonts
+            can be self-hosted instead, and the stylesheet is already written for that
+            — it is a one-line change documented in the site's README.
+          </p>
+          <p class="muted">
+            This site sets no cookies of its own. Stripe and Gumroad may set cookies
+            that are strictly necessary to process a payment.
+          </p>
+
+### privacy.server-logs-and-fonts.label
+WHERE: Privacy page — Server logs and fonts section, the small label above the heading
+
+Server logs and fonts
+
+### privacy.newsletter.body
+WHERE: Privacy page — Newsletter section, the body paragraph
+
+<p>
+            If you subscribe, your email address is processed by <strong>Substack</strong>
+            to send the newsletter and to keep a record of your consent. You can
+            unsubscribe at any time from the link in every email. Legal basis:
+            Art. 6(1)(a) GDPR (consent).
+          </p>
+          <p>
+            Ebook purchases are processed by <strong>Gumroad</strong> under their own
+            privacy terms.
+          </p>
+
+### privacy.newsletter.label
+WHERE: Privacy page — Newsletter section, the small label above the heading
+
+Newsletter
+
+### privacy.orders.body
+WHERE: Privacy page — Orders section, the body paragraph
+
+<p>
+            When you buy a print or a book, I receive your name, delivery address,
+            email address and the details of what you ordered. This is used to fulfil
+            the contract between us — to print, dispatch and correspond about your
+            order. Legal basis: Art. 6(1)(b) GDPR (performance of a contract).
+          </p>
+          <p>
+            Payment is handled by <strong>Stripe</strong>. Card details are entered on
+            Stripe's systems and are never transmitted to or stored by this site.
+            Shipping details are passed to the print lab that produces your order, so
+            that it can be delivered to you.
+          </p>
+          <p>
+            Invoice and order records are kept for the period required by tax law
+            (generally ten years) and are then deleted. Legal basis: Art. 6(1)(c) GDPR
+            (legal obligation).
+          </p>
+
+### privacy.orders.label
+WHERE: Privacy page — Orders section, the small label above the heading
+
+Orders
+
+### privacy.controller.body
+WHERE: Privacy page — Controller section, the body paragraph
+
+<p>
+            <span data-legal="owner">David Rose</span>, trading as
+            <span data-legal="tradingName">David Rose</span>,
+            <span data-legal="street">[street and number]</span>,
+            <span data-legal="city">[postcode] [city]</span>,
+            <span data-legal="country">[country]</span>.
+            Email: <span data-legal="email">hello@yourname.com</span>.
+          </p>
+          <p class="muted">
+            This site is a set of static files. It has no login, no comment section,
+            and no analytics or advertising trackers.
+          </p>
+
+### privacy.controller.label
+WHERE: Privacy page — Controller section, the small label above the heading
+
+Controller
+
+### privacy.legal-privacy.lede
+WHERE: Privacy page — Legal privacy section, the lede paragraph
+
+What is collected when you visit or buy, why, and what you can ask me to do
+          about it.
+
+### privacy.legal-privacy.h1
+WHERE: Privacy page — Legal privacy section, the headline
+
+Privacy
+
+### privacy.legal-privacy.kicker
+WHERE: Privacy page — Legal privacy section, the small kicker above the headline
+
+Legal — Privacy
+
+
+================================================================================
+TERMS PAGE
+
+### terms.footer
+WHERE: Terms page — the whole footer block (three columns of links and text)
+
+<div class="shell">
+    <div class="foot-inner">
+      <div>
+        <h4>Questions about an order</h4>
+        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <p class="muted" style="margin-top:1em;max-width:36ch">
+          Include your order number if you have one.
+        </p>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="imprint.html">Imprint</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms and withdrawal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Index</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="photography.html">01 — Photography</a></li>
+          <li><a href="writing.html">02 — Writing</a></li>
+          <li><a href="ai.html">03 — AI builds</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span data-year>2025</span> David Rose</span>
+      <span>
+        <a href="imprint.html">Imprint</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </div>
+  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+### terms.7-law.body
+WHERE: Terms page — 7 Law section, the body paragraph
+
+<p>
+            The law of <span data-legal="country">[country]</span> applies, excluding the
+            UN Convention on Contracts for the International Sale of Goods. If you are
+            a consumer resident elsewhere in the EU, you keep the protection of the
+            mandatory consumer law of your own country.
+          </p>
+          <p class="muted">
+            If a clause here is invalid, the rest remains in force.
+          </p>
+
+### terms.7-law.label
+WHERE: Terms page — 7 Law section, the small label above the heading
+
+7 — Law
+
+### terms.6-guarantee-and-liabil.body
+WHERE: Terms page — 6 Guarantee and liabil section, the body paragraph
+
+<p>
+            Goods conform to the description on this site. Your statutory rights in
+            respect of faulty goods — including the two-year period of liability for
+            lack of conformity under EU law — are unaffected by anything here.
+          </p>
+          <p>
+            Liability for injury to life, body or health, and for intent or gross
+            negligence, is unlimited. Otherwise liability is limited to the value of
+            the order. This site links to external services whose content is outside
+            my control.
+          </p>
+
+### terms.6-guarantee-and-liabil.label
+WHERE: Terms page — 6 Guarantee and liabil section, the small label above the heading
+
+6 — Guarantee and liability
+
+### terms.5-model-withdrawal-for.body
+WHERE: Terms page — 5 Model withdrawal for section, the body paragraph
+
+<p class="muted" style="border:1px solid var(--rule);padding:1.1em;background:var(--surface)">
+            To <span data-legal="owner">David Rose</span>,
+            <span data-legal="street">[street and number]</span>,
+            <span data-legal="city">[postcode] [city]</span>,
+            <span data-legal="email">hello@yourname.com</span>:<br><br>
+            I hereby give notice that I withdraw from my contract of sale of the
+            following goods:<br><br>
+            Ordered on / received on: ____________________<br>
+            Name of consumer: ____________________<br>
+            Address of consumer: ____________________<br>
+            Signature (only if sent on paper): ____________________<br>
+            Date: ____________________
+          </p>
+
+### terms.5-model-withdrawal-for.label
+WHERE: Terms page — 5 Model withdrawal for section, the small label above the heading
+
+5 — Model withdrawal form
+
+### terms.4-right-of-withdrawal.body
+WHERE: Terms page — 4 Right of withdrawal section, the body paragraph
+
+<p>
+            You have the right to withdraw from this contract within
+            <strong>14 days</strong> without giving any reason. The period runs from
+            the day you, or a third party named by you, take physical possession of
+            the goods.
+          </p>
+          <p>
+            To exercise it, email
+            <span data-legal="email">hello@yourname.com</span> with a clear statement
+            that you are withdrawing — for example the model form below. You may also
+            use the model withdrawal form published in the Annex to Directive
+            2011/83/EU.
+          </p>
+          <p>
+            Send the goods back within 14 days of telling me you are withdrawing. You
+            bear the direct cost of return shipping. I refund the price of the goods,
+            and the standard delivery cost, within 14 days of receiving the return or
+            of receiving proof that you sent it, whichever is earlier.
+          </p>
+          <p>
+            <strong>Note on prints:</strong> the exemption for goods made to the
+            customer's specification covers personalised items. A standard-size print
+            of an existing photograph is not personalised, so this right applies to it.
+          </p>
+          <p>
+            <strong>Note on ebooks:</strong> the right of withdrawal does not apply once
+            a digital book has been downloaded, where you have expressly consented to
+            immediate delivery and acknowledged that this ends your right of withdrawal.
+          </p>
+
+### terms.4-right-of-withdrawal.label
+WHERE: Terms page — 4 Right of withdrawal section, the small label above the heading
+
+4 — Right of withdrawal
+
+### terms.3-delivery.body
+WHERE: Terms page — 3 Delivery section, the body paragraph
+
+<p>
+            Prints are made to order: production takes 3–5 working days, then shipping
+            takes 2–4 days within the EU and 5–12 days elsewhere. Photobooks and
+            ebooks follow the timings stated on their listing.
+          </p>
+          <p>
+            Risk passes to you when the parcel is delivered. If a print arrives
+            damaged, send a photograph within 14 days of delivery and it will be
+            reprinted and reshipped at no cost.
+          </p>
+
+### terms.3-delivery.label
+WHERE: Terms page — 3 Delivery section, the small label above the heading
+
+3 — Delivery
+
+### terms.2-the-contract.body
+WHERE: Terms page — 2 The contract section, the body paragraph
+
+<p>
+            Prices and product descriptions on this site are an invitation to order.
+            Clicking the buy button takes you to Stripe's checkout. The contract is
+            formed when you complete payment and receive an order confirmation by
+            email. If a print cannot be produced, you are refunded in full.
+          </p>
+          <p>
+            Prices are in euro and include any applicable VAT. Shipping is shown
+            separately before payment. Orders leaving the EU may attract import duty
+            or VAT charged by your customs authority, which is not included.
+          </p>
+
+### terms.2-the-contract.label
+WHERE: Terms page — 2 The contract section, the small label above the heading
+
+2 — The contract
+
+### terms.1-who-you-are-buying-f.body
+WHERE: Terms page — 1 Who you are buying f section, the body paragraph
+
+<p>
+            <span data-legal="owner">David Rose</span>, trading as
+            <span data-legal="tradingName">David Rose</span>,
+            <span data-legal="street">[street and number]</span>,
+            <span data-legal="city">[postcode] [city]</span>,
+            <span data-legal="country">[country]</span>.
+            Full provider details are in the <a href="imprint.html" style="border-bottom:1px solid var(--rule)">imprint</a>.
+          </p>
+
+### terms.1-who-you-are-buying-f.label
+WHERE: Terms page — 1 Who you are buying f section, the small label above the heading
+
+1 — Who you are buying from
+
+### terms.legal-terms.lede
+WHERE: Terms page — Legal terms section, the lede paragraph
+
+How ordering works, when your print arrives, and how to change your mind.
+
+### terms.legal-terms.h1
+WHERE: Terms page — Legal terms section, the headline
+
+Terms and withdrawal
+
+### terms.legal-terms.kicker
+WHERE: Terms page — Legal terms section, the small kicker above the headline
+
+Legal — Terms
+
+
+================================================================================
+404 PAGE
+
+### 404.footer
+WHERE: 404 page — the whole footer block (three columns of links and text)
+
+<div class="shell">
+    <div class="foot-inner">
+      <div>
+        <h4>Contact</h4>
+        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <p class="muted" style="margin-top:1em;max-width:36ch">
+          If you followed a link from somewhere and it broke, tell me and I'll fix it.
+        </p>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul data-social></ul>
+      </div>
+      <div>
+        <h4>Index</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="photography.html">01 — Photography</a></li>
+          <li><a href="writing.html">02 — Writing</a></li>
+          <li><a href="ai.html">03 — AI builds</a></li>
+          <li><a href="about.html">04 — About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span data-year>2025</span> David Rose</span>
+      <span>
+        <a href="imprint.html">Imprint</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </div>
+  <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+### 404.404-not-found.shortcuts
+WHERE: 404 page — 404 Not found section, the keyboard shortcuts list
+
+<a href="photography.html" style="--c: var(--blue)">
+            <span class="sn">01</span>
+            <span class="sv">Photography</span>
+          </a>
+          <a href="writing.html" style="--c: var(--orange)">
+            <span class="sn">02</span>
+            <span class="sv">Writing</span>
+          </a>
+          <a href="ai.html" style="--c: var(--green)">
+            <span class="sn">03</span>
+            <span class="sv">AI builds</span>
+          </a>
+          <a href="about.html" style="--c: var(--yellow)">
+            <span class="sn">04</span>
+            <span class="sv">About</span>
+          </a>
+
+### 404.404-not-found.lede
+WHERE: 404 page — 404 Not found section, the lede paragraph
+
+Either the address is wrong, or the thing that used to live here has moved.
+          The four worlds below are a good place to restart.
+
+### 404.404-not-found.h1
+WHERE: 404 page — 404 Not found section, the headline
+
+This page doesn't exist.
+
+### 404.404-not-found.kicker
+WHERE: 404 page — 404 Not found section, the small kicker above the headline
+
+404 — Not found
+
+
+================================================================================
+ PART TWO — PHOTOGRAPH CAPTIONS
+================================================================================
+
+ These appear in the lightbox when someone opens a photograph. Four fields per
+ picture. The id is the filename, so `landscape-h39a0377` is the picture in
+ assets/img/photos/landscape-h39a0377.jpg.
+
+ Delete a field and its row disappears from the lightbox. Leave the field as
+ [location] and it shows as a placeholder — search for "[" to find them.
+
+
+--------------------------------------------------------------------------------
+photo.landscape-h39a0377
+--------------------------------------------------------------------------------
+
+### photo.landscape-h39a0377.title
+WHERE: Photograph landscape-h39a0377 — the title
+
+Landscape 01
+
+### photo.landscape-h39a0377.location
+WHERE: Photograph landscape-h39a0377 — the location
+
+[location]
+
+### photo.landscape-h39a0377.date
+WHERE: Photograph landscape-h39a0377 — the date
+
+[date]
+
+### photo.landscape-h39a0377.description
+WHERE: Photograph landscape-h39a0377 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.landscape-h39a1324
+--------------------------------------------------------------------------------
+
+### photo.landscape-h39a1324.title
+WHERE: Photograph landscape-h39a1324 — the title
+
+Landscape 09
+
+### photo.landscape-h39a1324.location
+WHERE: Photograph landscape-h39a1324 — the location
+
+[location]
+
+### photo.landscape-h39a1324.date
+WHERE: Photograph landscape-h39a1324 — the date
+
+[date]
+
+### photo.landscape-h39a1324.description
+WHERE: Photograph landscape-h39a1324 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.landscape-h39a1639
+--------------------------------------------------------------------------------
+
+### photo.landscape-h39a1639.title
+WHERE: Photograph landscape-h39a1639 — the title
+
+Landscape 10
+
+### photo.landscape-h39a1639.location
+WHERE: Photograph landscape-h39a1639 — the location
+
+[location]
+
+### photo.landscape-h39a1639.date
+WHERE: Photograph landscape-h39a1639 — the date
+
+[date]
+
+### photo.landscape-h39a1639.description
+WHERE: Photograph landscape-h39a1639 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.landscape-h39a1728
+--------------------------------------------------------------------------------
+
+### photo.landscape-h39a1728.title
+WHERE: Photograph landscape-h39a1728 — the title
+
+Landscape 11
+
+### photo.landscape-h39a1728.location
+WHERE: Photograph landscape-h39a1728 — the location
+
+[location]
+
+### photo.landscape-h39a1728.date
+WHERE: Photograph landscape-h39a1728 — the date
+
+[date]
+
+### photo.landscape-h39a1728.description
+WHERE: Photograph landscape-h39a1728 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.landscape-h39a1763
+--------------------------------------------------------------------------------
+
+### photo.landscape-h39a1763.title
+WHERE: Photograph landscape-h39a1763 — the title
+
+Landscape 02
+
+### photo.landscape-h39a1763.location
+WHERE: Photograph landscape-h39a1763 — the location
+
+[location]
+
+### photo.landscape-h39a1763.date
+WHERE: Photograph landscape-h39a1763 — the date
+
+[date]
+
+### photo.landscape-h39a1763.description
+WHERE: Photograph landscape-h39a1763 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.landscape-h39a1856
+--------------------------------------------------------------------------------
+
+### photo.landscape-h39a1856.title
+WHERE: Photograph landscape-h39a1856 — the title
+
+Landscape 12
+
+### photo.landscape-h39a1856.location
+WHERE: Photograph landscape-h39a1856 — the location
+
+[location]
+
+### photo.landscape-h39a1856.date
+WHERE: Photograph landscape-h39a1856 — the date
+
+[date]
+
+### photo.landscape-h39a1856.description
+WHERE: Photograph landscape-h39a1856 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.landscape-h39a1880
+--------------------------------------------------------------------------------
+
+### photo.landscape-h39a1880.title
+WHERE: Photograph landscape-h39a1880 — the title
+
+Landscape 03
+
+### photo.landscape-h39a1880.location
+WHERE: Photograph landscape-h39a1880 — the location
+
+[location]
+
+### photo.landscape-h39a1880.date
+WHERE: Photograph landscape-h39a1880 — the date
+
+[date]
+
+### photo.landscape-h39a1880.description
+WHERE: Photograph landscape-h39a1880 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.landscape-h39a5474-1
+--------------------------------------------------------------------------------
+
+### photo.landscape-h39a5474-1.title
+WHERE: Photograph landscape-h39a5474-1 — the title
+
+Landscape 04
+
+### photo.landscape-h39a5474-1.location
+WHERE: Photograph landscape-h39a5474-1 — the location
+
+[location]
+
+### photo.landscape-h39a5474-1.date
+WHERE: Photograph landscape-h39a5474-1 — the date
+
+[date]
+
+### photo.landscape-h39a5474-1.description
+WHERE: Photograph landscape-h39a5474-1 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.landscape-h39a9236
+--------------------------------------------------------------------------------
+
+### photo.landscape-h39a9236.title
+WHERE: Photograph landscape-h39a9236 — the title
+
+Landscape 05
+
+### photo.landscape-h39a9236.location
+WHERE: Photograph landscape-h39a9236 — the location
+
+[location]
+
+### photo.landscape-h39a9236.date
+WHERE: Photograph landscape-h39a9236 — the date
+
+[date]
+
+### photo.landscape-h39a9236.description
+WHERE: Photograph landscape-h39a9236 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.landscape-h39a9577
+--------------------------------------------------------------------------------
+
+### photo.landscape-h39a9577.title
+WHERE: Photograph landscape-h39a9577 — the title
+
+Landscape 13
+
+### photo.landscape-h39a9577.location
+WHERE: Photograph landscape-h39a9577 — the location
+
+[location]
+
+### photo.landscape-h39a9577.date
+WHERE: Photograph landscape-h39a9577 — the date
+
+[date]
+
+### photo.landscape-h39a9577.description
+WHERE: Photograph landscape-h39a9577 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.landscape-img-6361
+--------------------------------------------------------------------------------
+
+### photo.landscape-img-6361.title
+WHERE: Photograph landscape-img-6361 — the title
+
+Landscape 07
+
+### photo.landscape-img-6361.location
+WHERE: Photograph landscape-img-6361 — the location
+
+[location]
+
+### photo.landscape-img-6361.date
+WHERE: Photograph landscape-img-6361 — the date
+
+[date]
+
+### photo.landscape-img-6361.description
+WHERE: Photograph landscape-img-6361 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-11-4
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-11-4.title
+WHERE: Photograph artistic-frame-11-4 — the title
+
+Artistic 01
+
+### photo.artistic-frame-11-4.location
+WHERE: Photograph artistic-frame-11-4 — the location
+
+[location]
+
+### photo.artistic-frame-11-4.date
+WHERE: Photograph artistic-frame-11-4 — the date
+
+[date]
+
+### photo.artistic-frame-11-4.description
+WHERE: Photograph artistic-frame-11-4 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-11
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-11.title
+WHERE: Photograph artistic-frame-11 — the title
+
+Artistic 20
+
+### photo.artistic-frame-11.location
+WHERE: Photograph artistic-frame-11 — the location
+
+[location]
+
+### photo.artistic-frame-11.date
+WHERE: Photograph artistic-frame-11 — the date
+
+[date]
+
+### photo.artistic-frame-11.description
+WHERE: Photograph artistic-frame-11 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-19
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-19.title
+WHERE: Photograph artistic-frame-19 — the title
+
+Artistic 03
+
+### photo.artistic-frame-19.location
+WHERE: Photograph artistic-frame-19 — the location
+
+[location]
+
+### photo.artistic-frame-19.date
+WHERE: Photograph artistic-frame-19 — the date
+
+[date]
+
+### photo.artistic-frame-19.description
+WHERE: Photograph artistic-frame-19 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-21
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-21.title
+WHERE: Photograph artistic-frame-21 — the title
+
+Artistic 04
+
+### photo.artistic-frame-21.location
+WHERE: Photograph artistic-frame-21 — the location
+
+[location]
+
+### photo.artistic-frame-21.date
+WHERE: Photograph artistic-frame-21 — the date
+
+[date]
+
+### photo.artistic-frame-21.description
+WHERE: Photograph artistic-frame-21 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-26
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-26.title
+WHERE: Photograph artistic-frame-26 — the title
+
+Artistic 21
+
+### photo.artistic-frame-26.location
+WHERE: Photograph artistic-frame-26 — the location
+
+[location]
+
+### photo.artistic-frame-26.date
+WHERE: Photograph artistic-frame-26 — the date
+
+[date]
+
+### photo.artistic-frame-26.description
+WHERE: Photograph artistic-frame-26 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-27
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-27.title
+WHERE: Photograph artistic-frame-27 — the title
+
+Artistic 05
+
+### photo.artistic-frame-27.location
+WHERE: Photograph artistic-frame-27 — the location
+
+[location]
+
+### photo.artistic-frame-27.date
+WHERE: Photograph artistic-frame-27 — the date
+
+[date]
+
+### photo.artistic-frame-27.description
+WHERE: Photograph artistic-frame-27 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-30
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-30.title
+WHERE: Photograph artistic-frame-30 — the title
+
+Artistic 22
+
+### photo.artistic-frame-30.location
+WHERE: Photograph artistic-frame-30 — the location
+
+[location]
+
+### photo.artistic-frame-30.date
+WHERE: Photograph artistic-frame-30 — the date
+
+[date]
+
+### photo.artistic-frame-30.description
+WHERE: Photograph artistic-frame-30 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-31
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-31.title
+WHERE: Photograph artistic-frame-31 — the title
+
+Artistic 23
+
+### photo.artistic-frame-31.location
+WHERE: Photograph artistic-frame-31 — the location
+
+[location]
+
+### photo.artistic-frame-31.date
+WHERE: Photograph artistic-frame-31 — the date
+
+[date]
+
+### photo.artistic-frame-31.description
+WHERE: Photograph artistic-frame-31 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-32
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-32.title
+WHERE: Photograph artistic-frame-32 — the title
+
+Artistic 24
+
+### photo.artistic-frame-32.location
+WHERE: Photograph artistic-frame-32 — the location
+
+[location]
+
+### photo.artistic-frame-32.date
+WHERE: Photograph artistic-frame-32 — the date
+
+[date]
+
+### photo.artistic-frame-32.description
+WHERE: Photograph artistic-frame-32 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-33-2
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-33-2.title
+WHERE: Photograph artistic-frame-33-2 — the title
+
+Artistic 06
+
+### photo.artistic-frame-33-2.location
+WHERE: Photograph artistic-frame-33-2 — the location
+
+[location]
+
+### photo.artistic-frame-33-2.date
+WHERE: Photograph artistic-frame-33-2 — the date
+
+[date]
+
+### photo.artistic-frame-33-2.description
+WHERE: Photograph artistic-frame-33-2 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-4-6
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-4-6.title
+WHERE: Photograph artistic-frame-4-6 — the title
+
+Artistic 07
+
+### photo.artistic-frame-4-6.location
+WHERE: Photograph artistic-frame-4-6 — the location
+
+[location]
+
+### photo.artistic-frame-4-6.date
+WHERE: Photograph artistic-frame-4-6 — the date
+
+[date]
+
+### photo.artistic-frame-4-6.description
+WHERE: Photograph artistic-frame-4-6 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-53
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-53.title
+WHERE: Photograph artistic-frame-53 — the title
+
+Artistic 08
+
+### photo.artistic-frame-53.location
+WHERE: Photograph artistic-frame-53 — the location
+
+[location]
+
+### photo.artistic-frame-53.date
+WHERE: Photograph artistic-frame-53 — the date
+
+[date]
+
+### photo.artistic-frame-53.description
+WHERE: Photograph artistic-frame-53 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-55
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-55.title
+WHERE: Photograph artistic-frame-55 — the title
+
+Artistic 09
+
+### photo.artistic-frame-55.location
+WHERE: Photograph artistic-frame-55 — the location
+
+[location]
+
+### photo.artistic-frame-55.date
+WHERE: Photograph artistic-frame-55 — the date
+
+[date]
+
+### photo.artistic-frame-55.description
+WHERE: Photograph artistic-frame-55 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-59
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-59.title
+WHERE: Photograph artistic-frame-59 — the title
+
+Artistic 10
+
+### photo.artistic-frame-59.location
+WHERE: Photograph artistic-frame-59 — the location
+
+[location]
+
+### photo.artistic-frame-59.date
+WHERE: Photograph artistic-frame-59 — the date
+
+[date]
+
+### photo.artistic-frame-59.description
+WHERE: Photograph artistic-frame-59 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-6-3
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-6-3.title
+WHERE: Photograph artistic-frame-6-3 — the title
+
+Artistic 11
+
+### photo.artistic-frame-6-3.location
+WHERE: Photograph artistic-frame-6-3 — the location
+
+[location]
+
+### photo.artistic-frame-6-3.date
+WHERE: Photograph artistic-frame-6-3 — the date
+
+[date]
+
+### photo.artistic-frame-6-3.description
+WHERE: Photograph artistic-frame-6-3 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-70-2
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-70-2.title
+WHERE: Photograph artistic-frame-70-2 — the title
+
+Artistic 13
+
+### photo.artistic-frame-70-2.location
+WHERE: Photograph artistic-frame-70-2 — the location
+
+[location]
+
+### photo.artistic-frame-70-2.date
+WHERE: Photograph artistic-frame-70-2 — the date
+
+[date]
+
+### photo.artistic-frame-70-2.description
+WHERE: Photograph artistic-frame-70-2 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-72-1
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-72-1.title
+WHERE: Photograph artistic-frame-72-1 — the title
+
+Artistic 25
+
+### photo.artistic-frame-72-1.location
+WHERE: Photograph artistic-frame-72-1 — the location
+
+[location]
+
+### photo.artistic-frame-72-1.date
+WHERE: Photograph artistic-frame-72-1 — the date
+
+[date]
+
+### photo.artistic-frame-72-1.description
+WHERE: Photograph artistic-frame-72-1 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-72-2
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-72-2.title
+WHERE: Photograph artistic-frame-72-2 — the title
+
+Artistic 14
+
+### photo.artistic-frame-72-2.location
+WHERE: Photograph artistic-frame-72-2 — the location
+
+[location]
+
+### photo.artistic-frame-72-2.date
+WHERE: Photograph artistic-frame-72-2 — the date
+
+[date]
+
+### photo.artistic-frame-72-2.description
+WHERE: Photograph artistic-frame-72-2 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-frame-9-12
+--------------------------------------------------------------------------------
+
+### photo.artistic-frame-9-12.title
+WHERE: Photograph artistic-frame-9-12 — the title
+
+Artistic 15
+
+### photo.artistic-frame-9-12.location
+WHERE: Photograph artistic-frame-9-12 — the location
+
+[location]
+
+### photo.artistic-frame-9-12.date
+WHERE: Photograph artistic-frame-9-12 — the date
+
+[date]
+
+### photo.artistic-frame-9-12.description
+WHERE: Photograph artistic-frame-9-12 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-h39a6457
+--------------------------------------------------------------------------------
+
+### photo.artistic-h39a6457.title
+WHERE: Photograph artistic-h39a6457 — the title
+
+Artistic 16
+
+### photo.artistic-h39a6457.location
+WHERE: Photograph artistic-h39a6457 — the location
+
+[location]
+
+### photo.artistic-h39a6457.date
+WHERE: Photograph artistic-h39a6457 — the date
+
+[date]
+
+### photo.artistic-h39a6457.description
+WHERE: Photograph artistic-h39a6457 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-h39a8021-1
+--------------------------------------------------------------------------------
+
+### photo.artistic-h39a8021-1.title
+WHERE: Photograph artistic-h39a8021-1 — the title
+
+Artistic 26
+
+### photo.artistic-h39a8021-1.location
+WHERE: Photograph artistic-h39a8021-1 — the location
+
+[location]
+
+### photo.artistic-h39a8021-1.date
+WHERE: Photograph artistic-h39a8021-1 — the date
+
+[date]
+
+### photo.artistic-h39a8021-1.description
+WHERE: Photograph artistic-h39a8021-1 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-h39a8775-1
+--------------------------------------------------------------------------------
+
+### photo.artistic-h39a8775-1.title
+WHERE: Photograph artistic-h39a8775-1 — the title
+
+Artistic 18
+
+### photo.artistic-h39a8775-1.location
+WHERE: Photograph artistic-h39a8775-1 — the location
+
+[location]
+
+### photo.artistic-h39a8775-1.date
+WHERE: Photograph artistic-h39a8775-1 — the date
+
+[date]
+
+### photo.artistic-h39a8775-1.description
+WHERE: Photograph artistic-h39a8775-1 — the description
+
+[description]
+
+
+--------------------------------------------------------------------------------
+photo.artistic-h39a8846-1
+--------------------------------------------------------------------------------
+
+### photo.artistic-h39a8846-1.title
+WHERE: Photograph artistic-h39a8846-1 — the title
+
+Artistic 19
+
+### photo.artistic-h39a8846-1.location
+WHERE: Photograph artistic-h39a8846-1 — the location
+
+[location]
+
+### photo.artistic-h39a8846-1.date
+WHERE: Photograph artistic-h39a8846-1 — the date
+
+[date]
+
+### photo.artistic-h39a8846-1.description
+WHERE: Photograph artistic-h39a8846-1 — the description
+
+[description]

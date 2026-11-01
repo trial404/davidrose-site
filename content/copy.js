@@ -1,12 +1,19 @@
 /* ==========================================================================
-   COPY — the other file you edit: every word on the site.
-   --------------------------------------------------------------------------
-   Keys read <page>.<section>.<role>. Edit a value and the page changes.
-   Nothing here is a file path, a price or a link — those are in media.js.
+   COPY — every word on the site.
+
+   GENERATED FILE. Do not edit here — your changes will be overwritten.
+
+   Edit content/WRITING.txt instead, then run:
+
+       python3 tools/build-copy.py
+
+   That document has the same blocks, in reading order, each labelled with
+   where it appears on the page. To check whether this file is out of date:
+
+       python3 tools/build-copy.py --check
    ========================================================================== */
 
 window.COPY = {
-
   "index": {
     "footer": `<div class="shell">
     <div class="foot-inner">
@@ -75,7 +82,6 @@ window.COPY = {
       "kicker": `Photographer · Writer · Builder`,
     },
   },
-
   "photography": {
     "footer": `<div class="shell">
     <div class="foot-inner">
@@ -148,8 +154,6 @@ window.COPY = {
       "label": `Series 01`,
     },
     "01-photography": {
-      /* the archive outline beside this lede is built by renderCatalogue()
-        from media.js — its counts are never typed by hand */
       "lede": `Photography is a way of noticing. What makes a place feel alive —
           light that lasts ten seconds, a room someone has just left, weather
           rearranging a valley. Less a description of the world than a record of
@@ -159,7 +163,6 @@ window.COPY = {
       "kicker": `01 — Photography`,
     },
   },
-
   "writing": {
     "footer": `<div class="shell">
     <div class="foot-inner">
@@ -225,7 +228,6 @@ window.COPY = {
       "kicker": `02 — Writing`,
     },
   },
-
   "ai": {
     "footer": `<div class="shell">
     <div class="foot-inner">
@@ -314,7 +316,6 @@ window.COPY = {
       "kicker": `03 — AI builds`,
     },
   },
-
   "about": {
     "footer": `<div class="shell">
     <div class="foot-inner">
@@ -390,7 +391,73 @@ window.COPY = {
       "kicker": `04 — About`,
     },
   },
-
+  "faq": [
+    {
+      "q": `What paper do you print on?`,
+      "a": `Hahnemühle Photo Rag, 308gsm, matte — a cotton rag with a fine texture and no surface glare. The water series is printed on Photo Rag Baryta, which holds more depth in the blacks.`,
+    },
+    {
+      "q": `How long until my print arrives?`,
+      "a": `Prints are made to order, not held in stock. Production takes 3–5 working days. Shipping is then 2–4 days within the EU and 5–12 days elsewhere. You get a tracking number as soon as the parcel leaves the lab.`,
+    },
+    {
+      "q": `Do you ship outside the EU?`,
+      "a": `Yes, worldwide and tracked. Orders leaving the EU may attract import duty or VAT on arrival. That is charged by your customs authority and is not included in the price.`,
+    },
+    {
+      "q": `Can I return a print?`,
+      "a": `Yes. Under EU consumer law you have 14 days from delivery to withdraw from the purchase. Email me, return the print in its original packaging, and I refund the price once it arrives — return shipping is at your cost. If a print arrives damaged, send a photograph and I reprint it at no charge.`,
+    },
+    {
+      "q": `Do you sell framed prints?`,
+      "a": `Not yet. Framing is where most transit damage and cost happens, so I would rather you chose a local framer. Email me and I will happily advise on moulding and mount width for a particular print.`,
+    },
+    {
+      "q": `Will the colours match my screen?`,
+      "a": `Closely, not exactly. Screens vary, and the print is made from an sRGB-profiled file on archival paper. If a print looks meaningfully different from the listing, tell me and I will reprint it.`,
+    },
+  ],
+  "timeline": [
+    {
+      "year": `2019`,
+      "text": `Bought a second-hand camera and started photographing the same mountain range every weekend.`,
+    },
+    {
+      "year": `2021`,
+      "text": `Sold the first prints. Wrote the first book, mostly at night, mostly badly.`,
+    },
+    {
+      "year": `2023`,
+      "text": `Started writing publicly about AI. Built the first small tool I actually used every day.`,
+    },
+    {
+      "year": `2024`,
+      "text": `Third book. Began assembling this site as one place for all of it rather than five places for none of it.`,
+    },
+    {
+      "year": `2025`,
+      "text": `Working on a longer photographic series and a fourth book about looking.`,
+    },
+  ],
+  "press": [
+    {
+      "quote": `[A real quote about the photographs — roughly this length, one line]`,
+      "source": `[Publication — year]`,
+    },
+    {
+      "quote": `[A real quote about the writing — roughly this length, one line]`,
+      "source": `[Reader or editor — year]`,
+    },
+    {
+      "quote": `[A real quote about the builds — roughly this length, one line]`,
+      "source": `[Publication — year]`,
+    },
+  ],
+  "excerpt": {
+    "book": `Okay, but Why?`,
+    "chapter": `Chapter one — a windowless sauna`,
+    "text": `We live in a world where it is easy to generate content, but hard to generate meaning. Anyone can fill a page with words, just like anyone can buy materials for a house.`,
+  },
   "imprint": {
     "footer": `<div class="shell">
     <div class="foot-inner">
@@ -493,7 +560,6 @@ window.COPY = {
       "kicker": `Legal — Imprint`,
     },
   },
-
   "privacy": {
     "footer": `<div class="shell">
     <div class="foot-inner">
@@ -626,7 +692,6 @@ window.COPY = {
       "kicker": `Legal — Privacy`,
     },
   },
-
   "terms": {
     "footer": `<div class="shell">
     <div class="foot-inner">
@@ -783,7 +848,6 @@ window.COPY = {
       "kicker": `Legal — Terms`,
     },
   },
-
   "404": {
     "footer": `<div class="shell">
     <div class="foot-inner">
@@ -841,49 +905,5 @@ window.COPY = {
       "h1": `This page doesn't exist.`,
       "kicker": `404 — Not found`,
     },
-  },
-
-  faq: [
-    {
-      q: "What paper do you print on?",
-      a: "Hahnemühle Photo Rag, 308gsm, matte — a cotton rag with a fine texture and no surface glare. The water series is printed on Photo Rag Baryta, which holds more depth in the blacks."
-    },
-    {
-      q: "How long until my print arrives?",
-      a: "Prints are made to order, not held in stock. Production takes 3–5 working days. Shipping is then 2–4 days within the EU and 5–12 days elsewhere. You get a tracking number as soon as the parcel leaves the lab."
-    },
-    {
-      q: "Do you ship outside the EU?",
-      a: "Yes, worldwide and tracked. Orders leaving the EU may attract import duty or VAT on arrival. That is charged by your customs authority and is not included in the price."
-    },
-    {
-      q: "Can I return a print?",
-      a: "Yes. Under EU consumer law you have 14 days from delivery to withdraw from the purchase. Email me, return the print in its original packaging, and I refund the price once it arrives — return shipping is at your cost. If a print arrives damaged, send a photograph and I reprint it at no charge."
-    },
-    {
-      q: "Do you sell framed prints?",
-      a: "Not yet. Framing is where most transit damage and cost happens, so I would rather you chose a local framer. Email me and I will happily advise on moulding and mount width for a particular print."
-    },
-    {
-      q: "Will the colours match my screen?",
-      a: "Closely, not exactly. Screens vary, and the print is made from an sRGB-profiled file on archival paper. If a print looks meaningfully different from the listing, tell me and I will reprint it."
-    }
-  ],
-  timeline: [
-    { year: "2019", text: "Bought a second-hand camera and started photographing the same mountain range every weekend." },
-    { year: "2021", text: "Sold the first prints. Wrote the first book, mostly at night, mostly badly." },
-    { year: "2023", text: "Started writing publicly about AI. Built the first small tool I actually used every day." },
-    { year: "2024", text: "Third book. Began assembling this site as one place for all of it rather than five places for none of it." },
-    { year: "2025", text: "Working on a longer photographic series and a fourth book about looking." }
-  ],
-  press: [
-    { quote: "[A real quote about the photographs — roughly this length, one line]", source: "[Publication — year]" },
-    { quote: "[A real quote about the writing — roughly this length, one line]", source: "[Reader or editor — year]" },
-    { quote: "[A real quote about the builds — roughly this length, one line]", source: "[Publication — year]" }
-  ],
-  excerpt: {
-    book: "Okay, but Why?",
-    chapter: "Chapter one — a windowless sauna",
-    text: "We live in a world where it is easy to generate content, but hard to generate meaning. Anyone can fill a page with words, just like anyone can buy materials for a house."
   },
 };
