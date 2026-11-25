@@ -19,10 +19,9 @@ window.COPY = {
     <div class="foot-inner">
       <div>
         <h4>Contact</h4>
-        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <a class="foot-mail" data-link="email" data-email>david94rose@gmail.com</a>
         <p class="muted" style="margin-top:1em;max-width:36ch">
-          Commissions, exhibitions and licensing on request. Prints and books ship
-          from the EU with tracking.
+          Prints, books, collaborations, or a conversation about the work.
         </p>
       </div>
       <div>
@@ -40,7 +39,7 @@ window.COPY = {
       </div>
     </div>
     <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
+      <span>© <span data-year>2026</span> David Rose</span>
       <span>
         <a href="imprint.html">Imprint</a> ·
         <a href="privacy.html">Privacy</a> ·
@@ -51,45 +50,48 @@ window.COPY = {
   <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>`,
     "newsletter": {
       "newsletter": `<div class="nl-copy">
-          <p class="label muted">Newsletter</p>
-          <h2 class="h2">Essays every other week.</h2>
-          <p class="muted" style="max-width:44ch">
-            Drafts of chapters before they become books, notes on what I'm reading,
-            and new prints before they are listed.
+          <p class="label muted">Updates</p>
+          <h2 class="h2">Follow the work directly.</h2>
+          <p class="muted" style="max-width:46ch">
+            <em>Okay, But Why?</em> and <em>You and [A]I</em> are drafted (with
+            <em>How to Restart</em> and the Canary Islands and HRP photobooks in
+            progress). Send an email if you'd like a note when they release, or
+            want to talk about a print or build.
           </p>
         </div>
-        <a class="btn btn--accent" data-link="substack" target="_blank" rel="noopener">Subscribe on Substack</a>`,
+        <a class="btn btn--accent" data-link="email">Get in touch</a>`,
     },
     "latest-photographs": {
-      "heading": `Three ways of making`,
-      "label": `Latest photographs`,
+      "heading": `Recent work`,
+      "label": `Selected — photography, writing, builds`,
     },
     "photographer-writer-bu": {
-      "cta": `See the photographs`,
-      "stats": `<div><span class="label muted">Based</span><span class="n">EU</span></div>
-        <div><span class="label muted">Working since</span><span class="n">2019</span></div>
-        <div><span class="label muted">Ships</span><span class="n">Worldwide</span></div>`,
+      "cta": `Explore the four worlds`,
+      "stats": `<div><span class="label muted">Based</span><span class="n">Europe</span></div>
+        <div><span class="label muted">Working on</span><span class="n">The trilogy · 2 photobooks</span></div>
+        <div><span class="label muted">Builds</span><span class="n">5 personal apps</span></div>`,
       "meta": `<div class="meta">
-            <div><span class="label muted">Prints</span><span class="v">9 available</span></div>
-            <div><span class="label muted">Books</span><span class="v">3 out now</span></div>
-            <div><span class="label muted">Photobooks</span><span class="v">2 titles</span></div>
-            <div><span class="label muted">Builds</span><span class="v">6 projects</span></div>
+            <div><span class="label muted">Photography</span><span class="v">Prints &amp; trip photobooks</span></div>
+            <div><span class="label muted">Writing</span><span class="v">The trilogy (3 books)</span></div>
+            <div><span class="label muted">AI builds</span><span class="v">5 local-first apps</span></div>
+            <div><span class="label muted">Contact</span><span class="v">Direct by email</span></div>
           </div>`,
-      "lede": `I photograph landscapes and quiet places, write about being human in a
-          machine-made world, and build small software with AI. Prints and
-          photobooks ship worldwide from the EU.`,
-      "h1": `Pictures, books, and things I built with a machine.`,
-      "kicker": `Photographer · Writer · Builder`,
+      "lede": `A personal home for the things I make and pay attention to — without flattening
+them into a single feed. Landscape and trip photography, a trilogy on how we judge
+worth and navigate change, and small software tools built to solve real problems
+in my own life.`,
+      "h1": `Photography, writing, and personal tools — under one roof.`,
+      "kicker": `Personal index — photography, writing, AI builds, and background`,
     },
   },
   "photography": {
     "footer": `<div class="shell">
     <div class="foot-inner">
       <div>
-        <h4>Questions before buying</h4>
-        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <h4>Prints &amp; inquiries</h4>
+        <a class="foot-mail" data-link="email" data-email>david94rose@gmail.com</a>
         <p class="muted" style="margin-top:1em;max-width:36ch">
-          Happy to send a paper sample or advise on size for a particular wall.
+          For prints, photobook updates, licensing, or a conversation about the photographs, email me.
         </p>
       </div>
       <div>
@@ -107,7 +109,7 @@ window.COPY = {
       </div>
     </div>
     <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
+      <span>© <span data-year>2026</span> David Rose</span>
       <span>
         <a href="imprint.html">Imprint</a> ·
         <a href="privacy.html">Privacy</a> ·
@@ -119,12 +121,12 @@ window.COPY = {
     "faq": {
       "aside": `Or just email me`,
       "heading": `Questions`,
-      "label": `Before you buy`,
+      "label": `Before you order`,
     },
     "photobooks": {
-      "aside": `Ships from the EU`,
+      "aside": `Canary Islands · Solo across the Pyrenees`,
       "heading": `Photobooks`,
-      "label": `Printed and bound`,
+      "label": `Trips in print`,
     },
     "prints": {
       "stats": `<div>
@@ -132,16 +134,16 @@ window.COPY = {
           <span class="n">Hahnemühle Photo Rag 308gsm</span>
         </div>
         <div>
-          <span class="label muted">Made to order</span>
-          <span class="n">Ships in 5–10 days</span>
+          <span class="label muted">Ordering</span>
+          <span class="n">Available by request</span>
         </div>
         <div>
           <span class="label muted">Shipping</span>
-          <span class="n">Flat rate, tracked</span>
+          <span class="n">Tracked, worldwide</span>
         </div>`,
-      "aside": `Paper, timings and shipping`,
+      "aside": `Paper, timings and ordering`,
       "heading": `How prints work`,
-      "label": `Available to buy`,
+      "label": `Prints by request`,
     },
     "artistic": {
       "aside": `Water and light`,
@@ -149,17 +151,18 @@ window.COPY = {
       "label": `Series 02`,
     },
     "landscape": {
-      "aside": `Field and weather`,
+      "aside": `Field, weather, and time on foot`,
       "heading": `Landscape`,
       "label": `Series 01`,
     },
     "01-photography": {
-      "lede": `Photography is a way of noticing. What makes a place feel alive —
-          light that lasts ten seconds, a room someone has just left, weather
-          rearranging a valley. Less a description of the world than a record of
-          standing in it and paying attention. Almost all of it is made on foot
-          and mostly waiting. The pictures are what's left of the looking.`,
-      "h1": `Landscapes and quiet places.`,
+      "lede": `Photography is how I slow down and pay attention — noticing what light and
+          weather do to a place rather than collecting a checklist of landmarks.
+          Most of this work comes from long days on foot, including trips across
+          the Canary Islands and a solo crossing of the Pyrenees done for the
+          experience itself, not an accolade. Selected prints are available by
+          request, with two printed photobooks in progress.`,
+      "h1": `What the light does to a place.`,
       "kicker": `01 — Photography`,
     },
   },
@@ -168,9 +171,9 @@ window.COPY = {
     <div class="foot-inner">
       <div>
         <h4>Say hello</h4>
-        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <a class="foot-mail" data-link="email" data-email>david94rose@gmail.com</a>
         <p class="muted" style="margin-top:1em;max-width:36ch">
-          Review copies for editors and booksellers on request.
+          For readers, editors, or a conversation about the trilogy, email me.
         </p>
       </div>
       <div>
@@ -188,7 +191,7 @@ window.COPY = {
       </div>
     </div>
     <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
+      <span>© <span data-year>2026</span> David Rose</span>
       <span>
         <a href="imprint.html">Imprint</a> ·
         <a href="privacy.html">Privacy</a> ·
@@ -199,32 +202,33 @@ window.COPY = {
   <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>`,
     "substack": {
       "newsletter": `<div class="nl-copy">
-          <p class="label muted">Serialised — Substack</p>
-          <h2 class="h2">Essays, every other week.</h2>
+          <p class="label muted">Early readers</p>
+          <h2 class="h2">Follow the release.</h2>
           <p class="muted" style="max-width:46ch">
-            Drafts of chapters before they become books, notes on what I'm reading,
-            and the occasional argument with myself about whether any of this is a
-            good idea. Free to read; paid subscribers get the archive.
+            <em>Okay, But Why?</em> and <em>You and [A]I</em> are complete drafts in
+            English and Spanish, and <em>How to Restart</em> is currently in the
+            blueprint stage. Email me if you want a note when the first editions go live.
           </p>
         </div>
-        <a class="btn btn--accent" data-link="substack" target="_blank" rel="noopener">Read on Substack</a>`,
+        <a class="btn btn--accent" data-link="email">Email me</a>`,
     },
     "books": {
-      "aside": `Delivered instantly via Gumroad`,
-      "heading": `The books`,
-      "label": `Ebooks`,
+      "aside": `Origin &amp; Effect → Cognitive Sovereignty → Inward Compass`,
+      "heading": `The trilogy`,
+      "label": `Three connected books`,
     },
     "02-writing": {
       "meta": `<div class="meta">
-            <div><span class="label muted">Books</span><span class="v">3</span></div>
-            <div><span class="label muted">Format</span><span class="v">PDF</span></div>
-            <div><span class="label muted">Delivery</span><span class="v">Instant</span></div>
-            <div><span class="label muted">Substack</span><span class="v">Free</span></div>
+            <div><span class="label muted">Book 01</span><span class="v">Okay, But Why? (Complete draft)</span></div>
+            <div><span class="label muted">Book 02</span><span class="v">You and [A]I (Complete draft)</span></div>
+            <div><span class="label muted">Book 03</span><span class="v">How to Restart (In progress)</span></div>
+            <div><span class="label muted">Languages</span><span class="v">English &amp; Spanish</span></div>
           </div>`,
-      "lede": `Three books about what changes when the answer becomes free — human value,
-          AI literacy, and the discipline of asking why. Published as ebooks,
-          serialised free on Substack.`,
-      "h1": `Being human in a machine-made world.`,
+      "lede": `Three connected books written from the seat of a curious generalist: how to
+          judge value when shortcuts erase visible effort, how to understand and steer
+          AI without surrendering your own mind, and how to use an inward compass when
+          old external rails stop deciding for you.`,
+      "h1": `Value, cognitive sovereignty, and an inward compass.`,
       "kicker": `02 — Writing`,
     },
   },
@@ -233,9 +237,9 @@ window.COPY = {
     <div class="foot-inner">
       <div>
         <h4>Work with me</h4>
-        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <a class="foot-mail" data-link="email" data-email>david94rose@gmail.com</a>
         <p class="muted" style="margin-top:1em;max-width:36ch">
-          Available for small builds, prototypes and advisory work.
+          Open to collaborating on focused prototypes, personal tools, or practical AI workflows.
         </p>
       </div>
       <div>
@@ -253,7 +257,7 @@ window.COPY = {
       </div>
     </div>
     <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
+      <span>© <span data-year>2026</span> David Rose</span>
       <span>
         <a href="imprint.html">Imprint</a> ·
         <a href="privacy.html">Privacy</a> ·
@@ -264,55 +268,61 @@ window.COPY = {
   <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>`,
     "now": {
       "body": `<p>
-            I'm interested in tools that do one thing and then get out of the way.
-            Most of what I build starts as a single afternoon's annoyance and ends as
-            a folder of static files.
+            Right now these five apps are in active use — supporting my language
+            study, multi-sport training, piano practice, book research, and audio
+            workflows. Each one started from a concrete annoyance in my own routine
+            and kept growing once it proved useful.
           </p>
           <p class="muted">
-            If you want something similar built, or want a second opinion on a
-            prototype, email me. I take on a few small projects a year.
+            If you have a focused workflow or prototype you want to think through
+            or build together, send an email. I'm open to selective collaborations
+            where the problem is clear.
           </p>
           <p style="margin-top:1.2em">
             <a class="btn btn--solid" data-link="email">Start a conversation</a>
           </p>`,
-      "aside": `Updated when it changes`,
+      "aside": `In active use`,
       "heading": `What I'm working on`,
       "label": `Right now`,
     },
     "approach": {
       "body": `<p>
-            Build the smallest version that runs. Look at it, decide what's wrong,
-            repeat. Most of the work is the deciding, which is why the notes matter
-            more than the prompts.
+            I don't treat AI as a futuristic spectacle or a substitute for thinking.
+            It is an augmentation of the skills and interests I already have — a way
+            to move from a clear problem to a working local tool without needing a
+            team or settling for rigid off-the-shelf software.
           </p>
           <p>
-            The through-line is local-first. Every tool here runs on the machine beside
-            me — no accounts, no uploads, no API bills, and no audio or text leaving the
-            room. Nothing is hosted and nothing phones home.
+            The curiosity comes first, not the technology. Every app here began with
+            something I genuinely wanted to do better in daily life: learning
+            languages on my own terms, seeing training progress across sports,
+            practicing piano without a subscription, researching my books, and
+            automating audio workflows.
           </p>
           <p class="muted">
-            This website is the simplest example: hand-written HTML, CSS and vanilla
-            JavaScript, a 12-column grid, four colour-coded worlds, no framework, no
-            build step.
+            Everything runs locally on my own computer — SQLite, Parquet, local
+            speech and transcription models, plain web interfaces. No accounts, no
+            forced subscriptions, and full control over the data.
           </p>`,
-      "heading": `Describe it precisely enough that it could exist.`,
+      "heading": `Curiosity sets the direction. The tools amplify the reach.`,
     },
     "projects": {
-      "aside": `Built with AI, refined by hand`,
-      "heading": `Projects`,
-      "label": `Selected`,
+      "aside": `Click any app for the full write-up`,
+      "heading": `Selected builds`,
+      "label": `Five working apps`,
     },
     "03-ai-builds": {
       "meta": `<div class="meta">
-            <div><span class="label muted">Projects</span><span class="v">6</span></div>
-            <div><span class="label muted">Stack</span><span class="v">Python + web</span></div>
-            <div><span class="label muted">Runs</span><span class="v">On my machine</span></div>
-            <div><span class="label muted">Accounts</span><span class="v">None</span></div>
+            <div><span class="label muted">Featured</span><span class="v">5 working apps</span></div>
+            <div><span class="label muted">Architecture</span><span class="v">Local-first · SQLite + web</span></div>
+            <div><span class="label muted">Purpose</span><span class="v">Personal tools, daily use</span></div>
+            <div><span class="label muted">Collaboration</span><span class="v">Open to focused builds</span></div>
           </div>`,
-      "lede": `I came to this through engineering, which turns out to be the useful part —
-          most of the work is deciding precisely what the thing should do, not typing
-          it. These are tools I wanted to exist.`,
-      "h1": `Making software with a machine in the room.`,
+      "lede": `Small, practical software built to solve specific problems in my own life.
+          My background in engineering taught me to see the shape of a system; AI
+          augments what I can build from there — without ever steering what I care
+          about or why I make it.`,
+      "h1": `Personal tools, built for real use.`,
       "kicker": `03 — AI builds`,
     },
   },
@@ -321,9 +331,9 @@ window.COPY = {
     <div class="foot-inner">
       <div>
         <h4>Contact</h4>
-        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <a class="foot-mail" data-link="email" data-email>david94rose@gmail.com</a>
         <p class="muted" style="margin-top:1em;max-width:36ch">
-          I answer everything, usually within two days.
+          I read everything and usually reply within a couple of days.
         </p>
       </div>
       <div>
@@ -341,7 +351,7 @@ window.COPY = {
       </div>
     </div>
     <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
+      <span>© <span data-year>2026</span> David Rose</span>
       <span>
         <a href="imprint.html">Imprint</a> ·
         <a href="privacy.html">Privacy</a> ·
@@ -351,43 +361,44 @@ window.COPY = {
   </div>
   <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>`,
     "details": {
-      "heading": `The short version`,
+      "heading": `At a glance`,
       "label": `Details`,
     },
     "sec2": {
       "body": `<p>
-            I started with a camera and no plan, spent several years photographing the
-            same range of mountains in different weather, and discovered that the
-            interesting part was never the summit — it was the waiting. That turned
-            into the general shape of everything since: long attention, small
-            observations, and a stubborn preference for doing things by hand where
-            handwork still produces something better.
+            My background is in engineering and aerospace planning, which mostly trained
+            one stubborn habit: looking underneath how things work to see where the real
+            friction sits.
           </p>
           <p>
-            The writing came out of the same instinct. When generative tools arrived,
-            the question that interested me wasn't what they could do but what we'd
-            stop doing. Three books later I'm still circling it.
+            Outside of that, I've never been great at staying inside one lane. Most of
+            what sits on this site started the same way, by getting curious enough about
+            something to pull it apart myself: a photography project, a piece of
+            software, a physical goal, a language, or a question that turned into a
+            book. The internet keeps nudging everyone to pick a narrow label and repeat
+            it. I'd rather let the work sit in the same room and speak for itself.
           </p>
           <p>
-            The builds came out of an engineering background — mostly the habit of
-            describing a thing precisely enough that it can be made, then making it.
-            This website is the most complete example.
+            I publish essays and books, print photobooks, and build small custom
+            software tools. I also work selectively with people and teams on writing,
+            creative direction, photography, and practical AI or software builds.
           </p>
           <p class="muted">
-            Prints and photobooks are made to order in the EU and shipped worldwide.
-            Commissions, exhibitions and licensing are welcome.
+            If something on this site caught your eye and you want to talk, collaborate,
+            or hire me for something worth making, reach out.
           </p>`,
     },
     "04-about": {
       "meta": `<div class="meta">
-            <div><span class="label muted">Based</span><span class="v">European Union</span></div>
-            <div><span class="label muted">Working since</span><span class="v">2019</span></div>
-            <div><span class="label muted">Books</span><span class="v">3 published</span></div>
-            <div><span class="label muted">Available for</span><span class="v">Commissions</span></div>
+            <div><span class="label muted">Based</span><span class="v">Europe</span></div>
+            <div><span class="label muted">Background</span><span class="v">Engineering · aerospace · coaching</span></div>
+            <div><span class="label muted">Current focus</span><span class="v">Trilogy · photobooks · personal apps</span></div>
+            <div><span class="label muted">Open to</span><span class="v">Prints · writing · build collaborations</span></div>
           </div>`,
-      "lede": `Photographer, writer, and someone who builds with AI. Based in the EU,
-          working everywhere.`,
-      "h1": `I make things, then write about making them.`,
+      "lede": `I'm David — trained as a manufacturing engineer, worked in aerospace planning,
+          and taught myself software, photography, and languages along the way. I have
+          a wide set of interests and built this site as an honest home for all of them.`,
+      "h1": `Curiosity, attention, and making things that last.`,
       "kicker": `04 — About`,
     },
   },
@@ -419,24 +430,24 @@ window.COPY = {
   ],
   "timeline": [
     {
-      "year": `2019`,
-      "text": `Bought a second-hand camera and started photographing the same mountain range every weekend.`,
+      "year": `Engineering`,
+      "text": `Studied materials and manufacturing engineering; worked as a planner in aerospace.`,
     },
     {
-      "year": `2021`,
-      "text": `Sold the first prints. Wrote the first book, mostly at night, mostly badly.`,
+      "year": `Self-taught`,
+      "text": `Left aerospace; taught myself software development, photography, and a second language.`,
     },
     {
-      "year": `2023`,
-      "text": `Started writing publicly about AI. Built the first small tool I actually used every day.`,
+      "year": `Coaching`,
+      "text": `Spent time in training and coaching — helping people see systems and progress clearly.`,
     },
     {
-      "year": `2024`,
-      "text": `Third book. Began assembling this site as one place for all of it rather than five places for none of it.`,
+      "year": `Writing`,
+      "text": `Drafted Okay, But Why? and You and [A]I (English & Spanish), with How to Restart in progress.`,
     },
     {
-      "year": `2025`,
-      "text": `Working on a longer photographic series and a fourth book about looking.`,
+      "year": `Now`,
+      "text": `Finishing the trilogy, building personal AI tools, and turning trips across the Canary Islands and the Pyrenees into photobooks.`,
     },
   ],
   "press": [
@@ -454,16 +465,16 @@ window.COPY = {
     },
   ],
   "excerpt": {
-    "book": `Okay, but Why?`,
-    "chapter": `Chapter one — a windowless sauna`,
-    "text": `We live in a world where it is easy to generate content, but hard to generate meaning. Anyone can fill a page with words, just like anyone can buy materials for a house.`,
+    "book": `Okay, But Why?`,
+    "chapter": `Chapter 5 — The Price Remembers the Old Work`,
+    "text": `AI didn't break higher education. It simply walked into a system that treated finished outputs as proof of understanding and blew the cover right off it.`,
   },
   "imprint": {
     "footer": `<div class="shell">
     <div class="foot-inner">
       <div>
         <h4>Contact</h4>
-        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <a class="foot-mail" data-link="email" data-email>david94rose@gmail.com</a>
         <p class="muted" style="margin-top:1em;max-width:36ch">
           Postal address as above. Email is the fastest route.
         </p>
@@ -487,7 +498,7 @@ window.COPY = {
       </div>
     </div>
     <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
+      <span>© <span data-year>2026</span> David Rose</span>
       <span>
         <a href="imprint.html">Imprint</a> ·
         <a href="privacy.html">Privacy</a> ·
@@ -544,7 +555,7 @@ window.COPY = {
           </p>
 
           <p>
-            Email: <a data-link="email" style="border-bottom:1px solid var(--rule)"><span data-legal="email">hello@yourname.com</span></a><br>
+            Email: <a data-link="email" style="border-bottom:1px solid var(--rule)"><span data-legal="email">david94rose@gmail.com</span></a><br>
             Telephone: <span data-legal="phone">+00 000 000 000</span>
           </p>
 
@@ -565,7 +576,7 @@ window.COPY = {
     <div class="foot-inner">
       <div>
         <h4>Contact</h4>
-        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <a class="foot-mail" data-link="email" data-email>david94rose@gmail.com</a>
         <p class="muted" style="margin-top:1em;max-width:36ch">
           For any question about your data, including deletion requests.
         </p>
@@ -589,7 +600,7 @@ window.COPY = {
       </div>
     </div>
     <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
+      <span>© <span data-year>2026</span> David Rose</span>
       <span>
         <a href="imprint.html">Imprint</a> ·
         <a href="privacy.html">Privacy</a> ·
@@ -606,7 +617,7 @@ window.COPY = {
             time.
           </p>
           <p>
-            Email <span data-legal="email">hello@yourname.com</span> and I will respond
+            Email <span data-legal="email">david94rose@gmail.com</span> and I will respond
             within one month. If you believe your data has been handled unlawfully, you
             can complain to the data protection supervisory authority in your country
             of residence.
@@ -627,9 +638,7 @@ window.COPY = {
           <p>
             This site currently loads its two typefaces from <strong>Google Fonts</strong>,
             which means your IP address is transmitted to Google when a page loads.
-            If you are in the EU and this concerns you, it is worth noting: those fonts
-            can be self-hosted instead, and the stylesheet is already written for that
-            — it is a one-line change documented in the site's README.
+            No cookies or advertising trackers are set by this site.
           </p>
           <p class="muted">
             This site sets no cookies of its own. Stripe and Gumroad may set cookies
@@ -677,7 +686,7 @@ window.COPY = {
             <span data-legal="street">[street and number]</span>,
             <span data-legal="city">[postcode] [city]</span>,
             <span data-legal="country">[country]</span>.
-            Email: <span data-legal="email">hello@yourname.com</span>.
+            Email: <span data-legal="email">david94rose@gmail.com</span>.
           </p>
           <p class="muted">
             This site is a set of static files. It has no login, no comment section,
@@ -697,7 +706,7 @@ window.COPY = {
     <div class="foot-inner">
       <div>
         <h4>Questions about an order</h4>
-        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <a class="foot-mail" data-link="email" data-email>david94rose@gmail.com</a>
         <p class="muted" style="margin-top:1em;max-width:36ch">
           Include your order number if you have one.
         </p>
@@ -721,7 +730,7 @@ window.COPY = {
       </div>
     </div>
     <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
+      <span>© <span data-year>2026</span> David Rose</span>
       <span>
         <a href="imprint.html">Imprint</a> ·
         <a href="privacy.html">Privacy</a> ·
@@ -761,7 +770,7 @@ window.COPY = {
             To <span data-legal="owner">David Rose</span>,
             <span data-legal="street">[street and number]</span>,
             <span data-legal="city">[postcode] [city]</span>,
-            <span data-legal="email">hello@yourname.com</span>:<br><br>
+            <span data-legal="email">david94rose@gmail.com</span>:<br><br>
             I hereby give notice that I withdraw from my contract of sale of the
             following goods:<br><br>
             Ordered on / received on: ____________________<br>
@@ -781,7 +790,7 @@ window.COPY = {
           </p>
           <p>
             To exercise it, email
-            <span data-legal="email">hello@yourname.com</span> with a clear statement
+            <span data-legal="email">david94rose@gmail.com</span> with a clear statement
             that you are withdrawing — for example the model form below. You may also
             use the model withdrawal form published in the Annex to Directive
             2011/83/EU.
@@ -853,7 +862,7 @@ window.COPY = {
     <div class="foot-inner">
       <div>
         <h4>Contact</h4>
-        <a class="foot-mail" data-link="email" data-email>hello@yourname.com</a>
+        <a class="foot-mail" data-link="email" data-email>david94rose@gmail.com</a>
         <p class="muted" style="margin-top:1em;max-width:36ch">
           If you followed a link from somewhere and it broke, tell me and I'll fix it.
         </p>
@@ -874,7 +883,7 @@ window.COPY = {
       </div>
     </div>
     <div class="foot-base">
-      <span>© <span data-year>2025</span> David Rose</span>
+      <span>© <span data-year>2026</span> David Rose</span>
       <span>
         <a href="imprint.html">Imprint</a> ·
         <a href="privacy.html">Privacy</a> ·

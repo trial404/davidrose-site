@@ -51,6 +51,10 @@
     return worlds.length ? worlds[0].color : "var(--blue)";
   }
 
+  function worldInkOn(id) {
+    return id === "about" ? "#090908" : "#ffffff";
+  }
+
   /* ---------- 1. nav ---------- */
 
   function buildNav() {
@@ -61,16 +65,21 @@
       var a = el("a");
       a.href = w.href;
       a.style.setProperty("--c", w.color);
+      a.style.setProperty("--ink-on", worldInkOn(w.id));
       a.dataset.world = w.id;
-      a.innerHTML = '<span class="num">' + esc(w.num) + "</span>" + esc(w.name);
+      var label = '<span class="num">' + esc(w.num) + "</span>" + esc(w.name);
+      a.innerHTML =
+        '<span class="roll-inner">' +
+          '<span class="roll-face">' + label + "</span>" +
+          '<span class="roll-face roll-face--alt" aria-hidden="true">' + label + "</span>" +
+        "</span>";
       if (w.id === currentPage) a.setAttribute("aria-current", "page");
       mount.appendChild(a);
     });
   }
 
-  /* ---------- 2. page transition veil ----------
-     The veil travels upward across every navigation: it rises over the old
-     page, then keeps going up off the new one. One continuous motion. */
+  /* ---------- 2. rounded cotton-paper veil transition ----------
+     Weighted accel-decel S-curve sheet gliding cleanly across the studio table. */
 
   var veil = null;
 
@@ -80,12 +89,19 @@
 
     veil.style.background = worldColor(currentPage);
     veil.style.transition = "none";
-    veil.style.transform = "translateY(0)";
+    veil.style.opacity = "1";
+    veil.style.borderRadius = "0px";
+    veil.style.transform = "translate3d(0, 0, 0) scale(1)";
 
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        veil.style.transition = "transform .62s cubic-bezier(.22,1,.36,1)";
-        veil.style.transform = "translateY(-101%)";
+        veil.style.transition =
+          "transform .56s cubic-bezier(.65, 0, .35, 1), border-radius .56s cubic-bezier(.65, 0, .35, 1)";
+        veil.style.borderRadius = "48px";
+        veil.style.transform = "translate3d(0, -118vh, 0) scale(.96)";
+        window.setTimeout(function () {
+          veil.style.opacity = "0";
+        }, 580);
       });
     });
 
@@ -117,12 +133,22 @@
     var target = a.dataset.world || urlToWorld(url.pathname);
 
     veil.style.background = worldColor(target);
-    veil.style.transition = "transform .52s cubic-bezier(.22,1,.36,1)";
-    veil.style.transform = "translateY(0)";
+    veil.style.transition = "none";
+    veil.style.opacity = "1";
+    veil.style.borderRadius = "48px";
+    veil.style.transform = "translate3d(0, 118vh, 0) scale(.96)";
 
-    window.setTimeout(function () {
-      location.href = url.href;
-    }, 520);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        veil.style.transition =
+          "transform .44s cubic-bezier(.65, 0, .35, 1), border-radius .44s cubic-bezier(.65, 0, .35, 1)";
+        veil.style.borderRadius = "0px";
+        veil.style.transform = "translate3d(0, 0, 0) scale(1)";
+        window.setTimeout(function () {
+          location.href = url.href;
+        }, 440);
+      });
+    });
   }
 
   function urlToWorld(pathname) {
@@ -194,9 +220,24 @@
       if (dimsOut) dimsOut.textContent = s.cm + "  ·  " + s.inches;
       if (buyBtn) {
         var live = s.link && s.link !== "#";
-        buyBtn.href = live ? s.link : "#";
-        buyBtn.textContent = live ? "Add to basket" : "Not on sale yet";
-        buyBtn.setAttribute("aria-disabled", live ? "false" : "true");
+        if (live) {
+          buyBtn.href = s.link;
+          buyBtn.textContent = "Buy print";
+          buyBtn.setAttribute("aria-disabled", "false");
+          buyBtn.setAttribute("target", "_blank");
+          buyBtn.setAttribute("rel", "noopener");
+        } else if (L.email) {
+          var subj = encodeURIComponent("Print inquiry — " + print.title + " (" + s.cm + ")");
+          buyBtn.href = "mailto:" + L.email + "?subject=" + subj;
+          buyBtn.textContent = "Inquire about this print";
+          buyBtn.setAttribute("aria-disabled", "false");
+          buyBtn.removeAttribute("target");
+          buyBtn.removeAttribute("rel");
+        } else {
+          buyBtn.href = "#";
+          buyBtn.textContent = "Available by request";
+          buyBtn.setAttribute("aria-disabled", "true");
+        }
       }
     }
 
@@ -307,7 +348,14 @@
 
   function initBrand() {
     Array.prototype.slice.call(document.querySelectorAll("[data-brand]")).forEach(function (n) {
-      n.textContent = D.name || "David Rose";
+      var name = D.name || "David Rose";
+      if (n.classList && n.classList.contains("brand")) {
+        n.innerHTML =
+          '<span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>' +
+          esc(name);
+      } else {
+        n.textContent = name;
+      }
     });
     Array.prototype.slice.call(document.querySelectorAll("[data-role]")).forEach(function (n) {
       n.textContent = D.role || "";
@@ -320,10 +368,10 @@
   }
 
   /* ---------- 7. renderers ----------
-     Each list on the site is drawn from data.js. If a mount point isn't on the
+     Each list on the site is drawn from media.js. If a mount point isn't on the
      page, the renderer does nothing. */
 
-  function imgOrLabel(item, cls) {
+  function imgOrLabel(item) {
     if (item.image) {
       return '<img src="' + esc(item.image) + '" alt="' + esc(item.title || item.label || "") + '" loading="lazy">';
     }
@@ -335,23 +383,85 @@
     if (!mount || !D.worlds) return;
 
     mount.innerHTML = D.worlds.map(function (w) {
-      var tiles = (w.previews || []).map(function (p) {
-        return '<span class="tile">' + imgOrLabel(p) + "</span>";
+      var isYellow = w.id === "about";
+      var inkOn = isYellow ? "#090908" : "#ffffff";
+      var inkOnSoft = isYellow ? "rgba(9,9,8,.76)" : "rgba(255,255,255,.86)";
+      var ruleOn = isYellow ? "rgba(9,9,8,.22)" : "rgba(255,255,255,.28)";
+      var isBooks = w.id === "writing";
+
+      var previews = (w.previews || []).filter(function (p) { return p.image; }).slice(0, 2);
+      var plates = previews.map(function (p) {
+        return (
+          '<span class="inner-plate' + (isBooks ? " inner-plate--book" : "") + '">' +
+            '<span class="ip-img">' + imgOrLabel(p) + "</span>" +
+            '<span class="ip-cap">' + esc(p.label || "") + "</span>" +
+          "</span>"
+        );
       }).join("");
 
       return (
-        '<a class="world-row reveal" style="--c:' + esc(w.color) + '" ' +
+        '<a class="folio reveal" style="--c:' + esc(w.color) +
+          "; --ink-on:" + inkOn +
+          "; --ink-on-soft:" + inkOnSoft +
+          "; --rule-on:" + ruleOn + '" ' +
           'href="' + esc(w.href) + '" data-world="' + esc(w.id) + '">' +
-          '<span class="wr-num">' + esc(w.num) + "</span>" +
-          '<span class="wr-name">' + esc(w.name) +
-            '<em class="wr-count">' + esc(w.count || "") + "</em>" +
+          '<span class="folio-pigment-wash" aria-hidden="true"></span>' +
+          '<span class="folio-grain" aria-hidden="true"></span>' +
+          '<span class="folio-sheen" aria-hidden="true"></span>' +
+          '<span class="folio-content">' +
+            '<span class="folio-top">' +
+              '<span class="folio-badge">' + esc(w.num) + " — " + esc(w.name) + "</span>" +
+              '<span class="folio-count">' + esc(w.count || "") + "</span>" +
+            "</span>" +
+            '<span class="folio-head">' +
+              '<span class="folio-title">' + esc(w.name) + "</span>" +
+              '<span class="folio-blurb">' + esc(w.blurb) + "</span>" +
+            "</span>" +
+            '<span class="folio-plates">' + plates + "</span>" +
+            '<span class="folio-foot">' +
+              "<span>" + esc(w.cta || ("Enter " + w.name)) + "</span>" +
+              '<span aria-hidden="true">→</span>' +
+            "</span>" +
           "</span>" +
-          '<span class="wr-blurb">' + esc(w.blurb) + "</span>" +
-          '<span class="wr-previews">' + tiles + "</span>" +
-          '<span class="wr-cta" aria-hidden="true">→</span>' +
         "</a>"
       );
     }).join("");
+
+    /* weighted smooth 3D tilt + moving paper sheen */
+    Array.prototype.forEach.call(mount.querySelectorAll(".folio"), function (card) {
+      var curRx = 0, curRy = 0, tgtRx = 0, tgtRy = 0, active = false;
+
+      function animateTilt() {
+        curRx += (tgtRx - curRx) * 0.08;
+        curRy += (tgtRy - curRy) * 0.08;
+        card.style.setProperty("--rx", curRx.toFixed(2) + "deg");
+        card.style.setProperty("--ry", curRy.toFixed(2) + "deg");
+        if (active || Math.abs(tgtRx - curRx) > 0.02 || Math.abs(tgtRy - curRy) > 0.02) {
+          requestAnimationFrame(animateTilt);
+        }
+      }
+
+      card.addEventListener("mouseenter", function () {
+        if (reduceMotion) return;
+        if (!active) { active = true; requestAnimationFrame(animateTilt); }
+      });
+      card.addEventListener("mousemove", function (e) {
+        if (reduceMotion) return;
+        var rect = card.getBoundingClientRect();
+        var px = (e.clientX - rect.left) / rect.width;
+        var py = (e.clientY - rect.top) / rect.height;
+        tgtRx = (0.5 - py) * 4.4;
+        tgtRy = (px - 0.5) * 4.4;
+        card.style.setProperty("--mx", (px * 100).toFixed(1) + "%");
+        card.style.setProperty("--my", (py * 100).toFixed(1) + "%");
+      });
+      card.addEventListener("mouseleave", function () {
+        active = false;
+        tgtRx = 0;
+        tgtRy = 0;
+        requestAnimationFrame(animateTilt);
+      });
+    });
   }
 
   /* ---------- 7b. gallery: tabs, collections, lightbox ----------
@@ -435,10 +545,10 @@
 
     var section = document.querySelector("[data-gallery-section]");
     if (section) {
-      /* the accent used by the active tab and the photo hover: the series' own
-         colour, except the shop, whose colour is paper and would disappear */
-      section.style.setProperty("--tint",
-        s.color === "var(--paper)" ? (s.contrast || "var(--yellow)") : s.color);
+      var tint = s.color === "var(--paper)" ? (s.contrast || "var(--yellow)") : s.color;
+      var tintInk = tint === "var(--yellow)" ? "#090908" : "#ffffff";
+      section.style.setProperty("--tint", tint);
+      section.style.setProperty("--tint-ink", tintInk);
       section.style.setProperty("--contrast", s.contrast || "var(--ink-hard)");
     }
 
@@ -505,8 +615,24 @@
   }
 
   var lightbox = null;
+  var lightboxList = [];
+  var lightboxIdx = -1;
+  var lightboxLastFocus = null;
 
-  function openLightbox(id) {
+  function cleanField(v) {
+    if (!v) return "";
+    var s = String(v).trim();
+    if (/^\[.*\]$/.test(s)) return "";
+    return s;
+  }
+
+  function findPrint(id) {
+    var list = D.prints || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+
+  function renderLightboxItem(id) {
     var p = findPhoto(id);
     if (!p || !lightbox) return;
 
@@ -520,17 +646,64 @@
     function put(sel, value) {
       var node = lightbox.querySelector(sel);
       if (!node) return;
-      node.textContent = value || "";
+      var clean = cleanField(value);
+      node.textContent = clean;
       var row = node.closest ? node.closest("div") : null;
-      if (row) row.style.display = value ? "" : "none";
+      if (row && row.parentElement && row.parentElement.classList.contains("lightbox-facts")) {
+        row.style.display = clean ? "" : "none";
+      }
     }
 
     put("[data-lightbox-title]", p.title);
     put("[data-lightbox-location]", p.location);
     put("[data-lightbox-date]", p.date);
     put("[data-lightbox-desc]", p.description);
+
+    var posOut = lightbox.querySelector("[data-lightbox-pos]");
+    if (posOut) {
+      posOut.textContent = lightboxList.length > 1
+        ? String(lightboxIdx + 1).padStart(2, "0") + " / " + String(lightboxList.length).padStart(2, "0")
+        : "";
+    }
+
+    var prevBtn = lightbox.querySelector("[data-lightbox-prev]");
+    var nextBtn = lightbox.querySelector("[data-lightbox-next]");
+    if (prevBtn) prevBtn.hidden = lightboxList.length <= 1;
+    if (nextBtn) nextBtn.hidden = lightboxList.length <= 1;
+
+    var printBtn = lightbox.querySelector("[data-lightbox-print]");
+    if (printBtn) {
+      var hasPrint = !!findPrint(p.id);
+      printBtn.hidden = !hasPrint;
+      printBtn.dataset.printId = hasPrint ? p.id : "";
+    }
+  }
+
+  function openLightbox(id) {
+    var p = findPhoto(id);
+    if (!p || !lightbox) return;
+
+    lightboxLastFocus = document.activeElement;
+    var buttons = Array.prototype.slice.call(document.querySelectorAll("[data-gallery] [data-photo]"));
+    lightboxList = buttons.map(function (b) { return b.dataset.photo; }).filter(function (v, idx, arr) {
+      return arr.indexOf(v) === idx;
+    });
+    lightboxIdx = lightboxList.indexOf(id);
+    if (lightboxIdx === -1) {
+      lightboxList = [id];
+      lightboxIdx = 0;
+    }
+
+    renderLightboxItem(id);
+
     if (typeof lightbox.showModal === "function") lightbox.showModal();
     else lightbox.setAttribute("open", "");
+  }
+
+  function stepLightbox(delta) {
+    if (!lightbox || !lightbox.open || lightboxList.length <= 1) return;
+    lightboxIdx = (lightboxIdx + delta + lightboxList.length) % lightboxList.length;
+    renderLightboxItem(lightboxList[lightboxIdx]);
   }
 
   function initLightbox() {
@@ -550,9 +723,44 @@
       if (e.target === lightbox && lightbox.open) lightbox.close();
     });
 
+    lightbox.addEventListener("close", function () {
+      if (lightboxLastFocus && lightboxLastFocus.focus) lightboxLastFocus.focus();
+    });
+
     var close = lightbox.querySelector(".lightbox-close");
     if (close) close.addEventListener("click", function () {
       if (lightbox.open) lightbox.close();
+    });
+
+    var prevBtn = lightbox.querySelector("[data-lightbox-prev]");
+    if (prevBtn) prevBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      stepLightbox(-1);
+    });
+
+    var nextBtn = lightbox.querySelector("[data-lightbox-next]");
+    if (nextBtn) nextBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      stepLightbox(1);
+    });
+
+    var printBtn = lightbox.querySelector("[data-lightbox-print]");
+    if (printBtn) printBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var pid = printBtn.dataset.printId;
+      if (lightbox.open) lightbox.close();
+      if (pid) openPanel(pid);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (!lightbox || !lightbox.open) return;
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        stepLightbox(-1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        stepLightbox(1);
+      }
     });
   }
 
@@ -568,25 +776,48 @@
     if (!mount || !list) return;
 
     mount.innerHTML = list.map(function (b, i) {
-      var cover = b.cover
+      var hasCover = !!b.cover;
+      var cover = hasCover
         ? '<img src="' + esc(b.cover) + '" alt="' + esc(b.title) + '" loading="lazy">'
-        : "";
+        : '<span class="cv-num">' + String(i + 1).padStart(2, "0") + "</span>" +
+          '<span class="cv-ttl">' + esc(b.title) + "</span>";
+      var actionsHTML = "";
+      if (b.links && b.links.length) {
+        actionsHTML =
+          '<div class="book-actions">' +
+            b.links.map(function (item) {
+              var ext = String(item.url || "").charAt(0) === "h";
+              return (
+                '<a class="btn btn--wide" href="' + esc(item.url) + '"' +
+                  (ext ? ' target="_blank" rel="noopener"' : "") +
+                  ">" + esc(item.label) + "</a>"
+              );
+            }).join("") +
+          "</div>";
+      } else {
+        var live = b.link && b.link !== "#";
+        var href = live
+          ? b.link
+          : (L.email ? "mailto:" + L.email + "?subject=" + encodeURIComponent("Release note — " + b.title) : "#");
+        var ctaLabel = live ? "Read the book" : (L.email ? "Ask for a release note" : "In progress");
+        var disabled = !live && !L.email;
+        actionsHTML =
+          '<a class="btn btn--wide" href="' + esc(href) + '"' +
+            ' aria-disabled="' + (disabled ? "true" : "false") + '"' +
+            (live && String(b.link || "").charAt(0) === "h" ? ' target="_blank" rel="noopener"' : "") +
+            ">" + esc(ctaLabel) + "</a>";
+      }
       return (
         '<article class="book reveal" style="--c:' + esc(b.color || "var(--yellow)") + '">' +
-          '<div class="cover">' +
-            '<span class="cv-num">' + String(i + 1).padStart(2, "0") + "</span>" +
+          '<div class="cover' + (hasCover ? " cover--img" : "") + '">' +
             cover +
-            '<span class="cv-ttl">' + esc(b.title) + "</span>" +
           "</div>" +
           '<div class="book-meta">' +
             '<h3 class="h3">' + esc(b.title) + "</h3>" +
             '<p class="muted">' + esc(b.subtitle || "") + "</p>" +
             "<p>" + esc(b.blurb || "") + "</p>" +
             '<p class="sub"><span>' + esc(b.format || "") + "</span><span>" + esc(b.price || "") + "</span></p>" +
-            '<a class="btn btn--wide" href="' + esc(b.link || "#") + '"' +
-              ' aria-disabled="' + (b.link && b.link !== "#" ? "false" : "true") + '"' +
-              (String(b.link || "").charAt(0) === "h" ? ' target="_blank" rel="noopener"' : "") +
-              ">" + (b.link && b.link !== "#" ? "Buy the ebook" : "Not on sale yet") + "</a>" +
+            actionsHTML +
           "</div>" +
         "</article>"
       );
@@ -601,17 +832,21 @@
       var tags = (p.tags || []).map(function (t) {
         return '<span class="tag">' + esc(t) + "</span>";
       }).join("");
+      var thumb = p.image
+        ? '<span class="pthumb"><img src="' + esc(p.image) + '" alt="" loading="lazy" decoding="async"></span>'
+        : "";
       var inner =
         '<span class="pidx">' + String(i + 1).padStart(2, "0") + "</span>" +
-        '<span class="pttl">' + esc(p.title) + "</span>" +
-        '<span class="pdesc">' + esc(p.desc) + "</span>" +
+        thumb +
+        '<span class="pbody">' +
+          '<span class="pttl">' + esc(p.title) + "</span>" +
+          '<span class="pdesc">' + esc(p.desc) + "</span>" +
+        "</span>" +
         '<span class="ptags">' + tags + "</span>";
-
-      inner += '<span class="popen" aria-hidden="true">+</span>';
 
       return (
         '<button class="project reveal" type="button" data-open-project="' + esc(p.id) + '" ' +
-          'aria-label="' + esc(p.title) + " — open the full write-up" + '">' +
+          'aria-label="' + esc(p.title) + " — open screenshot and write-up" + '">' +
           inner +
         "</button>"
       );
@@ -622,7 +857,7 @@
     var track = document.querySelector("[data-ticker]");
     if (!track || !D.worlds) return;
     var words = D.worlds.map(function (w) { return esc(w.name); });
-    words.push("Prints", "Photobooks", "Essays", "Experiments", "Available now");
+    words.push("The trilogy", "Canary Islands", "Pyrenees HRP", "5 personal apps", "Prints by request");
     track.innerHTML = words.map(function (w) { return "<span>" + w + "</span>"; }).join("");
   }
 
@@ -680,27 +915,24 @@
     var mount = document.querySelector("[data-feature]");
     if (!mount || !D.prints) return;
 
-    var p = D.prints.filter(function (x) { return x.id === D.featuredPrintId; })[0] || D.prints[0];
-    if (!p) return;
+    var picks = (D.prints || []).slice(0, 5);
+    if (!picks.length) return;
 
-    var from = p.sizes && p.sizes.length ? p.sizes[0].price : "";
-    var img = p.image
-      ? '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '">'
-      : '<span class="tl">' + esc(p.title) + "</span>";
-
-    mount.innerHTML =
-      '<div class="feature-shot">' + img + "</div>" +
-      '<div class="feature-copy">' +
-        '<p class="label muted">Featured print — ' + esc(p.series || "") + "</p>" +
-        '<h2 class="h2">' + esc(p.title) + "</h2>" +
-        '<p class="muted">' + esc(p.description || "") + "</p>" +
-        '<dl class="facts" style="width:100%">' +
-          "<div><dt class=\"label muted\">From</dt><dd>" + esc(from) + "</dd></div>" +
-          "<div><dt class=\"label muted\">Paper</dt><dd>" + esc(p.paper || "") + "</dd></div>" +
-          "<div><dt class=\"label muted\">Delivery</dt><dd>" + esc(p.delivery || "") + "</dd></div>" +
-        "</dl>" +
-        '<a class="btn btn--accent" href="photography.html#prints">See sizes and prices</a>' +
-      "</div>";
+    mount.innerHTML = picks.map(function (p, i) {
+      var from = p.sizes && p.sizes.length ? p.sizes[0].price + "+" : "";
+      var img = p.image
+        ? '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '" loading="lazy" decoding="async">'
+        : "";
+      return (
+        '<a class="rag-print reveal" href="photography.html?tab=shop&print=' + esc(p.id) + '" data-world="photography">' +
+          '<span class="rp-frame">' + img + "</span>" +
+          '<span class="rp-meta">' +
+            "<span>" + String(i + 1).padStart(2, "0") + " · " + esc(p.title) + "</span>" +
+            "<span>" + esc(from) + "</span>" +
+          "</span>" +
+        "</a>"
+      );
+    }).join("");
   }
 
   function initLegal() {
@@ -806,9 +1038,19 @@
         "<span>" + esc(d.status) + "</span></div></div>"
       : "";
 
+    var shot = p.image
+      ? '<figure class="pp-shot"><img src="' + esc(p.image) + '" alt="' + esc(p.title) + ' interface screenshot"></figure>'
+      : "";
+
     var live = p.link && p.link !== "#";
+    var footCta = live
+      ? '<a class="btn btn--solid" href="' + esc(p.link) + '" target="_blank" rel="noopener">View the code</a>'
+      : (L.email
+          ? '<a class="btn btn--solid" href="mailto:' + esc(L.email) + '?subject=' + encodeURIComponent("About " + p.title) + '">Ask about this build</a>'
+          : '<span class="btn" aria-disabled="true">Local build</span>');
 
     return (
+      shot +
       '<div class="pp-head">' +
         "<h2>" + esc(p.title) + "</h2>" +
         '<p class="muted">' + esc(p.desc || "") + "</p>" +
@@ -816,11 +1058,7 @@
       "</div>" +
       meta +
       '<dl class="pp-facts">' + facts + "</dl>" +
-      '<div class="pp-foot">' +
-        (live
-          ? '<a class="btn btn--solid" href="' + esc(p.link) + '" target="_blank" rel="noopener">View the code</a>'
-          : '<span class="btn" aria-disabled="true">No repository yet</span>') +
-      "</div>"
+      '<div class="pp-foot">' + footCta + "</div>"
     );
   }
 
@@ -873,17 +1111,9 @@
     });
   }
 
-  /* ---------- 11. hero strip ----------
-     HERO_SHOTS photographs taken from the archive, so the hero carries real
-     work rather than placeholders. Each is printed twice so the marquee can
-     loop without a seam. Raise this number and the strip re-sizes itself —
-     the column count and width are derived, not hard-coded. */
-  var HERO_SHOTS = 6;
-
   /* ---------- 10b. archive outline ----------
      The list beside the photography lede. Counted from media.js, so the numbers
-     can never drift from the gallery further down the page — the old version
-     was hand-written copy and already claimed nine prints when there are six. */
+     can never drift from the gallery further down the page. */
 
   function renderCatalogue() {
     var mount = document.querySelector("[data-catalogue]");
@@ -896,7 +1126,6 @@
     function plural(n, one, many) { return n + " " + (n === 1 ? one : many); }
 
     var prints = D.prints || [];
-    /* a print is only buyable once a size has a real payment link */
     var onSale = prints.some(function (p) {
       return (p.sizes || []).some(function (z) { return z.link && z.link !== "#"; });
     });
@@ -906,7 +1135,7 @@
       { name: "Art photography", note: plural(bySeries("Artistic"), "photograph", "photographs"),  tab: "artistic" },
       { name: "Collections",     note: plural((D.collections || []).length, "set", "sets"),        tab: "collections" },
       { name: "Photobooks",      note: plural((D.photobooks || []).length, "title", "titles"),     href: "#photobooks" },
-      { name: "Prints",          note: prints.length + (onSale ? " available" : " · not on sale yet"), tab: "shop" }
+      { name: "Prints",          note: prints.length + (onSale ? " available" : " · by request"),  tab: "shop" }
     ];
 
     mount.innerHTML = '<div class="meta">' + rows.map(function (r) {
@@ -931,31 +1160,85 @@
     });
   }
 
+  /* ---------- 11. counter-scrolling hero ribbon ----------
+     Row 1: cryptic DAVID letterforms moving left (black -> primary colour on hover).
+     Row 2: white-gutter photographs moving right (B&W duotone -> full colour on hover). */
+  var HERO_GLYPHS = [
+    { c: "var(--blue)",   d: "M0 15C0 6.71574 6.71573 0 15 0H200C282.843 0 350 67.1573 350 150V200C350 282.843 282.843 350 200 350H15C6.71574 350 0 343.284 0 335Z" },
+    { c: "var(--red)",    d: "M15 350C6.71573 350 0 343.284 0 335V150C0 67.1573 67.1573 0 150 0H200C282.843 0 350 67.1573 350 150V335C350 343.284 343.284 350 335 350Z" },
+    { c: "var(--green)",  d: "M335 0C343.284 0 350 6.71573 350 15V200C350 282.843 282.843 350 200 350H150C67.1573 350 0 282.843 0 200V15C0 6.71574 6.71574 0 15 0Z" },
+    { c: "var(--yellow)", circle: true, d: "M15 350C6.71573 350 0 343.284 0 335V283C0 186.35 78.3499 108 175 108C271.65 108 350 186.35 350 283V335C350 343.284 343.284 350 335 350Z" },
+    { c: "var(--blue)",   d: "M0 15C0 6.71574 6.71573 0 15 0H200C282.843 0 350 67.1573 350 150V200C350 282.843 282.843 350 200 350H15C6.71574 350 0 343.284 0 335Z" }
+  ];
+
+  var HERO_TINTS = ["var(--blue)", "var(--red)", "var(--green)", "var(--yellow)"];
+
   function initHero() {
-    var strip = document.querySelector("[data-hero-strip]");
-    if (!strip) return;
+    var trackL = document.querySelector("[data-hero-letters]");
+    var trackP = document.querySelector("[data-hero-strip]");
+    var specimen = document.getElementById("specimen");
+    if (!trackL || !trackP) return;
+
+    var unitL = "";
+    for (var rep = 0; rep < 3; rep++) {
+      HERO_GLYPHS.forEach(function (g) {
+        unitL +=
+          '<div class="glyph-tile" style="--c:' + g.c + '">' +
+            '<svg viewBox="0 0 350 350" focusable="false">' +
+              (g.circle ? '<circle cx="175" cy="-77" r="175"/>' : "") +
+              '<path d="' + g.d + '"/>' +
+            "</svg>" +
+          "</div>";
+      });
+      unitL += '<div class="glyph-sep"></div>';
+    }
+    trackL.innerHTML = unitL + unitL;
 
     var shots = (D.photos || []).filter(function (p) { return p.image; });
-    if (!shots.length) return;
+    var picks = [
+      findPhoto("landscape-h39a0377"),
+      findPhoto("landscape-h39a1324"),
+      findPhoto("artistic-frame-72-2"),
+      findPhoto("landscape-h39a1639"),
+      findPhoto("artistic-h39a6457"),
+      findPhoto("landscape-h39a1763"),
+      findPhoto("landscape-h39a1856"),
+      findPhoto("artistic-h39a8846-1")
+    ].filter(Boolean);
+    if (!picks.length) picks = shots.slice(0, 8);
 
-    /* landscapes only. The hero is the landscape work, not a sampler of both
-       series — everything else lives on the photography page. */
-    var picks = shots.filter(function (p) {
-      return p.series === "Landscape";
-    }).slice(0, HERO_SHOTS);
-    if (!picks.length) picks = shots.slice(0, HERO_SHOTS);
+    var unitP = "";
+    for (var r2 = 0; r2 < 2; r2++) {
+      picks.forEach(function (p, idx) {
+        var tint = HERO_TINTS[idx % HERO_TINTS.length];
+        unitP += '<div class="photo-tile" style="--c:' + tint + '"><img src="' + esc(p.image) + '" alt="" decoding="async"></div>';
+      });
+    }
+    trackP.innerHTML = unitP + unitP;
 
-    var cell = picks.map(function (p) {
-      return '<img src="' + esc(p.image) + '" alt="" decoding="async">';
-    }).join("");
+    if (reduceMotion) return;
 
-    strip.innerHTML = cell + cell;
+    var offsetL = 0, offsetP = 0, speed = 0.46, targetSpeed = 0.46;
+    if (specimen) {
+      specimen.addEventListener("mouseenter", function () { targetSpeed = 0.12; });
+      specimen.addEventListener("mouseleave", function () { targetSpeed = 0.46; });
+    }
 
-    /* 2n columns on a strip of (2n/5) x width + ((2n-5)/5) x gap keeps every
-       picture exactly one letter-cell wide — the arithmetic the CSS comments */
-    var n = picks.length;
-    strip.style.gridTemplateColumns = "repeat(" + (n * 2) + ", minmax(0, 1fr))";
-    strip.style.width = "calc(" + (n * 40) + "% + " + ((2 * n - 5) / 5) + " * var(--hero-gap))";
+    function tick() {
+      speed += (targetSpeed - speed) * 0.028;
+      var halfL = trackL.scrollWidth / 2;
+      var halfP = trackP.scrollWidth / 2;
+      if (halfL > 0) {
+        offsetL = (offsetL + speed) % halfL;
+        trackL.style.transform = "translate3d(" + (-offsetL).toFixed(2) + "px, 0, 0)";
+      }
+      if (halfP > 0) {
+        offsetP = (offsetP + speed * 0.85) % halfP;
+        trackP.style.transform = "translate3d(" + (-halfP + offsetP).toFixed(2) + "px, 0, 0)";
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   }
 
   /* ---------- boot ---------- */
@@ -994,6 +1277,20 @@
     initLightbox();
     initProjectPanel();
     initHero();
+
+    /* support deep links like photography.html?tab=shop&print=landscape-h39a0377 */
+    if (window.URLSearchParams) {
+      var params = new URLSearchParams(location.search);
+      var wantTab = params.get("tab");
+      var wantPrint = params.get("print");
+      if (wantTab) {
+        var tabBtn = document.querySelector('.tab[data-tab="' + wantTab + '"]');
+        if (tabBtn) tabBtn.click();
+      }
+      if (wantPrint) {
+        openPanel(wantPrint);
+      }
+    }
 
     document.addEventListener("click", function (e) {
       var btn = e.target.closest ? e.target.closest("[data-open-print]") : null;

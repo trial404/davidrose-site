@@ -4,16 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Photography — David Rose</title>
-<meta name="description" content="Landscapes and quiet places. Limited and open-edition prints, plus printed photobooks. Ships worldwide from the EU.">
+<meta name="description" content="Landscape and water photography, prints by request, and two trip photobooks in progress from the Canary Islands and the Pyrenees.">
 <meta property="og:title" content="Photography — David Rose">
-<meta property="og:description" content="Landscapes and quiet places. Prints and photobooks ship worldwide from the EU.">
+<meta property="og:description" content="Landscape and water photography, prints by request, and two trip photobooks in progress.">
+<meta property="og:image" content="https://davidrose-site.david94rose.workers.dev/assets/img/photos/landscape-h39a0377.jpg">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#dbdbda">
+<meta name="theme-color" content="#f3f1eb">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/site.css?v=20261125f">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body data-world="photography">
@@ -115,9 +116,17 @@
 <!-- PHOTOGRAPH LIGHTBOX -->
 <dialog class="lightbox" data-lightbox aria-label="Photograph">
   <button class="lightbox-close" type="button" aria-label="Close">✕</button>
+  <button class="lightbox-nav lightbox-prev" type="button" data-lightbox-prev aria-label="Previous photograph">←</button>
+  <button class="lightbox-nav lightbox-next" type="button" data-lightbox-next aria-label="Next photograph">→</button>
   <img data-lightbox-img alt="">
   <div class="lightbox-meta">
-    <p class="lightbox-title" data-lightbox-title></p>
+    <div class="lightbox-bar">
+      <p class="lightbox-title" data-lightbox-title></p>
+      <div class="lightbox-actions">
+        <span class="lightbox-pos" data-lightbox-pos></span>
+        <button class="lightbox-print-btn" type="button" data-lightbox-print hidden>Print available →</button>
+      </div>
+    </div>
     <dl class="lightbox-facts">
       <div><dt>Location</dt><dd data-lightbox-location></dd></div>
       <div><dt>Date</dt><dd data-lightbox-date></dd></div>
@@ -135,10 +144,10 @@
   <div class="panel-body" data-panel-body></div>
 </dialog>
 
-<script src="content/links.js"></script>
-<script src="content/media.js"></script>
-<script src="content/photos.js"></script>
-<script src="content/copy.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="content/links.js?v=20261125b"></script>
+<script src="content/media.js?v=20261126a"></script>
+<script src="content/photos.js?v=20261125b"></script>
+<script src="content/copy.js?v=20261126a"></script>
+<script src="assets/js/site.js?v=20261125f"></script>
 </body>
 </html>

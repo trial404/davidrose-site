@@ -3,17 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>David Rose — Photography, Writing, AI builds</title>
-<meta name="description" content="Photographs, books on life and AI, and things built with AI. Prints and photobooks ship worldwide from the EU.">
-<meta property="og:title" content="David Rose — Photography, Writing, AI builds">
-<meta property="og:description" content="Photographs, books on life and AI, and things built with AI.">
+<title>David Rose — Photography, Writing, AI Builds</title>
+<meta name="description" content="A personal home for photography, a trilogy on value and AI, and five local-first tools built for daily use.">
+<meta property="og:title" content="David Rose — Photography, Writing, AI Builds">
+<meta property="og:description" content="A personal home for photography, a trilogy on value and AI, and five local-first tools built for daily use.">
+<meta property="og:image" content="https://davidrose-site.david94rose.workers.dev/assets/img/photos/landscape-h39a0377.jpg">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#dbdbda">
+<meta name="theme-color" content="#f3f1eb">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/site.css?v=20261125f">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body data-world="home">
@@ -32,79 +33,88 @@
 
 <main id="main">
 
-  <!-- HERO — the name as blocked letterforms over a scroll of photographs -->
-  <section class="hero" aria-label="David Rose">
-    <h1 class="hero-name" data-brand>David Rose</h1>
+  <!-- HERO — counter-scrolling cryptic DAVID + duotone photo ribbon, editorial split & fanned proof deck -->
+  <section class="hero-stage" aria-label="David Rose">
+    <div class="halftone-cloud" aria-hidden="true"></div>
 
-    <div class="hero-letters" aria-hidden="true">
-      <div class="hero-cell" style="--c: var(--blue)">
-        <svg class="hero-glyph" viewBox="0 0 350 350" focusable="false"><path d="M0 15C0 6.71574 6.71573 0 15 0H200C282.843 0 350 67.1573 350 150V200C350 282.843 282.843 350 200 350H15C6.71574 350 0 343.284 0 335Z"/></svg>
-      </div>
-      <div class="hero-cell" style="--c: var(--orange)">
-        <svg class="hero-glyph" viewBox="0 0 350 350" focusable="false"><path d="M15 350C6.71573 350 0 343.284 0 335V150C0 67.1573 67.1573 0 150 0H200C282.843 0 350 67.1573 350 150V335C350 343.284 343.284 350 335 350Z"/></svg>
-      </div>
-      <div class="hero-cell" style="--c: var(--green)">
-        <svg class="hero-glyph" viewBox="0 0 350 350" focusable="false"><path d="M335 0C343.284 0 350 6.71573 350 15V200C350 282.843 282.843 350 200 350H150C67.1573 350 0 282.843 0 200V15C0 6.71574 6.71574 0 15 0Z"/></svg>
-      </div>
-      <div class="hero-cell" style="--c: var(--yellow)">
-        <svg class="hero-glyph" viewBox="0 0 350 350" focusable="false"><circle cx="175" cy="-77" r="175"/><path d="M15 350C6.71573 350 0 343.284 0 335V283C0 186.35 78.3499 108 175 108C271.65 108 350 186.35 350 283V335C350 343.284 343.284 350 335 350Z"/></svg>
-      </div>
-      <div class="hero-cell" style="--c: var(--blue)">
-        <svg class="hero-glyph" viewBox="0 0 350 350" focusable="false"><path d="M0 15C0 6.71574 6.71573 0 15 0H200C282.843 0 350 67.1573 350 150V200C350 282.843 282.843 350 200 350H15C6.71574 350 0 343.284 0 335Z"/></svg>
-      </div>
-    </div>
-
-    <div class="hero-photos" aria-hidden="true">
-      <div class="hero-strip" data-hero-strip></div>
-    </div>
-
-    <div class="shell hero-foot">
-      <p class="hero-lede" data-copy-html="index.photographer-writer-bu.lede"></p>
-      <a class="btn btn--solid" href="photography.html" data-copy-html="index.photographer-writer-bu.cta"></a>
-    </div>
-  </section>
-
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track" data-ticker></div>
-  </div>
-
-  <!-- INDEX -->
-  <section class="section">
     <div class="shell">
-      <div class="rule-label">
-        <span class="label">Index — four worlds</span>
-        <span class="label r">01 – 04</span>
+      <div class="ribbon-card" id="specimen" aria-hidden="true">
+        <div class="ribbon-grid-overlay">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="band band--letters">
+          <div class="band-track" data-hero-letters></div>
+        </div>
+        <div class="band band--photos">
+          <div class="band-track" data-hero-strip></div>
+        </div>
       </div>
-      <div class="rows" data-worlds></div>
+
+      <div class="hero-split">
+        <div class="hero-copy">
+          <p class="hero-pill label" data-copy-html="index.photographer-writer-bu.kicker"></p>
+          <h1 class="hero-h1" data-copy-html="index.photographer-writer-bu.h1"></h1>
+          <p class="hero-lede" data-copy-html="index.photographer-writer-bu.lede"></p>
+          <div class="hero-btns">
+            <a class="btn btn--solid" href="#worlds" data-copy-html="index.photographer-writer-bu.cta"></a>
+            <a class="btn" href="about.html" data-world="about">About me</a>
+          </div>
+        </div>
+
+        <div class="proof-fan" aria-label="Featured studio proofs">
+          <a class="proof-card" href="photography.html" data-world="photography" data-slot="0" style="--c:var(--blue); --ink-on:#fff">
+            <span class="pc-shot"><img src="assets/img/photos/landscape-h39a0377.jpg" alt="Pyrenees fog"></span>
+            <span class="pc-meta"><span>01 · Pyrenees</span><span class="pc-dot"></span></span>
+          </a>
+
+          <a class="proof-card proof-card--book" href="writing.html" data-world="writing" data-slot="1" style="--c:var(--yellow); --ink-on:#090908">
+            <span class="pc-shot"><img src="assets/img/books/01-okay-but-why.jpg?v=20261125b" alt="Okay, But Why?"></span>
+            <span class="pc-meta"><span>02 · Book 01</span><span class="pc-dot"></span></span>
+          </a>
+
+          <a class="proof-card proof-card--book" href="writing.html" data-world="writing" data-slot="2" style="--c:var(--red); --ink-on:#fff">
+            <span class="pc-shot"><img src="assets/img/books/02-you-and-ai.jpg?v=20261125b" alt="You and [A]I"></span>
+            <span class="pc-meta"><span>02 · Book 02</span><span class="pc-dot"></span></span>
+          </a>
+
+          <a class="proof-card proof-card--wide" href="ai.html" data-world="ai" data-slot="3" style="--c:var(--green); --ink-on:#fff">
+            <span class="pc-shot"><img src="assets/img/projects/piano-wait-mode.jpg" alt="Piano Teacher"></span>
+            <span class="pc-meta"><span>03 · Piano Teacher</span><span class="pc-dot"></span></span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- FEATURED PRINT -->
-  <section class="section" id="featured">
-    <div class="shell">
-      <div class="rule-label">
-        <span class="label">Featured print</span>
-        <span class="label r">Available now</span>
-      </div>
-      <div class="feature" data-feature></div>
-    </div>
-  </section>
-
-  <!-- LATEST PHOTOGRAPHS -->
-  <section class="section">
+  <!-- INDEX — FOUR FLOATING COTTON-PAPER FOLIOS -->
+  <section class="section" id="worlds">
     <div class="shell">
       <div class="section-head">
         <div>
-          <p class="label muted" data-copy-html="index.latest-photographs.label"></p>
-          <h2 class="h2" data-copy-html="index.latest-photographs.heading"></h2>
+          <p class="label muted">Four worlds · 01 – 04</p>
+          <h2 class="h2">The Index</h2>
         </div>
-        <a class="btn" href="photography.html" data-world="photography">See photography</a>
+        <p class="aside">Photography · Writing · AI builds · About</p>
       </div>
-      <div class="grid-photos" data-photos data-limit="3"></div>
+      <div class="folio-grid" data-worlds></div>
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
+  <!-- SELECTED PRINTS — FLOATING ARCHIVAL PRINTS ON THE TABLE (FULL NATURAL COLOUR) -->
+  <section class="section" id="featured">
+    <div class="shell">
+      <div class="section-head">
+        <div>
+          <p class="label muted">Studio table · Prints by request</p>
+          <h2 class="h2">Selected Prints</h2>
+        </div>
+        <p class="aside">Hahnemühle Photo Rag 308gsm</p>
+      </div>
+      <div class="print-table" data-feature></div>
+    </div>
+  </section>
+
+  <!-- UPDATES -->
   <section class="section">
     <div class="shell">
       <div class="newsletter" data-copy-html="index.newsletter.newsletter"></div>
@@ -116,10 +126,10 @@
 <footer class="foot" data-copy-html="index.footer">
   </footer>
 
-<script src="content/links.js"></script>
-<script src="content/media.js"></script>
-<script src="content/photos.js"></script>
-<script src="content/copy.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="content/links.js?v=20261125b"></script>
+<script src="content/media.js?v=20261126a"></script>
+<script src="content/photos.js?v=20261125b"></script>
+<script src="content/copy.js?v=20261126a"></script>
+<script src="assets/js/site.js?v=20261125f"></script>
 </body>
 </html>
